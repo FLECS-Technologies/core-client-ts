@@ -8,10 +8,6 @@ function getBaseURL(): string {
   return host() + baseURL()
 }
 
-
-const baseURLProduction = '../api/v2'
-const baseURLDev = '/api/v2'
-
 function host() {
   let target = ''
   if (process.env.REACT_APP_ENVIRONMENT === 'development') {
@@ -25,9 +21,9 @@ function baseURL() {
     process.env.REACT_APP_ENVIRONMENT === 'test' ||
     process.env.REACT_APP_ENVIRONMENT === 'development'
   ) {
-    return baseURLDev
+    return '/api/v2'
   }
-  return baseURLProduction
+  return '../api/v2'
 }
 
 export const api = {
