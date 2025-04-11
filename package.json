@@ -1,0 +1,17 @@
+{
+    "name": "core-client-ts",
+    "version": "1.0.0",
+    "description": "Core client for TypeScript project",
+    "main": "index.js",
+    "scripts": {
+         "generate:client": "openapi-generator-cli generate -i https://raw.githubusercontent.com/FLECS-Technologies/flecs-public/refs/heads/main/flecs/api/openapi.yaml -g typescript-axios -o ./typescript-axios --additional-properties=supportsES6=true,useSingleRequestParameter=true"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "MIT",
+    "devDependencies": {
+        "@openapitools/openapi-generator-cli": "^2.18.4",
+        "jest": "^29.0.0",
+        "typescript": "^5.0.0"
+    }
+}
