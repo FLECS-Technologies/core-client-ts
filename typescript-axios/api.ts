@@ -37,31 +37,6 @@ export interface AdditionalInfo {
     'additionalInfo': string;
 }
 /**
- * 
- * @export
- * @interface AppEditor
- */
-export interface AppEditor {
-    /**
-     * 
-     * @type {string}
-     * @memberof AppEditor
-     */
-    'name': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof AppEditor
-     */
-    'port': number;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof AppEditor
-     */
-    'supportsReverseProxy'?: boolean;
-}
-/**
  * Instance of an App
  * @export
  * @interface AppInstance
@@ -217,6 +192,50 @@ export interface BindMount {
     'host': string;
 }
 /**
+ * Device Onboarding Service Manifest
+ * @export
+ * @interface DOSManifest
+ */
+export interface DOSManifest {
+    /**
+     * 
+     * @type {string}
+     * @memberof DOSManifest
+     */
+    '_schemaVersion': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DOSManifest
+     */
+    'time': string;
+    /**
+     * 
+     * @type {Set<DOSManifestAppsInner>}
+     * @memberof DOSManifest
+     */
+    'apps': Set<DOSManifestAppsInner>;
+}
+/**
+ * 
+ * @export
+ * @interface DOSManifestAppsInner
+ */
+export interface DOSManifestAppsInner {
+    /**
+     * 
+     * @type {string}
+     * @memberof DOSManifestAppsInner
+     */
+    'name': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DOSManifestAppsInner
+     */
+    'version'?: string;
+}
+/**
  * 
  * @export
  * @interface DeploymentNetwork
@@ -236,10 +255,10 @@ export interface DeploymentNetwork {
     'driver'?: string;
     /**
      * 
-     * @type {Network}
+     * @type {Ipam}
      * @memberof DeploymentNetwork
      */
-    'subnet'?: Network;
+    'ipam'?: Ipam;
     /**
      * 
      * @type {string}
@@ -310,50 +329,6 @@ export interface Devices {
      * @memberof Devices
      */
     'usb'?: Array<UsbDevice>;
-}
-/**
- * Device Onboarding Service Manifest
- * @export
- * @interface Dosschema
- */
-export interface Dosschema {
-    /**
-     * 
-     * @type {string}
-     * @memberof Dosschema
-     */
-    '_schemaVersion': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Dosschema
-     */
-    'time': string;
-    /**
-     * 
-     * @type {Set<DosschemaAppsInner>}
-     * @memberof Dosschema
-     */
-    'apps': Set<DosschemaAppsInner>;
-}
-/**
- * 
- * @export
- * @interface DosschemaAppsInner
- */
-export interface DosschemaAppsInner {
-    /**
-     * 
-     * @type {string}
-     * @memberof DosschemaAppsInner
-     */
-    'name': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof DosschemaAppsInner
-     */
-    'version'?: string;
 }
 /**
  * 
@@ -429,47 +404,9 @@ export interface InstalledApp {
      * @memberof InstalledApp
      */
     'multiInstance': boolean;
-    /**
-     * 
-     * @type {Array<AppEditor>}
-     * @memberof InstalledApp
-     */
-    'editors': Array<AppEditor>;
 }
 
 
-/**
- * 
- * @export
- * @interface InstanceConfig
- */
-export interface InstanceConfig {
-    /**
-     * 
-     * @type {Array<InstanceConfigNetworkAdapter>}
-     * @memberof InstanceConfig
-     */
-    'networkAdapters': Array<InstanceConfigNetworkAdapter>;
-    /**
-     * 
-     * @type {InstanceConfigDevices}
-     * @memberof InstanceConfig
-     */
-    'devices': InstanceConfigDevices;
-}
-/**
- * 
- * @export
- * @interface InstanceConfigDevices
- */
-export interface InstanceConfigDevices {
-    /**
-     * 
-     * @type {Array<InstanceConfigUsbDevice>}
-     * @memberof InstanceConfigDevices
-     */
-    'usb': Array<InstanceConfigUsbDevice>;
-}
 /**
  * 
  * @export
@@ -488,49 +425,6 @@ export interface InstanceConfigNetwork {
      * @memberof InstanceConfigNetwork
      */
     'ipAddress': string;
-}
-/**
- * 
- * @export
- * @interface InstanceConfigNetworkAdapter
- */
-export interface InstanceConfigNetworkAdapter {
-    /**
-     * 
-     * @type {string}
-     * @memberof InstanceConfigNetworkAdapter
-     */
-    'name': string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof InstanceConfigNetworkAdapter
-     */
-    'active': boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof InstanceConfigNetworkAdapter
-     */
-    'connected': boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof InstanceConfigNetworkAdapter
-     */
-    'ipAddress'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof InstanceConfigNetworkAdapter
-     */
-    'subnetMask'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof InstanceConfigNetworkAdapter
-     */
-    'gateway'?: string;
 }
 /**
  * 
@@ -872,7 +766,7 @@ export interface InstancesInstanceIdConfigNetworksPostRequest {
      * @type {string}
      * @memberof InstancesInstanceIdConfigNetworksPostRequest
      */
-    'ip_address_suggestion'?: string;
+    'ipAddress'?: string;
 }
 /**
  * @type InstancesInstanceIdConfigPortsTransportProtocolHostPortRangePutRequest
@@ -995,16 +889,35 @@ export interface InstancesInstanceIdPatchRequest {
 export interface Ipam {
     /**
      * 
-     * @type {Ipv4Network}
+     * @type {Ipv4Ipam}
      * @memberof Ipam
      */
-    'ipv4_subnet'?: Ipv4Network;
+    'ipv4'?: Ipv4Ipam;
+}
+/**
+ * 
+ * @export
+ * @interface Ipv4Ipam
+ */
+export interface Ipv4Ipam {
     /**
      * 
      * @type {string}
-     * @memberof Ipam
+     * @memberof Ipv4Ipam
      */
-    'ipv4_gateway'?: string;
+    'address': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Ipv4Ipam
+     */
+    'netmask': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Ipv4Ipam
+     */
+    'gateway'?: string;
 }
 /**
  * 
@@ -1291,11 +1204,11 @@ export interface NetworkAdapter {
  */
 
 export const NetworkKind = {
-    Internal: 'Internal',
-    Bridge: 'Bridge',
-    Macvlan: 'MACVLAN',
-    IpvlanL2: 'IpvlanL2',
-    IpvlanL3: 'IpvlanL3'
+    Internal: 'internal',
+    Bridge: 'bridge',
+    Macvlan: 'macvlan',
+    Ipvlanl2: 'ipvlanl2',
+    Ipvlanl3: 'ipvlanl3'
 } as const;
 
 export type NetworkKind = typeof NetworkKind[keyof typeof NetworkKind];
@@ -1308,12 +1221,12 @@ export type NetworkKind = typeof NetworkKind[keyof typeof NetworkKind];
  */
 
 export const NetworkType = {
-    Unknown: 'Unknown',
-    Wired: 'Wired',
-    Wireless: 'Wireless',
-    Local: 'Local',
-    Bridge: 'Bridge',
-    Virtual: 'Virtual'
+    Unknown: 'unknown',
+    Wired: 'wired',
+    Wireless: 'wireless',
+    Local: 'local',
+    Bridge: 'bridge',
+    Virtual: 'virtual'
 } as const;
 
 export type NetworkType = typeof NetworkType[keyof typeof NetworkType];
@@ -1354,31 +1267,37 @@ export interface PortRange {
 /**
  * 
  * @export
- * @interface PutDeploymentNetwork
+ * @interface PostDeploymentNetwork
  */
-export interface PutDeploymentNetwork {
+export interface PostDeploymentNetwork {
+    /**
+     * 
+     * @type {string}
+     * @memberof PostDeploymentNetwork
+     */
+    'network_id': string;
     /**
      * 
      * @type {NetworkKind}
-     * @memberof PutDeploymentNetwork
+     * @memberof PostDeploymentNetwork
      */
     'network_kind': NetworkKind;
     /**
      * 
      * @type {{ [key: string]: string; }}
-     * @memberof PutDeploymentNetwork
+     * @memberof PostDeploymentNetwork
      */
     'options'?: { [key: string]: string; };
     /**
      * 
      * @type {string}
-     * @memberof PutDeploymentNetwork
+     * @memberof PostDeploymentNetwork
      */
     'parent_adapter'?: string;
     /**
      * 
      * @type {Ipam}
-     * @memberof PutDeploymentNetwork
+     * @memberof PostDeploymentNetwork
      */
     'ipam'?: Ipam;
 }
@@ -2358,21 +2277,17 @@ export const DeploymentsApiAxiosParamCreator = function (configuration?: Configu
         /**
          * 
          * @param {string} deploymentId 
-         * @param {string} networkId 
-         * @param {PutDeploymentNetwork} putDeploymentNetwork 
+         * @param {PostDeploymentNetwork} postDeploymentNetwork 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deploymentsDeploymentIdNetworksNetworkIdPut: async (deploymentId: string, networkId: string, putDeploymentNetwork: PutDeploymentNetwork, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        deploymentsDeploymentIdNetworksPost: async (deploymentId: string, postDeploymentNetwork: PostDeploymentNetwork, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'deploymentId' is not null or undefined
-            assertParamExists('deploymentsDeploymentIdNetworksNetworkIdPut', 'deploymentId', deploymentId)
-            // verify required parameter 'networkId' is not null or undefined
-            assertParamExists('deploymentsDeploymentIdNetworksNetworkIdPut', 'networkId', networkId)
-            // verify required parameter 'putDeploymentNetwork' is not null or undefined
-            assertParamExists('deploymentsDeploymentIdNetworksNetworkIdPut', 'putDeploymentNetwork', putDeploymentNetwork)
-            const localVarPath = `/deployments/{deployment_id}/networks/{network_id}`
-                .replace(`{${"deployment_id"}}`, encodeURIComponent(String(deploymentId)))
-                .replace(`{${"network_id"}}`, encodeURIComponent(String(networkId)));
+            assertParamExists('deploymentsDeploymentIdNetworksPost', 'deploymentId', deploymentId)
+            // verify required parameter 'postDeploymentNetwork' is not null or undefined
+            assertParamExists('deploymentsDeploymentIdNetworksPost', 'postDeploymentNetwork', postDeploymentNetwork)
+            const localVarPath = `/deployments/{deployment_id}/networks`
+                .replace(`{${"deployment_id"}}`, encodeURIComponent(String(deploymentId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -2380,7 +2295,7 @@ export const DeploymentsApiAxiosParamCreator = function (configuration?: Configu
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
@@ -2391,7 +2306,7 @@ export const DeploymentsApiAxiosParamCreator = function (configuration?: Configu
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(putDeploymentNetwork, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(postDeploymentNetwork, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -2449,15 +2364,14 @@ export const DeploymentsApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @param {string} deploymentId 
-         * @param {string} networkId 
-         * @param {PutDeploymentNetwork} putDeploymentNetwork 
+         * @param {PostDeploymentNetwork} postDeploymentNetwork 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async deploymentsDeploymentIdNetworksNetworkIdPut(deploymentId: string, networkId: string, putDeploymentNetwork: PutDeploymentNetwork, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.deploymentsDeploymentIdNetworksNetworkIdPut(deploymentId, networkId, putDeploymentNetwork, options);
+        async deploymentsDeploymentIdNetworksPost(deploymentId: string, postDeploymentNetwork: PostDeploymentNetwork, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deploymentsDeploymentIdNetworksPost(deploymentId, postDeploymentNetwork, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DeploymentsApi.deploymentsDeploymentIdNetworksNetworkIdPut']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['DeploymentsApi.deploymentsDeploymentIdNetworksPost']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
@@ -2499,12 +2413,12 @@ export const DeploymentsApiFactory = function (configuration?: Configuration, ba
         },
         /**
          * 
-         * @param {DeploymentsApiDeploymentsDeploymentIdNetworksNetworkIdPutRequest} requestParameters Request parameters.
+         * @param {DeploymentsApiDeploymentsDeploymentIdNetworksPostRequest} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deploymentsDeploymentIdNetworksNetworkIdPut(requestParameters: DeploymentsApiDeploymentsDeploymentIdNetworksNetworkIdPutRequest, options?: RawAxiosRequestConfig): AxiosPromise<void> {
-            return localVarFp.deploymentsDeploymentIdNetworksNetworkIdPut(requestParameters.deploymentId, requestParameters.networkId, requestParameters.putDeploymentNetwork, options).then((request) => request(axios, basePath));
+        deploymentsDeploymentIdNetworksPost(requestParameters: DeploymentsApiDeploymentsDeploymentIdNetworksPostRequest, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.deploymentsDeploymentIdNetworksPost(requestParameters.deploymentId, requestParameters.postDeploymentNetwork, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -2566,31 +2480,24 @@ export interface DeploymentsApiDeploymentsDeploymentIdNetworksNetworkIdGetReques
 }
 
 /**
- * Request parameters for deploymentsDeploymentIdNetworksNetworkIdPut operation in DeploymentsApi.
+ * Request parameters for deploymentsDeploymentIdNetworksPost operation in DeploymentsApi.
  * @export
- * @interface DeploymentsApiDeploymentsDeploymentIdNetworksNetworkIdPutRequest
+ * @interface DeploymentsApiDeploymentsDeploymentIdNetworksPostRequest
  */
-export interface DeploymentsApiDeploymentsDeploymentIdNetworksNetworkIdPutRequest {
+export interface DeploymentsApiDeploymentsDeploymentIdNetworksPostRequest {
     /**
      * 
      * @type {string}
-     * @memberof DeploymentsApiDeploymentsDeploymentIdNetworksNetworkIdPut
+     * @memberof DeploymentsApiDeploymentsDeploymentIdNetworksPost
      */
     readonly deploymentId: string
 
     /**
      * 
-     * @type {string}
-     * @memberof DeploymentsApiDeploymentsDeploymentIdNetworksNetworkIdPut
+     * @type {PostDeploymentNetwork}
+     * @memberof DeploymentsApiDeploymentsDeploymentIdNetworksPost
      */
-    readonly networkId: string
-
-    /**
-     * 
-     * @type {PutDeploymentNetwork}
-     * @memberof DeploymentsApiDeploymentsDeploymentIdNetworksNetworkIdPut
-     */
-    readonly putDeploymentNetwork: PutDeploymentNetwork
+    readonly postDeploymentNetwork: PostDeploymentNetwork
 }
 
 /**
@@ -2635,13 +2542,13 @@ export class DeploymentsApi extends BaseAPI {
 
     /**
      * 
-     * @param {DeploymentsApiDeploymentsDeploymentIdNetworksNetworkIdPutRequest} requestParameters Request parameters.
+     * @param {DeploymentsApiDeploymentsDeploymentIdNetworksPostRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DeploymentsApi
      */
-    public deploymentsDeploymentIdNetworksNetworkIdPut(requestParameters: DeploymentsApiDeploymentsDeploymentIdNetworksNetworkIdPutRequest, options?: RawAxiosRequestConfig) {
-        return DeploymentsApiFp(this.configuration).deploymentsDeploymentIdNetworksNetworkIdPut(requestParameters.deploymentId, requestParameters.networkId, requestParameters.putDeploymentNetwork, options).then((request) => request(this.axios, this.basePath));
+    public deploymentsDeploymentIdNetworksPost(requestParameters: DeploymentsApiDeploymentsDeploymentIdNetworksPostRequest, options?: RawAxiosRequestConfig) {
+        return DeploymentsApiFp(this.configuration).deploymentsDeploymentIdNetworksPost(requestParameters.deploymentId, requestParameters.postDeploymentNetwork, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -2745,13 +2652,13 @@ export const DeviceApiAxiosParamCreator = function (configuration?: Configuratio
         },
         /**
          * 
-         * @param {Dosschema} dosschema 
+         * @param {DOSManifest} dOSManifest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deviceOnboardingPost: async (dosschema: Dosschema, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'dosschema' is not null or undefined
-            assertParamExists('deviceOnboardingPost', 'dosschema', dosschema)
+        deviceOnboardingPost: async (dOSManifest: DOSManifest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'dOSManifest' is not null or undefined
+            assertParamExists('deviceOnboardingPost', 'dOSManifest', dOSManifest)
             const localVarPath = `/device/onboarding`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -2771,7 +2678,7 @@ export const DeviceApiAxiosParamCreator = function (configuration?: Configuratio
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(dosschema, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(dOSManifest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -2826,12 +2733,12 @@ export const DeviceApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {Dosschema} dosschema 
+         * @param {DOSManifest} dOSManifest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async deviceOnboardingPost(dosschema: Dosschema, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<JobMeta>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.deviceOnboardingPost(dosschema, options);
+        async deviceOnboardingPost(dOSManifest: DOSManifest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<JobMeta>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deviceOnboardingPost(dOSManifest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['DeviceApi.deviceOnboardingPost']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -2880,7 +2787,7 @@ export const DeviceApiFactory = function (configuration?: Configuration, basePat
          * @throws {RequiredError}
          */
         deviceOnboardingPost(requestParameters: DeviceApiDeviceOnboardingPostRequest, options?: RawAxiosRequestConfig): AxiosPromise<JobMeta> {
-            return localVarFp.deviceOnboardingPost(requestParameters.dosschema, options).then((request) => request(axios, basePath));
+            return localVarFp.deviceOnboardingPost(requestParameters.dOSManifest, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -2893,10 +2800,10 @@ export const DeviceApiFactory = function (configuration?: Configuration, basePat
 export interface DeviceApiDeviceOnboardingPostRequest {
     /**
      * 
-     * @type {Dosschema}
+     * @type {DOSManifest}
      * @memberof DeviceApiDeviceOnboardingPost
      */
-    readonly dosschema: Dosschema
+    readonly dOSManifest: DOSManifest
 }
 
 /**
@@ -2947,7 +2854,7 @@ export class DeviceApi extends BaseAPI {
      * @memberof DeviceApi
      */
     public deviceOnboardingPost(requestParameters: DeviceApiDeviceOnboardingPostRequest, options?: RawAxiosRequestConfig) {
-        return DeviceApiFp(this.configuration).deviceOnboardingPost(requestParameters.dosschema, options).then((request) => request(this.axios, this.basePath));
+        return DeviceApiFp(this.configuration).deviceOnboardingPost(requestParameters.dOSManifest, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -3901,40 +3808,6 @@ export const InstancesApiAxiosParamCreator = function (configuration?: Configura
         },
         /**
          * 
-         * @summary Get configuration of an Instance
-         * @param {string} instanceId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        instancesInstanceIdConfigGet: async (instanceId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'instanceId' is not null or undefined
-            assertParamExists('instancesInstanceIdConfigGet', 'instanceId', instanceId)
-            const localVarPath = `/instances/{instance_id}/config`
-                .replace(`{${"instance_id"}}`, encodeURIComponent(String(instanceId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
          * @summary Retrieve labels of an instance
          * @param {string} instanceId 
          * @param {*} [options] Override http request option.
@@ -4655,46 +4528,6 @@ export const InstancesApiAxiosParamCreator = function (configuration?: Configura
         },
         /**
          * 
-         * @summary Update configuration of an Instance
-         * @param {string} instanceId 
-         * @param {InstanceConfig} instanceConfig 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        instancesInstanceIdConfigPost: async (instanceId: string, instanceConfig: InstanceConfig, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'instanceId' is not null or undefined
-            assertParamExists('instancesInstanceIdConfigPost', 'instanceId', instanceId)
-            // verify required parameter 'instanceConfig' is not null or undefined
-            assertParamExists('instancesInstanceIdConfigPost', 'instanceConfig', instanceConfig)
-            const localVarPath = `/instances/{instance_id}/config`
-                .replace(`{${"instance_id"}}`, encodeURIComponent(String(instanceId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(instanceConfig, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
          * @summary Delete a single instance
          * @param {string} instanceId 
          * @param {*} [options] Override http request option.
@@ -5131,19 +4964,6 @@ export const InstancesApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary Get configuration of an Instance
-         * @param {string} instanceId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async instancesInstanceIdConfigGet(instanceId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InstanceConfig>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.instancesInstanceIdConfigGet(instanceId, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['InstancesApi.instancesInstanceIdConfigGet']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
          * @summary Retrieve labels of an instance
          * @param {string} instanceId 
          * @param {*} [options] Override http request option.
@@ -5408,20 +5228,6 @@ export const InstancesApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary Update configuration of an Instance
-         * @param {string} instanceId 
-         * @param {InstanceConfig} instanceConfig 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async instancesInstanceIdConfigPost(instanceId: string, instanceConfig: InstanceConfig, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InstanceConfig>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.instancesInstanceIdConfigPost(instanceId, instanceConfig, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['InstancesApi.instancesInstanceIdConfigPost']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
          * @summary Delete a single instance
          * @param {string} instanceId 
          * @param {*} [options] Override http request option.
@@ -5655,16 +5461,6 @@ export const InstancesApiFactory = function (configuration?: Configuration, base
         },
         /**
          * 
-         * @summary Get configuration of an Instance
-         * @param {InstancesApiInstancesInstanceIdConfigGetRequest} requestParameters Request parameters.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        instancesInstanceIdConfigGet(requestParameters: InstancesApiInstancesInstanceIdConfigGetRequest, options?: RawAxiosRequestConfig): AxiosPromise<InstanceConfig> {
-            return localVarFp.instancesInstanceIdConfigGet(requestParameters.instanceId, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
          * @summary Retrieve labels of an instance
          * @param {InstancesApiInstancesInstanceIdConfigLabelsGetRequest} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
@@ -5852,16 +5648,6 @@ export const InstancesApiFactory = function (configuration?: Configuration, base
          */
         instancesInstanceIdConfigPortsTransportProtocolPut(requestParameters: InstancesApiInstancesInstanceIdConfigPortsTransportProtocolPutRequest, options?: RawAxiosRequestConfig): AxiosPromise<void> {
             return localVarFp.instancesInstanceIdConfigPortsTransportProtocolPut(requestParameters.instanceId, requestParameters.transportProtocol, requestParameters.instancePortMapping, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Update configuration of an Instance
-         * @param {InstancesApiInstancesInstanceIdConfigPostRequest} requestParameters Request parameters.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        instancesInstanceIdConfigPost(requestParameters: InstancesApiInstancesInstanceIdConfigPostRequest, options?: RawAxiosRequestConfig): AxiosPromise<InstanceConfig> {
-            return localVarFp.instancesInstanceIdConfigPost(requestParameters.instanceId, requestParameters.instanceConfig, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -6179,20 +5965,6 @@ export interface InstancesApiInstancesInstanceIdConfigEnvironmentVariableNamePut
      * @memberof InstancesApiInstancesInstanceIdConfigEnvironmentVariableNamePut
      */
     readonly instancesInstanceIdConfigEnvironmentVariableNameGet200Response: InstancesInstanceIdConfigEnvironmentVariableNameGet200Response
-}
-
-/**
- * Request parameters for instancesInstanceIdConfigGet operation in InstancesApi.
- * @export
- * @interface InstancesApiInstancesInstanceIdConfigGetRequest
- */
-export interface InstancesApiInstancesInstanceIdConfigGetRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof InstancesApiInstancesInstanceIdConfigGet
-     */
-    readonly instanceId: string
 }
 
 /**
@@ -6581,27 +6353,6 @@ export interface InstancesApiInstancesInstanceIdConfigPortsTransportProtocolPutR
 }
 
 /**
- * Request parameters for instancesInstanceIdConfigPost operation in InstancesApi.
- * @export
- * @interface InstancesApiInstancesInstanceIdConfigPostRequest
- */
-export interface InstancesApiInstancesInstanceIdConfigPostRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof InstancesApiInstancesInstanceIdConfigPost
-     */
-    readonly instanceId: string
-
-    /**
-     * 
-     * @type {InstanceConfig}
-     * @memberof InstancesApiInstancesInstanceIdConfigPost
-     */
-    readonly instanceConfig: InstanceConfig
-}
-
-/**
  * Request parameters for instancesInstanceIdDelete operation in InstancesApi.
  * @export
  * @interface InstancesApiInstancesInstanceIdDeleteRequest
@@ -6878,18 +6629,6 @@ export class InstancesApi extends BaseAPI {
 
     /**
      * 
-     * @summary Get configuration of an Instance
-     * @param {InstancesApiInstancesInstanceIdConfigGetRequest} requestParameters Request parameters.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof InstancesApi
-     */
-    public instancesInstanceIdConfigGet(requestParameters: InstancesApiInstancesInstanceIdConfigGetRequest, options?: RawAxiosRequestConfig) {
-        return InstancesApiFp(this.configuration).instancesInstanceIdConfigGet(requestParameters.instanceId, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
      * @summary Retrieve labels of an instance
      * @param {InstancesApiInstancesInstanceIdConfigLabelsGetRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
@@ -7114,18 +6853,6 @@ export class InstancesApi extends BaseAPI {
      */
     public instancesInstanceIdConfigPortsTransportProtocolPut(requestParameters: InstancesApiInstancesInstanceIdConfigPortsTransportProtocolPutRequest, options?: RawAxiosRequestConfig) {
         return InstancesApiFp(this.configuration).instancesInstanceIdConfigPortsTransportProtocolPut(requestParameters.instanceId, requestParameters.transportProtocol, requestParameters.instancePortMapping, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Update configuration of an Instance
-     * @param {InstancesApiInstancesInstanceIdConfigPostRequest} requestParameters Request parameters.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof InstancesApi
-     */
-    public instancesInstanceIdConfigPost(requestParameters: InstancesApiInstancesInstanceIdConfigPostRequest, options?: RawAxiosRequestConfig) {
-        return InstancesApiFp(this.configuration).instancesInstanceIdConfigPost(requestParameters.instanceId, requestParameters.instanceConfig, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

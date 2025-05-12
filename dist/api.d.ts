@@ -27,31 +27,6 @@ export interface AdditionalInfo {
     'additionalInfo': string;
 }
 /**
- *
- * @export
- * @interface AppEditor
- */
-export interface AppEditor {
-    /**
-     *
-     * @type {string}
-     * @memberof AppEditor
-     */
-    'name': string;
-    /**
-     *
-     * @type {number}
-     * @memberof AppEditor
-     */
-    'port': number;
-    /**
-     *
-     * @type {boolean}
-     * @memberof AppEditor
-     */
-    'supportsReverseProxy'?: boolean;
-}
-/**
  * Instance of an App
  * @export
  * @interface AppInstance
@@ -201,6 +176,50 @@ export interface BindMount {
     'host': string;
 }
 /**
+ * Device Onboarding Service Manifest
+ * @export
+ * @interface DOSManifest
+ */
+export interface DOSManifest {
+    /**
+     *
+     * @type {string}
+     * @memberof DOSManifest
+     */
+    '_schemaVersion': string;
+    /**
+     *
+     * @type {string}
+     * @memberof DOSManifest
+     */
+    'time': string;
+    /**
+     *
+     * @type {Set<DOSManifestAppsInner>}
+     * @memberof DOSManifest
+     */
+    'apps': Set<DOSManifestAppsInner>;
+}
+/**
+ *
+ * @export
+ * @interface DOSManifestAppsInner
+ */
+export interface DOSManifestAppsInner {
+    /**
+     *
+     * @type {string}
+     * @memberof DOSManifestAppsInner
+     */
+    'name': string;
+    /**
+     *
+     * @type {string}
+     * @memberof DOSManifestAppsInner
+     */
+    'version'?: string;
+}
+/**
  *
  * @export
  * @interface DeploymentNetwork
@@ -220,10 +239,10 @@ export interface DeploymentNetwork {
     'driver'?: string;
     /**
      *
-     * @type {Network}
+     * @type {Ipam}
      * @memberof DeploymentNetwork
      */
-    'subnet'?: Network;
+    'ipam'?: Ipam;
     /**
      *
      * @type {string}
@@ -294,50 +313,6 @@ export interface Devices {
      * @memberof Devices
      */
     'usb'?: Array<UsbDevice>;
-}
-/**
- * Device Onboarding Service Manifest
- * @export
- * @interface Dosschema
- */
-export interface Dosschema {
-    /**
-     *
-     * @type {string}
-     * @memberof Dosschema
-     */
-    '_schemaVersion': string;
-    /**
-     *
-     * @type {string}
-     * @memberof Dosschema
-     */
-    'time': string;
-    /**
-     *
-     * @type {Set<DosschemaAppsInner>}
-     * @memberof Dosschema
-     */
-    'apps': Set<DosschemaAppsInner>;
-}
-/**
- *
- * @export
- * @interface DosschemaAppsInner
- */
-export interface DosschemaAppsInner {
-    /**
-     *
-     * @type {string}
-     * @memberof DosschemaAppsInner
-     */
-    'name': string;
-    /**
-     *
-     * @type {string}
-     * @memberof DosschemaAppsInner
-     */
-    'version'?: string;
 }
 /**
  *
@@ -413,44 +388,6 @@ export interface InstalledApp {
      * @memberof InstalledApp
      */
     'multiInstance': boolean;
-    /**
-     *
-     * @type {Array<AppEditor>}
-     * @memberof InstalledApp
-     */
-    'editors': Array<AppEditor>;
-}
-/**
- *
- * @export
- * @interface InstanceConfig
- */
-export interface InstanceConfig {
-    /**
-     *
-     * @type {Array<InstanceConfigNetworkAdapter>}
-     * @memberof InstanceConfig
-     */
-    'networkAdapters': Array<InstanceConfigNetworkAdapter>;
-    /**
-     *
-     * @type {InstanceConfigDevices}
-     * @memberof InstanceConfig
-     */
-    'devices': InstanceConfigDevices;
-}
-/**
- *
- * @export
- * @interface InstanceConfigDevices
- */
-export interface InstanceConfigDevices {
-    /**
-     *
-     * @type {Array<InstanceConfigUsbDevice>}
-     * @memberof InstanceConfigDevices
-     */
-    'usb': Array<InstanceConfigUsbDevice>;
 }
 /**
  *
@@ -470,49 +407,6 @@ export interface InstanceConfigNetwork {
      * @memberof InstanceConfigNetwork
      */
     'ipAddress': string;
-}
-/**
- *
- * @export
- * @interface InstanceConfigNetworkAdapter
- */
-export interface InstanceConfigNetworkAdapter {
-    /**
-     *
-     * @type {string}
-     * @memberof InstanceConfigNetworkAdapter
-     */
-    'name': string;
-    /**
-     *
-     * @type {boolean}
-     * @memberof InstanceConfigNetworkAdapter
-     */
-    'active': boolean;
-    /**
-     *
-     * @type {boolean}
-     * @memberof InstanceConfigNetworkAdapter
-     */
-    'connected': boolean;
-    /**
-     *
-     * @type {string}
-     * @memberof InstanceConfigNetworkAdapter
-     */
-    'ipAddress'?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof InstanceConfigNetworkAdapter
-     */
-    'subnetMask'?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof InstanceConfigNetworkAdapter
-     */
-    'gateway'?: string;
 }
 /**
  *
@@ -849,7 +743,7 @@ export interface InstancesInstanceIdConfigNetworksPostRequest {
      * @type {string}
      * @memberof InstancesInstanceIdConfigNetworksPostRequest
      */
-    'ip_address_suggestion'?: string;
+    'ipAddress'?: string;
 }
 /**
  * @type InstancesInstanceIdConfigPortsTransportProtocolHostPortRangePutRequest
@@ -969,16 +863,35 @@ export interface InstancesInstanceIdPatchRequest {
 export interface Ipam {
     /**
      *
-     * @type {Ipv4Network}
+     * @type {Ipv4Ipam}
      * @memberof Ipam
      */
-    'ipv4_subnet'?: Ipv4Network;
+    'ipv4'?: Ipv4Ipam;
+}
+/**
+ *
+ * @export
+ * @interface Ipv4Ipam
+ */
+export interface Ipv4Ipam {
     /**
      *
      * @type {string}
-     * @memberof Ipam
+     * @memberof Ipv4Ipam
      */
-    'ipv4_gateway'?: string;
+    'address': string;
+    /**
+     *
+     * @type {string}
+     * @memberof Ipv4Ipam
+     */
+    'netmask': string;
+    /**
+     *
+     * @type {string}
+     * @memberof Ipv4Ipam
+     */
+    'gateway'?: string;
 }
 /**
  *
@@ -1255,11 +1168,11 @@ export interface NetworkAdapter {
  * @enum {string}
  */
 export declare const NetworkKind: {
-    readonly Internal: "Internal";
-    readonly Bridge: "Bridge";
-    readonly Macvlan: "MACVLAN";
-    readonly IpvlanL2: "IpvlanL2";
-    readonly IpvlanL3: "IpvlanL3";
+    readonly Internal: "internal";
+    readonly Bridge: "bridge";
+    readonly Macvlan: "macvlan";
+    readonly Ipvlanl2: "ipvlanl2";
+    readonly Ipvlanl3: "ipvlanl3";
 };
 export type NetworkKind = typeof NetworkKind[keyof typeof NetworkKind];
 /**
@@ -1268,12 +1181,12 @@ export type NetworkKind = typeof NetworkKind[keyof typeof NetworkKind];
  * @enum {string}
  */
 export declare const NetworkType: {
-    readonly Unknown: "Unknown";
-    readonly Wired: "Wired";
-    readonly Wireless: "Wireless";
-    readonly Local: "Local";
-    readonly Bridge: "Bridge";
-    readonly Virtual: "Virtual";
+    readonly Unknown: "unknown";
+    readonly Wired: "wired";
+    readonly Wireless: "wireless";
+    readonly Local: "local";
+    readonly Bridge: "bridge";
+    readonly Virtual: "virtual";
 };
 export type NetworkType = typeof NetworkType[keyof typeof NetworkType];
 /**
@@ -1311,19 +1224,25 @@ export interface PortRange {
 /**
  *
  * @export
- * @interface PutDeploymentNetwork
+ * @interface PostDeploymentNetwork
  */
-export interface PutDeploymentNetwork {
+export interface PostDeploymentNetwork {
+    /**
+     *
+     * @type {string}
+     * @memberof PostDeploymentNetwork
+     */
+    'network_id': string;
     /**
      *
      * @type {NetworkKind}
-     * @memberof PutDeploymentNetwork
+     * @memberof PostDeploymentNetwork
      */
     'network_kind': NetworkKind;
     /**
      *
      * @type {{ [key: string]: string; }}
-     * @memberof PutDeploymentNetwork
+     * @memberof PostDeploymentNetwork
      */
     'options'?: {
         [key: string]: string;
@@ -1331,13 +1250,13 @@ export interface PutDeploymentNetwork {
     /**
      *
      * @type {string}
-     * @memberof PutDeploymentNetwork
+     * @memberof PostDeploymentNetwork
      */
     'parent_adapter'?: string;
     /**
      *
      * @type {Ipam}
-     * @memberof PutDeploymentNetwork
+     * @memberof PostDeploymentNetwork
      */
     'ipam'?: Ipam;
 }
@@ -1932,12 +1851,11 @@ export declare const DeploymentsApiAxiosParamCreator: (configuration?: Configura
     /**
      *
      * @param {string} deploymentId
-     * @param {string} networkId
-     * @param {PutDeploymentNetwork} putDeploymentNetwork
+     * @param {PostDeploymentNetwork} postDeploymentNetwork
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deploymentsDeploymentIdNetworksNetworkIdPut: (deploymentId: string, networkId: string, putDeploymentNetwork: PutDeploymentNetwork, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
+    deploymentsDeploymentIdNetworksPost: (deploymentId: string, postDeploymentNetwork: PostDeploymentNetwork, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
 };
 /**
  * DeploymentsApi - functional programming interface
@@ -1970,12 +1888,11 @@ export declare const DeploymentsApiFp: (configuration?: Configuration) => {
     /**
      *
      * @param {string} deploymentId
-     * @param {string} networkId
-     * @param {PutDeploymentNetwork} putDeploymentNetwork
+     * @param {PostDeploymentNetwork} postDeploymentNetwork
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deploymentsDeploymentIdNetworksNetworkIdPut(deploymentId: string, networkId: string, putDeploymentNetwork: PutDeploymentNetwork, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>>;
+    deploymentsDeploymentIdNetworksPost(deploymentId: string, postDeploymentNetwork: PostDeploymentNetwork, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>>;
 };
 /**
  * DeploymentsApi - factory interface
@@ -2005,11 +1922,11 @@ export declare const DeploymentsApiFactory: (configuration?: Configuration, base
     deploymentsDeploymentIdNetworksNetworkIdGet(requestParameters: DeploymentsApiDeploymentsDeploymentIdNetworksNetworkIdGetRequest, options?: RawAxiosRequestConfig): AxiosPromise<DeploymentNetwork>;
     /**
      *
-     * @param {DeploymentsApiDeploymentsDeploymentIdNetworksNetworkIdPutRequest} requestParameters Request parameters.
+     * @param {DeploymentsApiDeploymentsDeploymentIdNetworksPostRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deploymentsDeploymentIdNetworksNetworkIdPut(requestParameters: DeploymentsApiDeploymentsDeploymentIdNetworksNetworkIdPutRequest, options?: RawAxiosRequestConfig): AxiosPromise<void>;
+    deploymentsDeploymentIdNetworksPost(requestParameters: DeploymentsApiDeploymentsDeploymentIdNetworksPostRequest, options?: RawAxiosRequestConfig): AxiosPromise<void>;
 };
 /**
  * Request parameters for deploymentsDeploymentIdNetworksGet operation in DeploymentsApi.
@@ -2063,29 +1980,23 @@ export interface DeploymentsApiDeploymentsDeploymentIdNetworksNetworkIdGetReques
     readonly networkId: string;
 }
 /**
- * Request parameters for deploymentsDeploymentIdNetworksNetworkIdPut operation in DeploymentsApi.
+ * Request parameters for deploymentsDeploymentIdNetworksPost operation in DeploymentsApi.
  * @export
- * @interface DeploymentsApiDeploymentsDeploymentIdNetworksNetworkIdPutRequest
+ * @interface DeploymentsApiDeploymentsDeploymentIdNetworksPostRequest
  */
-export interface DeploymentsApiDeploymentsDeploymentIdNetworksNetworkIdPutRequest {
+export interface DeploymentsApiDeploymentsDeploymentIdNetworksPostRequest {
     /**
      *
      * @type {string}
-     * @memberof DeploymentsApiDeploymentsDeploymentIdNetworksNetworkIdPut
+     * @memberof DeploymentsApiDeploymentsDeploymentIdNetworksPost
      */
     readonly deploymentId: string;
     /**
      *
-     * @type {string}
-     * @memberof DeploymentsApiDeploymentsDeploymentIdNetworksNetworkIdPut
+     * @type {PostDeploymentNetwork}
+     * @memberof DeploymentsApiDeploymentsDeploymentIdNetworksPost
      */
-    readonly networkId: string;
-    /**
-     *
-     * @type {PutDeploymentNetwork}
-     * @memberof DeploymentsApiDeploymentsDeploymentIdNetworksNetworkIdPut
-     */
-    readonly putDeploymentNetwork: PutDeploymentNetwork;
+    readonly postDeploymentNetwork: PostDeploymentNetwork;
 }
 /**
  * DeploymentsApi - object-oriented interface
@@ -2120,12 +2031,12 @@ export declare class DeploymentsApi extends BaseAPI {
     deploymentsDeploymentIdNetworksNetworkIdGet(requestParameters: DeploymentsApiDeploymentsDeploymentIdNetworksNetworkIdGetRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<DeploymentNetwork, any>>;
     /**
      *
-     * @param {DeploymentsApiDeploymentsDeploymentIdNetworksNetworkIdPutRequest} requestParameters Request parameters.
+     * @param {DeploymentsApiDeploymentsDeploymentIdNetworksPostRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DeploymentsApi
      */
-    deploymentsDeploymentIdNetworksNetworkIdPut(requestParameters: DeploymentsApiDeploymentsDeploymentIdNetworksNetworkIdPutRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+    deploymentsDeploymentIdNetworksPost(requestParameters: DeploymentsApiDeploymentsDeploymentIdNetworksPostRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
 }
 /**
  * DeviceApi - axios parameter creator
@@ -2155,11 +2066,11 @@ export declare const DeviceApiAxiosParamCreator: (configuration?: Configuration)
     deviceLicenseInfoGet: (options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
     /**
      *
-     * @param {Dosschema} dosschema
+     * @param {DOSManifest} dOSManifest
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deviceOnboardingPost: (dosschema: Dosschema, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
+    deviceOnboardingPost: (dOSManifest: DOSManifest, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
 };
 /**
  * DeviceApi - functional programming interface
@@ -2189,11 +2100,11 @@ export declare const DeviceApiFp: (configuration?: Configuration) => {
     deviceLicenseInfoGet(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeviceLicenseInfoGet200Response>>;
     /**
      *
-     * @param {Dosschema} dosschema
+     * @param {DOSManifest} dOSManifest
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deviceOnboardingPost(dosschema: Dosschema, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<JobMeta>>;
+    deviceOnboardingPost(dOSManifest: DOSManifest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<JobMeta>>;
 };
 /**
  * DeviceApi - factory interface
@@ -2237,10 +2148,10 @@ export declare const DeviceApiFactory: (configuration?: Configuration, basePath?
 export interface DeviceApiDeviceOnboardingPostRequest {
     /**
      *
-     * @type {Dosschema}
+     * @type {DOSManifest}
      * @memberof DeviceApiDeviceOnboardingPost
      */
-    readonly dosschema: Dosschema;
+    readonly dOSManifest: DOSManifest;
 }
 /**
  * DeviceApi - object-oriented interface
@@ -2649,14 +2560,6 @@ export declare const InstancesApiAxiosParamCreator: (configuration?: Configurati
     instancesInstanceIdConfigEnvironmentVariableNamePut: (instanceId: string, variableName: string, instancesInstanceIdConfigEnvironmentVariableNameGet200Response: InstancesInstanceIdConfigEnvironmentVariableNameGet200Response, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
     /**
      *
-     * @summary Get configuration of an Instance
-     * @param {string} instanceId
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    instancesInstanceIdConfigGet: (instanceId: string, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
-    /**
-     *
      * @summary Retrieve labels of an instance
      * @param {string} instanceId
      * @param {*} [options] Override http request option.
@@ -2824,15 +2727,6 @@ export declare const InstancesApiAxiosParamCreator: (configuration?: Configurati
      * @throws {RequiredError}
      */
     instancesInstanceIdConfigPortsTransportProtocolPut: (instanceId: string, transportProtocol: TransportProtocol, instancePortMapping: Array<InstancePortMapping>, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
-    /**
-     *
-     * @summary Update configuration of an Instance
-     * @param {string} instanceId
-     * @param {InstanceConfig} instanceConfig
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    instancesInstanceIdConfigPost: (instanceId: string, instanceConfig: InstanceConfig, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
     /**
      *
      * @summary Delete a single instance
@@ -3012,14 +2906,6 @@ export declare const InstancesApiFp: (configuration?: Configuration) => {
     instancesInstanceIdConfigEnvironmentVariableNamePut(instanceId: string, variableName: string, instancesInstanceIdConfigEnvironmentVariableNameGet200Response: InstancesInstanceIdConfigEnvironmentVariableNameGet200Response, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>>;
     /**
      *
-     * @summary Get configuration of an Instance
-     * @param {string} instanceId
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    instancesInstanceIdConfigGet(instanceId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InstanceConfig>>;
-    /**
-     *
      * @summary Retrieve labels of an instance
      * @param {string} instanceId
      * @param {*} [options] Override http request option.
@@ -3187,15 +3073,6 @@ export declare const InstancesApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     instancesInstanceIdConfigPortsTransportProtocolPut(instanceId: string, transportProtocol: TransportProtocol, instancePortMapping: Array<InstancePortMapping>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>>;
-    /**
-     *
-     * @summary Update configuration of an Instance
-     * @param {string} instanceId
-     * @param {InstanceConfig} instanceConfig
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    instancesInstanceIdConfigPost(instanceId: string, instanceConfig: InstanceConfig, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InstanceConfig>>;
     /**
      *
      * @summary Delete a single instance
@@ -3366,14 +3243,6 @@ export declare const InstancesApiFactory: (configuration?: Configuration, basePa
     instancesInstanceIdConfigEnvironmentVariableNamePut(requestParameters: InstancesApiInstancesInstanceIdConfigEnvironmentVariableNamePutRequest, options?: RawAxiosRequestConfig): AxiosPromise<void>;
     /**
      *
-     * @summary Get configuration of an Instance
-     * @param {InstancesApiInstancesInstanceIdConfigGetRequest} requestParameters Request parameters.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    instancesInstanceIdConfigGet(requestParameters: InstancesApiInstancesInstanceIdConfigGetRequest, options?: RawAxiosRequestConfig): AxiosPromise<InstanceConfig>;
-    /**
-     *
      * @summary Retrieve labels of an instance
      * @param {InstancesApiInstancesInstanceIdConfigLabelsGetRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
@@ -3524,14 +3393,6 @@ export declare const InstancesApiFactory: (configuration?: Configuration, basePa
      * @throws {RequiredError}
      */
     instancesInstanceIdConfigPortsTransportProtocolPut(requestParameters: InstancesApiInstancesInstanceIdConfigPortsTransportProtocolPutRequest, options?: RawAxiosRequestConfig): AxiosPromise<void>;
-    /**
-     *
-     * @summary Update configuration of an Instance
-     * @param {InstancesApiInstancesInstanceIdConfigPostRequest} requestParameters Request parameters.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    instancesInstanceIdConfigPost(requestParameters: InstancesApiInstancesInstanceIdConfigPostRequest, options?: RawAxiosRequestConfig): AxiosPromise<InstanceConfig>;
     /**
      *
      * @summary Delete a single instance
@@ -3811,19 +3672,6 @@ export interface InstancesApiInstancesInstanceIdConfigEnvironmentVariableNamePut
      * @memberof InstancesApiInstancesInstanceIdConfigEnvironmentVariableNamePut
      */
     readonly instancesInstanceIdConfigEnvironmentVariableNameGet200Response: InstancesInstanceIdConfigEnvironmentVariableNameGet200Response;
-}
-/**
- * Request parameters for instancesInstanceIdConfigGet operation in InstancesApi.
- * @export
- * @interface InstancesApiInstancesInstanceIdConfigGetRequest
- */
-export interface InstancesApiInstancesInstanceIdConfigGetRequest {
-    /**
-     *
-     * @type {string}
-     * @memberof InstancesApiInstancesInstanceIdConfigGet
-     */
-    readonly instanceId: string;
 }
 /**
  * Request parameters for instancesInstanceIdConfigLabelsGet operation in InstancesApi.
@@ -4175,25 +4023,6 @@ export interface InstancesApiInstancesInstanceIdConfigPortsTransportProtocolPutR
     readonly instancePortMapping: Array<InstancePortMapping>;
 }
 /**
- * Request parameters for instancesInstanceIdConfigPost operation in InstancesApi.
- * @export
- * @interface InstancesApiInstancesInstanceIdConfigPostRequest
- */
-export interface InstancesApiInstancesInstanceIdConfigPostRequest {
-    /**
-     *
-     * @type {string}
-     * @memberof InstancesApiInstancesInstanceIdConfigPost
-     */
-    readonly instanceId: string;
-    /**
-     *
-     * @type {InstanceConfig}
-     * @memberof InstancesApiInstancesInstanceIdConfigPost
-     */
-    readonly instanceConfig: InstanceConfig;
-}
-/**
  * Request parameters for instancesInstanceIdDelete operation in InstancesApi.
  * @export
  * @interface InstancesApiInstancesInstanceIdDeleteRequest
@@ -4422,15 +4251,6 @@ export declare class InstancesApi extends BaseAPI {
     instancesInstanceIdConfigEnvironmentVariableNamePut(requestParameters: InstancesApiInstancesInstanceIdConfigEnvironmentVariableNamePutRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
     /**
      *
-     * @summary Get configuration of an Instance
-     * @param {InstancesApiInstancesInstanceIdConfigGetRequest} requestParameters Request parameters.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof InstancesApi
-     */
-    instancesInstanceIdConfigGet(requestParameters: InstancesApiInstancesInstanceIdConfigGetRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<InstanceConfig, any>>;
-    /**
-     *
      * @summary Retrieve labels of an instance
      * @param {InstancesApiInstancesInstanceIdConfigLabelsGetRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
@@ -4600,15 +4420,6 @@ export declare class InstancesApi extends BaseAPI {
      * @memberof InstancesApi
      */
     instancesInstanceIdConfigPortsTransportProtocolPut(requestParameters: InstancesApiInstancesInstanceIdConfigPortsTransportProtocolPutRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
-    /**
-     *
-     * @summary Update configuration of an Instance
-     * @param {InstancesApiInstancesInstanceIdConfigPostRequest} requestParameters Request parameters.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof InstancesApi
-     */
-    instancesInstanceIdConfigPost(requestParameters: InstancesApiInstancesInstanceIdConfigPostRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<InstanceConfig, any>>;
     /**
      *
      * @summary Delete a single instance
