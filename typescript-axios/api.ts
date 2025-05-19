@@ -571,6 +571,18 @@ export interface InstanceEditor {
      */
     'name': string;
     /**
+     * 
+     * @type {number}
+     * @memberof InstanceEditor
+     */
+    'port': number;
+    /**
+     * Prefix that should be shown in the url path of the editor
+     * @type {string}
+     * @memberof InstanceEditor
+     */
+    'path_prefix'?: string;
+    /**
      * Link to the editor of an instance
      * @type {string}
      * @memberof InstanceEditor
@@ -722,6 +734,19 @@ export interface InstancesCreatePostRequest {
      * @memberof InstancesCreatePostRequest
      */
     'instanceName'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface InstancesInstanceIdConfigEditorsPortPathPrefixPutRequest
+ */
+export interface InstancesInstanceIdConfigEditorsPortPathPrefixPutRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof InstancesInstanceIdConfigEditorsPortPathPrefixPutRequest
+     */
+    'path_prefix': string;
 }
 /**
  * 
@@ -3580,6 +3605,160 @@ export const InstancesApiAxiosParamCreator = function (configuration?: Configura
         },
         /**
          * 
+         * @summary Retrieve editors of an instance
+         * @param {string} instanceId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        instancesInstanceIdConfigEditorsGet: async (instanceId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'instanceId' is not null or undefined
+            assertParamExists('instancesInstanceIdConfigEditorsGet', 'instanceId', instanceId)
+            const localVarPath = `/instances/{instance_id}/config/editors`
+                .replace(`{${"instance_id"}}`, encodeURIComponent(String(instanceId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Retrieve an editor of an instance
+         * @param {string} instanceId 
+         * @param {number} port 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        instancesInstanceIdConfigEditorsPortGet: async (instanceId: string, port: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'instanceId' is not null or undefined
+            assertParamExists('instancesInstanceIdConfigEditorsPortGet', 'instanceId', instanceId)
+            // verify required parameter 'port' is not null or undefined
+            assertParamExists('instancesInstanceIdConfigEditorsPortGet', 'port', port)
+            const localVarPath = `/instances/{instance_id}/config/editors/{port}`
+                .replace(`{${"instance_id"}}`, encodeURIComponent(String(instanceId)))
+                .replace(`{${"port"}}`, encodeURIComponent(String(port)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Remove the path prefix used in the editor uri of an instance editor, this will revert to the default behaviour (/v2/instances/{instance_id}/editor/{port})
+         * @param {string} instanceId 
+         * @param {number} port 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        instancesInstanceIdConfigEditorsPortPathPrefixDelete: async (instanceId: string, port: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'instanceId' is not null or undefined
+            assertParamExists('instancesInstanceIdConfigEditorsPortPathPrefixDelete', 'instanceId', instanceId)
+            // verify required parameter 'port' is not null or undefined
+            assertParamExists('instancesInstanceIdConfigEditorsPortPathPrefixDelete', 'port', port)
+            const localVarPath = `/instances/{instance_id}/config/editors/{port}/path_prefix`
+                .replace(`{${"instance_id"}}`, encodeURIComponent(String(instanceId)))
+                .replace(`{${"port"}}`, encodeURIComponent(String(port)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Modify the path prefix used in the editor uri of an instance editor
+         * @param {string} instanceId 
+         * @param {number} port 
+         * @param {InstancesInstanceIdConfigEditorsPortPathPrefixPutRequest} instancesInstanceIdConfigEditorsPortPathPrefixPutRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        instancesInstanceIdConfigEditorsPortPathPrefixPut: async (instanceId: string, port: number, instancesInstanceIdConfigEditorsPortPathPrefixPutRequest: InstancesInstanceIdConfigEditorsPortPathPrefixPutRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'instanceId' is not null or undefined
+            assertParamExists('instancesInstanceIdConfigEditorsPortPathPrefixPut', 'instanceId', instanceId)
+            // verify required parameter 'port' is not null or undefined
+            assertParamExists('instancesInstanceIdConfigEditorsPortPathPrefixPut', 'port', port)
+            // verify required parameter 'instancesInstanceIdConfigEditorsPortPathPrefixPutRequest' is not null or undefined
+            assertParamExists('instancesInstanceIdConfigEditorsPortPathPrefixPut', 'instancesInstanceIdConfigEditorsPortPathPrefixPutRequest', instancesInstanceIdConfigEditorsPortPathPrefixPutRequest)
+            const localVarPath = `/instances/{instance_id}/config/editors/{port}/path_prefix`
+                .replace(`{${"instance_id"}}`, encodeURIComponent(String(instanceId)))
+                .replace(`{${"port"}}`, encodeURIComponent(String(port)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(instancesInstanceIdConfigEditorsPortPathPrefixPutRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @summary Delete environment of an instance
          * @param {string} instanceId 
          * @param {*} [options] Override http request option.
@@ -4881,6 +5060,62 @@ export const InstancesApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary Retrieve editors of an instance
+         * @param {string} instanceId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async instancesInstanceIdConfigEditorsGet(instanceId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<InstanceEditor>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.instancesInstanceIdConfigEditorsGet(instanceId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['InstancesApi.instancesInstanceIdConfigEditorsGet']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Retrieve an editor of an instance
+         * @param {string} instanceId 
+         * @param {number} port 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async instancesInstanceIdConfigEditorsPortGet(instanceId: string, port: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InstanceEditor>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.instancesInstanceIdConfigEditorsPortGet(instanceId, port, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['InstancesApi.instancesInstanceIdConfigEditorsPortGet']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Remove the path prefix used in the editor uri of an instance editor, this will revert to the default behaviour (/v2/instances/{instance_id}/editor/{port})
+         * @param {string} instanceId 
+         * @param {number} port 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async instancesInstanceIdConfigEditorsPortPathPrefixDelete(instanceId: string, port: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.instancesInstanceIdConfigEditorsPortPathPrefixDelete(instanceId, port, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['InstancesApi.instancesInstanceIdConfigEditorsPortPathPrefixDelete']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Modify the path prefix used in the editor uri of an instance editor
+         * @param {string} instanceId 
+         * @param {number} port 
+         * @param {InstancesInstanceIdConfigEditorsPortPathPrefixPutRequest} instancesInstanceIdConfigEditorsPortPathPrefixPutRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async instancesInstanceIdConfigEditorsPortPathPrefixPut(instanceId: string, port: number, instancesInstanceIdConfigEditorsPortPathPrefixPutRequest: InstancesInstanceIdConfigEditorsPortPathPrefixPutRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.instancesInstanceIdConfigEditorsPortPathPrefixPut(instanceId, port, instancesInstanceIdConfigEditorsPortPathPrefixPutRequest, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['InstancesApi.instancesInstanceIdConfigEditorsPortPathPrefixPut']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
          * @summary Delete environment of an instance
          * @param {string} instanceId 
          * @param {*} [options] Override http request option.
@@ -5401,6 +5636,46 @@ export const InstancesApiFactory = function (configuration?: Configuration, base
         },
         /**
          * 
+         * @summary Retrieve editors of an instance
+         * @param {InstancesApiInstancesInstanceIdConfigEditorsGetRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        instancesInstanceIdConfigEditorsGet(requestParameters: InstancesApiInstancesInstanceIdConfigEditorsGetRequest, options?: RawAxiosRequestConfig): AxiosPromise<Array<InstanceEditor>> {
+            return localVarFp.instancesInstanceIdConfigEditorsGet(requestParameters.instanceId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Retrieve an editor of an instance
+         * @param {InstancesApiInstancesInstanceIdConfigEditorsPortGetRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        instancesInstanceIdConfigEditorsPortGet(requestParameters: InstancesApiInstancesInstanceIdConfigEditorsPortGetRequest, options?: RawAxiosRequestConfig): AxiosPromise<InstanceEditor> {
+            return localVarFp.instancesInstanceIdConfigEditorsPortGet(requestParameters.instanceId, requestParameters.port, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Remove the path prefix used in the editor uri of an instance editor, this will revert to the default behaviour (/v2/instances/{instance_id}/editor/{port})
+         * @param {InstancesApiInstancesInstanceIdConfigEditorsPortPathPrefixDeleteRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        instancesInstanceIdConfigEditorsPortPathPrefixDelete(requestParameters: InstancesApiInstancesInstanceIdConfigEditorsPortPathPrefixDeleteRequest, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.instancesInstanceIdConfigEditorsPortPathPrefixDelete(requestParameters.instanceId, requestParameters.port, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Modify the path prefix used in the editor uri of an instance editor
+         * @param {InstancesApiInstancesInstanceIdConfigEditorsPortPathPrefixPutRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        instancesInstanceIdConfigEditorsPortPathPrefixPut(requestParameters: InstancesApiInstancesInstanceIdConfigEditorsPortPathPrefixPutRequest, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.instancesInstanceIdConfigEditorsPortPathPrefixPut(requestParameters.instanceId, requestParameters.port, requestParameters.instancesInstanceIdConfigEditorsPortPathPrefixPutRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @summary Delete environment of an instance
          * @param {InstancesApiInstancesInstanceIdConfigEnvironmentDeleteRequest} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
@@ -5846,6 +6121,90 @@ export interface InstancesApiInstancesInstanceIdConfigDevicesUsbPortPutRequest {
      * @memberof InstancesApiInstancesInstanceIdConfigDevicesUsbPortPut
      */
     readonly port: string
+}
+
+/**
+ * Request parameters for instancesInstanceIdConfigEditorsGet operation in InstancesApi.
+ * @export
+ * @interface InstancesApiInstancesInstanceIdConfigEditorsGetRequest
+ */
+export interface InstancesApiInstancesInstanceIdConfigEditorsGetRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof InstancesApiInstancesInstanceIdConfigEditorsGet
+     */
+    readonly instanceId: string
+}
+
+/**
+ * Request parameters for instancesInstanceIdConfigEditorsPortGet operation in InstancesApi.
+ * @export
+ * @interface InstancesApiInstancesInstanceIdConfigEditorsPortGetRequest
+ */
+export interface InstancesApiInstancesInstanceIdConfigEditorsPortGetRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof InstancesApiInstancesInstanceIdConfigEditorsPortGet
+     */
+    readonly instanceId: string
+
+    /**
+     * 
+     * @type {number}
+     * @memberof InstancesApiInstancesInstanceIdConfigEditorsPortGet
+     */
+    readonly port: number
+}
+
+/**
+ * Request parameters for instancesInstanceIdConfigEditorsPortPathPrefixDelete operation in InstancesApi.
+ * @export
+ * @interface InstancesApiInstancesInstanceIdConfigEditorsPortPathPrefixDeleteRequest
+ */
+export interface InstancesApiInstancesInstanceIdConfigEditorsPortPathPrefixDeleteRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof InstancesApiInstancesInstanceIdConfigEditorsPortPathPrefixDelete
+     */
+    readonly instanceId: string
+
+    /**
+     * 
+     * @type {number}
+     * @memberof InstancesApiInstancesInstanceIdConfigEditorsPortPathPrefixDelete
+     */
+    readonly port: number
+}
+
+/**
+ * Request parameters for instancesInstanceIdConfigEditorsPortPathPrefixPut operation in InstancesApi.
+ * @export
+ * @interface InstancesApiInstancesInstanceIdConfigEditorsPortPathPrefixPutRequest
+ */
+export interface InstancesApiInstancesInstanceIdConfigEditorsPortPathPrefixPutRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof InstancesApiInstancesInstanceIdConfigEditorsPortPathPrefixPut
+     */
+    readonly instanceId: string
+
+    /**
+     * 
+     * @type {number}
+     * @memberof InstancesApiInstancesInstanceIdConfigEditorsPortPathPrefixPut
+     */
+    readonly port: number
+
+    /**
+     * 
+     * @type {InstancesInstanceIdConfigEditorsPortPathPrefixPutRequest}
+     * @memberof InstancesApiInstancesInstanceIdConfigEditorsPortPathPrefixPut
+     */
+    readonly instancesInstanceIdConfigEditorsPortPathPrefixPutRequest: InstancesInstanceIdConfigEditorsPortPathPrefixPutRequest
 }
 
 /**
@@ -6553,6 +6912,54 @@ export class InstancesApi extends BaseAPI {
      */
     public instancesInstanceIdConfigDevicesUsbPortPut(requestParameters: InstancesApiInstancesInstanceIdConfigDevicesUsbPortPutRequest, options?: RawAxiosRequestConfig) {
         return InstancesApiFp(this.configuration).instancesInstanceIdConfigDevicesUsbPortPut(requestParameters.instanceId, requestParameters.port, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Retrieve editors of an instance
+     * @param {InstancesApiInstancesInstanceIdConfigEditorsGetRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof InstancesApi
+     */
+    public instancesInstanceIdConfigEditorsGet(requestParameters: InstancesApiInstancesInstanceIdConfigEditorsGetRequest, options?: RawAxiosRequestConfig) {
+        return InstancesApiFp(this.configuration).instancesInstanceIdConfigEditorsGet(requestParameters.instanceId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Retrieve an editor of an instance
+     * @param {InstancesApiInstancesInstanceIdConfigEditorsPortGetRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof InstancesApi
+     */
+    public instancesInstanceIdConfigEditorsPortGet(requestParameters: InstancesApiInstancesInstanceIdConfigEditorsPortGetRequest, options?: RawAxiosRequestConfig) {
+        return InstancesApiFp(this.configuration).instancesInstanceIdConfigEditorsPortGet(requestParameters.instanceId, requestParameters.port, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Remove the path prefix used in the editor uri of an instance editor, this will revert to the default behaviour (/v2/instances/{instance_id}/editor/{port})
+     * @param {InstancesApiInstancesInstanceIdConfigEditorsPortPathPrefixDeleteRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof InstancesApi
+     */
+    public instancesInstanceIdConfigEditorsPortPathPrefixDelete(requestParameters: InstancesApiInstancesInstanceIdConfigEditorsPortPathPrefixDeleteRequest, options?: RawAxiosRequestConfig) {
+        return InstancesApiFp(this.configuration).instancesInstanceIdConfigEditorsPortPathPrefixDelete(requestParameters.instanceId, requestParameters.port, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Modify the path prefix used in the editor uri of an instance editor
+     * @param {InstancesApiInstancesInstanceIdConfigEditorsPortPathPrefixPutRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof InstancesApi
+     */
+    public instancesInstanceIdConfigEditorsPortPathPrefixPut(requestParameters: InstancesApiInstancesInstanceIdConfigEditorsPortPathPrefixPutRequest, options?: RawAxiosRequestConfig) {
+        return InstancesApiFp(this.configuration).instancesInstanceIdConfigEditorsPortPathPrefixPut(requestParameters.instanceId, requestParameters.port, requestParameters.instancesInstanceIdConfigEditorsPortPathPrefixPutRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

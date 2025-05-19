@@ -553,6 +553,18 @@ export interface InstanceEditor {
      */
     'name': string;
     /**
+     *
+     * @type {number}
+     * @memberof InstanceEditor
+     */
+    'port': number;
+    /**
+     * Prefix that should be shown in the url path of the editor
+     * @type {string}
+     * @memberof InstanceEditor
+     */
+    'path_prefix'?: string;
+    /**
      * Link to the editor of an instance
      * @type {string}
      * @memberof InstanceEditor
@@ -699,6 +711,19 @@ export interface InstancesCreatePostRequest {
      * @memberof InstancesCreatePostRequest
      */
     'instanceName'?: string;
+}
+/**
+ *
+ * @export
+ * @interface InstancesInstanceIdConfigEditorsPortPathPrefixPutRequest
+ */
+export interface InstancesInstanceIdConfigEditorsPortPathPrefixPutRequest {
+    /**
+     *
+     * @type {string}
+     * @memberof InstancesInstanceIdConfigEditorsPortPathPrefixPutRequest
+     */
+    'path_prefix': string;
 }
 /**
  *
@@ -2507,6 +2532,42 @@ export declare const InstancesApiAxiosParamCreator: (configuration?: Configurati
     instancesInstanceIdConfigDevicesUsbPortPut: (instanceId: string, port: string, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
     /**
      *
+     * @summary Retrieve editors of an instance
+     * @param {string} instanceId
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    instancesInstanceIdConfigEditorsGet: (instanceId: string, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
+    /**
+     *
+     * @summary Retrieve an editor of an instance
+     * @param {string} instanceId
+     * @param {number} port
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    instancesInstanceIdConfigEditorsPortGet: (instanceId: string, port: number, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
+    /**
+     *
+     * @summary Remove the path prefix used in the editor uri of an instance editor, this will revert to the default behaviour (/v2/instances/{instance_id}/editor/{port})
+     * @param {string} instanceId
+     * @param {number} port
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    instancesInstanceIdConfigEditorsPortPathPrefixDelete: (instanceId: string, port: number, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
+    /**
+     *
+     * @summary Modify the path prefix used in the editor uri of an instance editor
+     * @param {string} instanceId
+     * @param {number} port
+     * @param {InstancesInstanceIdConfigEditorsPortPathPrefixPutRequest} instancesInstanceIdConfigEditorsPortPathPrefixPutRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    instancesInstanceIdConfigEditorsPortPathPrefixPut: (instanceId: string, port: number, instancesInstanceIdConfigEditorsPortPathPrefixPutRequest: InstancesInstanceIdConfigEditorsPortPathPrefixPutRequest, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
+    /**
+     *
      * @summary Delete environment of an instance
      * @param {string} instanceId
      * @param {*} [options] Override http request option.
@@ -2853,6 +2914,42 @@ export declare const InstancesApiFp: (configuration?: Configuration) => {
     instancesInstanceIdConfigDevicesUsbPortPut(instanceId: string, port: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>>;
     /**
      *
+     * @summary Retrieve editors of an instance
+     * @param {string} instanceId
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    instancesInstanceIdConfigEditorsGet(instanceId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<InstanceEditor>>>;
+    /**
+     *
+     * @summary Retrieve an editor of an instance
+     * @param {string} instanceId
+     * @param {number} port
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    instancesInstanceIdConfigEditorsPortGet(instanceId: string, port: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InstanceEditor>>;
+    /**
+     *
+     * @summary Remove the path prefix used in the editor uri of an instance editor, this will revert to the default behaviour (/v2/instances/{instance_id}/editor/{port})
+     * @param {string} instanceId
+     * @param {number} port
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    instancesInstanceIdConfigEditorsPortPathPrefixDelete(instanceId: string, port: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>>;
+    /**
+     *
+     * @summary Modify the path prefix used in the editor uri of an instance editor
+     * @param {string} instanceId
+     * @param {number} port
+     * @param {InstancesInstanceIdConfigEditorsPortPathPrefixPutRequest} instancesInstanceIdConfigEditorsPortPathPrefixPutRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    instancesInstanceIdConfigEditorsPortPathPrefixPut(instanceId: string, port: number, instancesInstanceIdConfigEditorsPortPathPrefixPutRequest: InstancesInstanceIdConfigEditorsPortPathPrefixPutRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>>;
+    /**
+     *
      * @summary Delete environment of an instance
      * @param {string} instanceId
      * @param {*} [options] Override http request option.
@@ -3193,6 +3290,38 @@ export declare const InstancesApiFactory: (configuration?: Configuration, basePa
      * @throws {RequiredError}
      */
     instancesInstanceIdConfigDevicesUsbPortPut(requestParameters: InstancesApiInstancesInstanceIdConfigDevicesUsbPortPutRequest, options?: RawAxiosRequestConfig): AxiosPromise<void>;
+    /**
+     *
+     * @summary Retrieve editors of an instance
+     * @param {InstancesApiInstancesInstanceIdConfigEditorsGetRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    instancesInstanceIdConfigEditorsGet(requestParameters: InstancesApiInstancesInstanceIdConfigEditorsGetRequest, options?: RawAxiosRequestConfig): AxiosPromise<Array<InstanceEditor>>;
+    /**
+     *
+     * @summary Retrieve an editor of an instance
+     * @param {InstancesApiInstancesInstanceIdConfigEditorsPortGetRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    instancesInstanceIdConfigEditorsPortGet(requestParameters: InstancesApiInstancesInstanceIdConfigEditorsPortGetRequest, options?: RawAxiosRequestConfig): AxiosPromise<InstanceEditor>;
+    /**
+     *
+     * @summary Remove the path prefix used in the editor uri of an instance editor, this will revert to the default behaviour (/v2/instances/{instance_id}/editor/{port})
+     * @param {InstancesApiInstancesInstanceIdConfigEditorsPortPathPrefixDeleteRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    instancesInstanceIdConfigEditorsPortPathPrefixDelete(requestParameters: InstancesApiInstancesInstanceIdConfigEditorsPortPathPrefixDeleteRequest, options?: RawAxiosRequestConfig): AxiosPromise<void>;
+    /**
+     *
+     * @summary Modify the path prefix used in the editor uri of an instance editor
+     * @param {InstancesApiInstancesInstanceIdConfigEditorsPortPathPrefixPutRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    instancesInstanceIdConfigEditorsPortPathPrefixPut(requestParameters: InstancesApiInstancesInstanceIdConfigEditorsPortPathPrefixPutRequest, options?: RawAxiosRequestConfig): AxiosPromise<void>;
     /**
      *
      * @summary Delete environment of an instance
@@ -3564,6 +3693,82 @@ export interface InstancesApiInstancesInstanceIdConfigDevicesUsbPortPutRequest {
      * @memberof InstancesApiInstancesInstanceIdConfigDevicesUsbPortPut
      */
     readonly port: string;
+}
+/**
+ * Request parameters for instancesInstanceIdConfigEditorsGet operation in InstancesApi.
+ * @export
+ * @interface InstancesApiInstancesInstanceIdConfigEditorsGetRequest
+ */
+export interface InstancesApiInstancesInstanceIdConfigEditorsGetRequest {
+    /**
+     *
+     * @type {string}
+     * @memberof InstancesApiInstancesInstanceIdConfigEditorsGet
+     */
+    readonly instanceId: string;
+}
+/**
+ * Request parameters for instancesInstanceIdConfigEditorsPortGet operation in InstancesApi.
+ * @export
+ * @interface InstancesApiInstancesInstanceIdConfigEditorsPortGetRequest
+ */
+export interface InstancesApiInstancesInstanceIdConfigEditorsPortGetRequest {
+    /**
+     *
+     * @type {string}
+     * @memberof InstancesApiInstancesInstanceIdConfigEditorsPortGet
+     */
+    readonly instanceId: string;
+    /**
+     *
+     * @type {number}
+     * @memberof InstancesApiInstancesInstanceIdConfigEditorsPortGet
+     */
+    readonly port: number;
+}
+/**
+ * Request parameters for instancesInstanceIdConfigEditorsPortPathPrefixDelete operation in InstancesApi.
+ * @export
+ * @interface InstancesApiInstancesInstanceIdConfigEditorsPortPathPrefixDeleteRequest
+ */
+export interface InstancesApiInstancesInstanceIdConfigEditorsPortPathPrefixDeleteRequest {
+    /**
+     *
+     * @type {string}
+     * @memberof InstancesApiInstancesInstanceIdConfigEditorsPortPathPrefixDelete
+     */
+    readonly instanceId: string;
+    /**
+     *
+     * @type {number}
+     * @memberof InstancesApiInstancesInstanceIdConfigEditorsPortPathPrefixDelete
+     */
+    readonly port: number;
+}
+/**
+ * Request parameters for instancesInstanceIdConfigEditorsPortPathPrefixPut operation in InstancesApi.
+ * @export
+ * @interface InstancesApiInstancesInstanceIdConfigEditorsPortPathPrefixPutRequest
+ */
+export interface InstancesApiInstancesInstanceIdConfigEditorsPortPathPrefixPutRequest {
+    /**
+     *
+     * @type {string}
+     * @memberof InstancesApiInstancesInstanceIdConfigEditorsPortPathPrefixPut
+     */
+    readonly instanceId: string;
+    /**
+     *
+     * @type {number}
+     * @memberof InstancesApiInstancesInstanceIdConfigEditorsPortPathPrefixPut
+     */
+    readonly port: number;
+    /**
+     *
+     * @type {InstancesInstanceIdConfigEditorsPortPathPrefixPutRequest}
+     * @memberof InstancesApiInstancesInstanceIdConfigEditorsPortPathPrefixPut
+     */
+    readonly instancesInstanceIdConfigEditorsPortPathPrefixPutRequest: InstancesInstanceIdConfigEditorsPortPathPrefixPutRequest;
 }
 /**
  * Request parameters for instancesInstanceIdConfigEnvironmentDelete operation in InstancesApi.
@@ -4195,6 +4400,42 @@ export declare class InstancesApi extends BaseAPI {
      * @memberof InstancesApi
      */
     instancesInstanceIdConfigDevicesUsbPortPut(requestParameters: InstancesApiInstancesInstanceIdConfigDevicesUsbPortPutRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+    /**
+     *
+     * @summary Retrieve editors of an instance
+     * @param {InstancesApiInstancesInstanceIdConfigEditorsGetRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof InstancesApi
+     */
+    instancesInstanceIdConfigEditorsGet(requestParameters: InstancesApiInstancesInstanceIdConfigEditorsGetRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<InstanceEditor[], any>>;
+    /**
+     *
+     * @summary Retrieve an editor of an instance
+     * @param {InstancesApiInstancesInstanceIdConfigEditorsPortGetRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof InstancesApi
+     */
+    instancesInstanceIdConfigEditorsPortGet(requestParameters: InstancesApiInstancesInstanceIdConfigEditorsPortGetRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<InstanceEditor, any>>;
+    /**
+     *
+     * @summary Remove the path prefix used in the editor uri of an instance editor, this will revert to the default behaviour (/v2/instances/{instance_id}/editor/{port})
+     * @param {InstancesApiInstancesInstanceIdConfigEditorsPortPathPrefixDeleteRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof InstancesApi
+     */
+    instancesInstanceIdConfigEditorsPortPathPrefixDelete(requestParameters: InstancesApiInstancesInstanceIdConfigEditorsPortPathPrefixDeleteRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+    /**
+     *
+     * @summary Modify the path prefix used in the editor uri of an instance editor
+     * @param {InstancesApiInstancesInstanceIdConfigEditorsPortPathPrefixPutRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof InstancesApi
+     */
+    instancesInstanceIdConfigEditorsPortPathPrefixPut(requestParameters: InstancesApiInstancesInstanceIdConfigEditorsPortPathPrefixPutRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
     /**
      *
      * @summary Delete environment of an instance

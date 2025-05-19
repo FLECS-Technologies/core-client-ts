@@ -2160,6 +2160,155 @@ export var InstancesApiAxiosParamCreator = function (configuration) {
         },
         /**
          *
+         * @summary Retrieve editors of an instance
+         * @param {string} instanceId
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        instancesInstanceIdConfigEditorsGet: function (instanceId, options) {
+            if (options === void 0) { options = {}; }
+            return __awaiter(_this, void 0, void 0, function () {
+                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                return __generator(this, function (_a) {
+                    // verify required parameter 'instanceId' is not null or undefined
+                    assertParamExists('instancesInstanceIdConfigEditorsGet', 'instanceId', instanceId);
+                    localVarPath = "/instances/{instance_id}/config/editors"
+                        .replace("{".concat("instance_id", "}"), encodeURIComponent(String(instanceId)));
+                    localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+                    if (configuration) {
+                        baseOptions = configuration.baseOptions;
+                    }
+                    localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), options);
+                    localVarHeaderParameter = {};
+                    localVarQueryParameter = {};
+                    setSearchParams(localVarUrlObj, localVarQueryParameter);
+                    headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+                    localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
+                    return [2 /*return*/, {
+                            url: toPathString(localVarUrlObj),
+                            options: localVarRequestOptions,
+                        }];
+                });
+            });
+        },
+        /**
+         *
+         * @summary Retrieve an editor of an instance
+         * @param {string} instanceId
+         * @param {number} port
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        instancesInstanceIdConfigEditorsPortGet: function (instanceId, port, options) {
+            if (options === void 0) { options = {}; }
+            return __awaiter(_this, void 0, void 0, function () {
+                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                return __generator(this, function (_a) {
+                    // verify required parameter 'instanceId' is not null or undefined
+                    assertParamExists('instancesInstanceIdConfigEditorsPortGet', 'instanceId', instanceId);
+                    // verify required parameter 'port' is not null or undefined
+                    assertParamExists('instancesInstanceIdConfigEditorsPortGet', 'port', port);
+                    localVarPath = "/instances/{instance_id}/config/editors/{port}"
+                        .replace("{".concat("instance_id", "}"), encodeURIComponent(String(instanceId)))
+                        .replace("{".concat("port", "}"), encodeURIComponent(String(port)));
+                    localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+                    if (configuration) {
+                        baseOptions = configuration.baseOptions;
+                    }
+                    localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), options);
+                    localVarHeaderParameter = {};
+                    localVarQueryParameter = {};
+                    setSearchParams(localVarUrlObj, localVarQueryParameter);
+                    headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+                    localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
+                    return [2 /*return*/, {
+                            url: toPathString(localVarUrlObj),
+                            options: localVarRequestOptions,
+                        }];
+                });
+            });
+        },
+        /**
+         *
+         * @summary Remove the path prefix used in the editor uri of an instance editor, this will revert to the default behaviour (/v2/instances/{instance_id}/editor/{port})
+         * @param {string} instanceId
+         * @param {number} port
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        instancesInstanceIdConfigEditorsPortPathPrefixDelete: function (instanceId, port, options) {
+            if (options === void 0) { options = {}; }
+            return __awaiter(_this, void 0, void 0, function () {
+                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                return __generator(this, function (_a) {
+                    // verify required parameter 'instanceId' is not null or undefined
+                    assertParamExists('instancesInstanceIdConfigEditorsPortPathPrefixDelete', 'instanceId', instanceId);
+                    // verify required parameter 'port' is not null or undefined
+                    assertParamExists('instancesInstanceIdConfigEditorsPortPathPrefixDelete', 'port', port);
+                    localVarPath = "/instances/{instance_id}/config/editors/{port}/path_prefix"
+                        .replace("{".concat("instance_id", "}"), encodeURIComponent(String(instanceId)))
+                        .replace("{".concat("port", "}"), encodeURIComponent(String(port)));
+                    localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+                    if (configuration) {
+                        baseOptions = configuration.baseOptions;
+                    }
+                    localVarRequestOptions = __assign(__assign({ method: 'DELETE' }, baseOptions), options);
+                    localVarHeaderParameter = {};
+                    localVarQueryParameter = {};
+                    setSearchParams(localVarUrlObj, localVarQueryParameter);
+                    headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+                    localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
+                    return [2 /*return*/, {
+                            url: toPathString(localVarUrlObj),
+                            options: localVarRequestOptions,
+                        }];
+                });
+            });
+        },
+        /**
+         *
+         * @summary Modify the path prefix used in the editor uri of an instance editor
+         * @param {string} instanceId
+         * @param {number} port
+         * @param {InstancesInstanceIdConfigEditorsPortPathPrefixPutRequest} instancesInstanceIdConfigEditorsPortPathPrefixPutRequest
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        instancesInstanceIdConfigEditorsPortPathPrefixPut: function (instanceId, port, instancesInstanceIdConfigEditorsPortPathPrefixPutRequest, options) {
+            if (options === void 0) { options = {}; }
+            return __awaiter(_this, void 0, void 0, function () {
+                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                return __generator(this, function (_a) {
+                    // verify required parameter 'instanceId' is not null or undefined
+                    assertParamExists('instancesInstanceIdConfigEditorsPortPathPrefixPut', 'instanceId', instanceId);
+                    // verify required parameter 'port' is not null or undefined
+                    assertParamExists('instancesInstanceIdConfigEditorsPortPathPrefixPut', 'port', port);
+                    // verify required parameter 'instancesInstanceIdConfigEditorsPortPathPrefixPutRequest' is not null or undefined
+                    assertParamExists('instancesInstanceIdConfigEditorsPortPathPrefixPut', 'instancesInstanceIdConfigEditorsPortPathPrefixPutRequest', instancesInstanceIdConfigEditorsPortPathPrefixPutRequest);
+                    localVarPath = "/instances/{instance_id}/config/editors/{port}/path_prefix"
+                        .replace("{".concat("instance_id", "}"), encodeURIComponent(String(instanceId)))
+                        .replace("{".concat("port", "}"), encodeURIComponent(String(port)));
+                    localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+                    if (configuration) {
+                        baseOptions = configuration.baseOptions;
+                    }
+                    localVarRequestOptions = __assign(__assign({ method: 'PUT' }, baseOptions), options);
+                    localVarHeaderParameter = {};
+                    localVarQueryParameter = {};
+                    localVarHeaderParameter['Content-Type'] = 'application/json';
+                    setSearchParams(localVarUrlObj, localVarQueryParameter);
+                    headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+                    localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
+                    localVarRequestOptions.data = serializeDataIfNeeded(instancesInstanceIdConfigEditorsPortPathPrefixPutRequest, localVarRequestOptions, configuration);
+                    return [2 /*return*/, {
+                            url: toPathString(localVarUrlObj),
+                            options: localVarRequestOptions,
+                        }];
+                });
+            });
+        },
+        /**
+         *
          * @summary Delete environment of an instance
          * @param {string} instanceId
          * @param {*} [options] Override http request option.
@@ -3492,6 +3641,102 @@ export var InstancesApiFp = function (configuration) {
         },
         /**
          *
+         * @summary Retrieve editors of an instance
+         * @param {string} instanceId
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        instancesInstanceIdConfigEditorsGet: function (instanceId, options) {
+            var _a, _b, _c;
+            return __awaiter(this, void 0, void 0, function () {
+                var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                return __generator(this, function (_d) {
+                    switch (_d.label) {
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.instancesInstanceIdConfigEditorsGet(instanceId, options)];
+                        case 1:
+                            localVarAxiosArgs = _d.sent();
+                            localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
+                            localVarOperationServerBasePath = (_c = (_b = operationServerMap['InstancesApi.instancesInstanceIdConfigEditorsGet']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
+                            return [2 /*return*/, function (axios, basePath) { return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath); }];
+                    }
+                });
+            });
+        },
+        /**
+         *
+         * @summary Retrieve an editor of an instance
+         * @param {string} instanceId
+         * @param {number} port
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        instancesInstanceIdConfigEditorsPortGet: function (instanceId, port, options) {
+            var _a, _b, _c;
+            return __awaiter(this, void 0, void 0, function () {
+                var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                return __generator(this, function (_d) {
+                    switch (_d.label) {
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.instancesInstanceIdConfigEditorsPortGet(instanceId, port, options)];
+                        case 1:
+                            localVarAxiosArgs = _d.sent();
+                            localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
+                            localVarOperationServerBasePath = (_c = (_b = operationServerMap['InstancesApi.instancesInstanceIdConfigEditorsPortGet']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
+                            return [2 /*return*/, function (axios, basePath) { return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath); }];
+                    }
+                });
+            });
+        },
+        /**
+         *
+         * @summary Remove the path prefix used in the editor uri of an instance editor, this will revert to the default behaviour (/v2/instances/{instance_id}/editor/{port})
+         * @param {string} instanceId
+         * @param {number} port
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        instancesInstanceIdConfigEditorsPortPathPrefixDelete: function (instanceId, port, options) {
+            var _a, _b, _c;
+            return __awaiter(this, void 0, void 0, function () {
+                var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                return __generator(this, function (_d) {
+                    switch (_d.label) {
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.instancesInstanceIdConfigEditorsPortPathPrefixDelete(instanceId, port, options)];
+                        case 1:
+                            localVarAxiosArgs = _d.sent();
+                            localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
+                            localVarOperationServerBasePath = (_c = (_b = operationServerMap['InstancesApi.instancesInstanceIdConfigEditorsPortPathPrefixDelete']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
+                            return [2 /*return*/, function (axios, basePath) { return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath); }];
+                    }
+                });
+            });
+        },
+        /**
+         *
+         * @summary Modify the path prefix used in the editor uri of an instance editor
+         * @param {string} instanceId
+         * @param {number} port
+         * @param {InstancesInstanceIdConfigEditorsPortPathPrefixPutRequest} instancesInstanceIdConfigEditorsPortPathPrefixPutRequest
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        instancesInstanceIdConfigEditorsPortPathPrefixPut: function (instanceId, port, instancesInstanceIdConfigEditorsPortPathPrefixPutRequest, options) {
+            var _a, _b, _c;
+            return __awaiter(this, void 0, void 0, function () {
+                var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                return __generator(this, function (_d) {
+                    switch (_d.label) {
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.instancesInstanceIdConfigEditorsPortPathPrefixPut(instanceId, port, instancesInstanceIdConfigEditorsPortPathPrefixPutRequest, options)];
+                        case 1:
+                            localVarAxiosArgs = _d.sent();
+                            localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
+                            localVarOperationServerBasePath = (_c = (_b = operationServerMap['InstancesApi.instancesInstanceIdConfigEditorsPortPathPrefixPut']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
+                            return [2 /*return*/, function (axios, basePath) { return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath); }];
+                    }
+                });
+            });
+        },
+        /**
+         *
          * @summary Delete environment of an instance
          * @param {string} instanceId
          * @param {*} [options] Override http request option.
@@ -4332,6 +4577,46 @@ export var InstancesApiFactory = function (configuration, basePath, axios) {
         },
         /**
          *
+         * @summary Retrieve editors of an instance
+         * @param {InstancesApiInstancesInstanceIdConfigEditorsGetRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        instancesInstanceIdConfigEditorsGet: function (requestParameters, options) {
+            return localVarFp.instancesInstanceIdConfigEditorsGet(requestParameters.instanceId, options).then(function (request) { return request(axios, basePath); });
+        },
+        /**
+         *
+         * @summary Retrieve an editor of an instance
+         * @param {InstancesApiInstancesInstanceIdConfigEditorsPortGetRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        instancesInstanceIdConfigEditorsPortGet: function (requestParameters, options) {
+            return localVarFp.instancesInstanceIdConfigEditorsPortGet(requestParameters.instanceId, requestParameters.port, options).then(function (request) { return request(axios, basePath); });
+        },
+        /**
+         *
+         * @summary Remove the path prefix used in the editor uri of an instance editor, this will revert to the default behaviour (/v2/instances/{instance_id}/editor/{port})
+         * @param {InstancesApiInstancesInstanceIdConfigEditorsPortPathPrefixDeleteRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        instancesInstanceIdConfigEditorsPortPathPrefixDelete: function (requestParameters, options) {
+            return localVarFp.instancesInstanceIdConfigEditorsPortPathPrefixDelete(requestParameters.instanceId, requestParameters.port, options).then(function (request) { return request(axios, basePath); });
+        },
+        /**
+         *
+         * @summary Modify the path prefix used in the editor uri of an instance editor
+         * @param {InstancesApiInstancesInstanceIdConfigEditorsPortPathPrefixPutRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        instancesInstanceIdConfigEditorsPortPathPrefixPut: function (requestParameters, options) {
+            return localVarFp.instancesInstanceIdConfigEditorsPortPathPrefixPut(requestParameters.instanceId, requestParameters.port, requestParameters.instancesInstanceIdConfigEditorsPortPathPrefixPutRequest, options).then(function (request) { return request(axios, basePath); });
+        },
+        /**
+         *
          * @summary Delete environment of an instance
          * @param {InstancesApiInstancesInstanceIdConfigEnvironmentDeleteRequest} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
@@ -4747,6 +5032,54 @@ var InstancesApi = /** @class */ (function (_super) {
     InstancesApi.prototype.instancesInstanceIdConfigDevicesUsbPortPut = function (requestParameters, options) {
         var _this = this;
         return InstancesApiFp(this.configuration).instancesInstanceIdConfigDevicesUsbPortPut(requestParameters.instanceId, requestParameters.port, options).then(function (request) { return request(_this.axios, _this.basePath); });
+    };
+    /**
+     *
+     * @summary Retrieve editors of an instance
+     * @param {InstancesApiInstancesInstanceIdConfigEditorsGetRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof InstancesApi
+     */
+    InstancesApi.prototype.instancesInstanceIdConfigEditorsGet = function (requestParameters, options) {
+        var _this = this;
+        return InstancesApiFp(this.configuration).instancesInstanceIdConfigEditorsGet(requestParameters.instanceId, options).then(function (request) { return request(_this.axios, _this.basePath); });
+    };
+    /**
+     *
+     * @summary Retrieve an editor of an instance
+     * @param {InstancesApiInstancesInstanceIdConfigEditorsPortGetRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof InstancesApi
+     */
+    InstancesApi.prototype.instancesInstanceIdConfigEditorsPortGet = function (requestParameters, options) {
+        var _this = this;
+        return InstancesApiFp(this.configuration).instancesInstanceIdConfigEditorsPortGet(requestParameters.instanceId, requestParameters.port, options).then(function (request) { return request(_this.axios, _this.basePath); });
+    };
+    /**
+     *
+     * @summary Remove the path prefix used in the editor uri of an instance editor, this will revert to the default behaviour (/v2/instances/{instance_id}/editor/{port})
+     * @param {InstancesApiInstancesInstanceIdConfigEditorsPortPathPrefixDeleteRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof InstancesApi
+     */
+    InstancesApi.prototype.instancesInstanceIdConfigEditorsPortPathPrefixDelete = function (requestParameters, options) {
+        var _this = this;
+        return InstancesApiFp(this.configuration).instancesInstanceIdConfigEditorsPortPathPrefixDelete(requestParameters.instanceId, requestParameters.port, options).then(function (request) { return request(_this.axios, _this.basePath); });
+    };
+    /**
+     *
+     * @summary Modify the path prefix used in the editor uri of an instance editor
+     * @param {InstancesApiInstancesInstanceIdConfigEditorsPortPathPrefixPutRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof InstancesApi
+     */
+    InstancesApi.prototype.instancesInstanceIdConfigEditorsPortPathPrefixPut = function (requestParameters, options) {
+        var _this = this;
+        return InstancesApiFp(this.configuration).instancesInstanceIdConfigEditorsPortPathPrefixPut(requestParameters.instanceId, requestParameters.port, requestParameters.instancesInstanceIdConfigEditorsPortPathPrefixPutRequest, options).then(function (request) { return request(_this.axios, _this.basePath); });
     };
     /**
      *
