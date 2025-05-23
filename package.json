@@ -4,7 +4,7 @@
     "description": "Core client for TypeScript project",
     "main": "index.js",
     "scripts": {
-          "generate:client": "openapi-generator-cli generate -i https://raw.githubusercontent.com/FLECS-Technologies/flecs-public/refs/heads/main/api/openapi.yaml -g typescript-axios -o ./typescript-axios --additional-properties=supportsES6=true,useSingleRequestParameter=true",
+          "generate:client": "openapi-generator-cli generate -i https://raw.githubusercontent.com/FLECS-Technologies/flecs-public/refs/heads/main/api/openapi.yaml -g typescript-axios -o ./typescript-axios --additional-properties=supportsES6=true,useSingleRequestParameter=true && npm run build",
           "build": "tsc"
     },
     "keywords": [],
