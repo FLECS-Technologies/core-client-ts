@@ -79,6 +79,13 @@ import globalAxios from 'axios';
 import { DUMMY_BASE_URL, assertParamExists, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from './common';
 // @ts-ignore
 import { BASE_PATH, BaseAPI, operationServerMap } from './base';
+export var AppManifestOneOfCapabilitiesEnum = {
+    Docker: 'DOCKER',
+    NetAdmin: 'NET_ADMIN',
+    SysNice: 'SYS_NICE',
+    IpcLock: 'IPC_LOCK',
+    NetRaw: 'NET_RAW'
+};
 /**
  *
  * @export
@@ -5736,6 +5743,201 @@ var JobsApi = /** @class */ (function (_super) {
     return JobsApi;
 }(BaseAPI));
 export { JobsApi };
+/**
+ * ManifestsApi - axios parameter creator
+ * @export
+ */
+export var ManifestsApiAxiosParamCreator = function (configuration) {
+    var _this = this;
+    return {
+        /**
+         *
+         * @summary Get a specific manifest
+         * @param {string} appName
+         * @param {string} version
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        manifestsAppNameVersionGet: function (appName, version, options) {
+            if (options === void 0) { options = {}; }
+            return __awaiter(_this, void 0, void 0, function () {
+                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                return __generator(this, function (_a) {
+                    // verify required parameter 'appName' is not null or undefined
+                    assertParamExists('manifestsAppNameVersionGet', 'appName', appName);
+                    // verify required parameter 'version' is not null or undefined
+                    assertParamExists('manifestsAppNameVersionGet', 'version', version);
+                    localVarPath = "/manifests/{app_name}/{version}"
+                        .replace("{".concat("app_name", "}"), encodeURIComponent(String(appName)))
+                        .replace("{".concat("version", "}"), encodeURIComponent(String(version)));
+                    localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+                    if (configuration) {
+                        baseOptions = configuration.baseOptions;
+                    }
+                    localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), options);
+                    localVarHeaderParameter = {};
+                    localVarQueryParameter = {};
+                    setSearchParams(localVarUrlObj, localVarQueryParameter);
+                    headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+                    localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
+                    return [2 /*return*/, {
+                            url: toPathString(localVarUrlObj),
+                            options: localVarRequestOptions,
+                        }];
+                });
+            });
+        },
+        /**
+         *
+         * @summary Get a list of all manifests
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        manifestsGet: function (options) {
+            if (options === void 0) { options = {}; }
+            return __awaiter(_this, void 0, void 0, function () {
+                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                return __generator(this, function (_a) {
+                    localVarPath = "/manifests";
+                    localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+                    if (configuration) {
+                        baseOptions = configuration.baseOptions;
+                    }
+                    localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), options);
+                    localVarHeaderParameter = {};
+                    localVarQueryParameter = {};
+                    setSearchParams(localVarUrlObj, localVarQueryParameter);
+                    headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+                    localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
+                    return [2 /*return*/, {
+                            url: toPathString(localVarUrlObj),
+                            options: localVarRequestOptions,
+                        }];
+                });
+            });
+        },
+    };
+};
+/**
+ * ManifestsApi - functional programming interface
+ * @export
+ */
+export var ManifestsApiFp = function (configuration) {
+    var localVarAxiosParamCreator = ManifestsApiAxiosParamCreator(configuration);
+    return {
+        /**
+         *
+         * @summary Get a specific manifest
+         * @param {string} appName
+         * @param {string} version
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        manifestsAppNameVersionGet: function (appName, version, options) {
+            var _a, _b, _c;
+            return __awaiter(this, void 0, void 0, function () {
+                var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                return __generator(this, function (_d) {
+                    switch (_d.label) {
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.manifestsAppNameVersionGet(appName, version, options)];
+                        case 1:
+                            localVarAxiosArgs = _d.sent();
+                            localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
+                            localVarOperationServerBasePath = (_c = (_b = operationServerMap['ManifestsApi.manifestsAppNameVersionGet']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
+                            return [2 /*return*/, function (axios, basePath) { return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath); }];
+                    }
+                });
+            });
+        },
+        /**
+         *
+         * @summary Get a list of all manifests
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        manifestsGet: function (options) {
+            var _a, _b, _c;
+            return __awaiter(this, void 0, void 0, function () {
+                var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                return __generator(this, function (_d) {
+                    switch (_d.label) {
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.manifestsGet(options)];
+                        case 1:
+                            localVarAxiosArgs = _d.sent();
+                            localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
+                            localVarOperationServerBasePath = (_c = (_b = operationServerMap['ManifestsApi.manifestsGet']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
+                            return [2 /*return*/, function (axios, basePath) { return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath); }];
+                    }
+                });
+            });
+        },
+    };
+};
+/**
+ * ManifestsApi - factory interface
+ * @export
+ */
+export var ManifestsApiFactory = function (configuration, basePath, axios) {
+    var localVarFp = ManifestsApiFp(configuration);
+    return {
+        /**
+         *
+         * @summary Get a specific manifest
+         * @param {ManifestsApiManifestsAppNameVersionGetRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        manifestsAppNameVersionGet: function (requestParameters, options) {
+            return localVarFp.manifestsAppNameVersionGet(requestParameters.appName, requestParameters.version, options).then(function (request) { return request(axios, basePath); });
+        },
+        /**
+         *
+         * @summary Get a list of all manifests
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        manifestsGet: function (options) {
+            return localVarFp.manifestsGet(options).then(function (request) { return request(axios, basePath); });
+        },
+    };
+};
+/**
+ * ManifestsApi - object-oriented interface
+ * @export
+ * @class ManifestsApi
+ * @extends {BaseAPI}
+ */
+var ManifestsApi = /** @class */ (function (_super) {
+    __extends(ManifestsApi, _super);
+    function ManifestsApi() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    /**
+     *
+     * @summary Get a specific manifest
+     * @param {ManifestsApiManifestsAppNameVersionGetRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ManifestsApi
+     */
+    ManifestsApi.prototype.manifestsAppNameVersionGet = function (requestParameters, options) {
+        var _this = this;
+        return ManifestsApiFp(this.configuration).manifestsAppNameVersionGet(requestParameters.appName, requestParameters.version, options).then(function (request) { return request(_this.axios, _this.basePath); });
+    };
+    /**
+     *
+     * @summary Get a list of all manifests
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ManifestsApi
+     */
+    ManifestsApi.prototype.manifestsGet = function (options) {
+        var _this = this;
+        return ManifestsApiFp(this.configuration).manifestsGet(options).then(function (request) { return request(_this.axios, _this.basePath); });
+    };
+    return ManifestsApi;
+}(BaseAPI));
+export { ManifestsApi };
 /**
  * SystemApi - axios parameter creator
  * @export

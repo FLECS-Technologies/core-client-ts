@@ -101,6 +101,247 @@ export interface AppKey {
     'version': string;
 }
 /**
+ * @type AppManifest
+ * Schema for the FLECS App Manifest
+ * @export
+ */
+export type AppManifest = AppManifestOneOf | AppManifestOneOf1;
+
+/**
+ * 
+ * @export
+ * @interface AppManifestOneOf
+ */
+export interface AppManifestOneOf {
+    /**
+     * Location of the JSON schema to validate against
+     * @type {string}
+     * @memberof AppManifestOneOf
+     */
+    '$schema'?: string;
+    /**
+     * Version of the implemented FLECS App Manifest schema
+     * @type {string}
+     * @memberof AppManifestOneOf
+     */
+    '_schemaVersion': string;
+    /**
+     * Minimum FLECS version needed for the app
+     * @type {string}
+     * @memberof AppManifestOneOf
+     */
+    '_minimumFlecsVersion'?: string;
+    /**
+     * Unique App identifier in reverse domain name notation
+     * @type {string}
+     * @memberof AppManifestOneOf
+     */
+    'app': string;
+    /**
+     * App version, naturally sortable
+     * @type {string}
+     * @memberof AppManifestOneOf
+     */
+    'version': string;
+    /**
+     * App manifest revision. Increment if Manifest is changed within the same App version
+     * @type {string}
+     * @memberof AppManifestOneOf
+     */
+    'revision'?: string;
+    /**
+     * Docker image for the App
+     * @type {string}
+     * @memberof AppManifestOneOf
+     */
+    'image': string;
+    /**
+     * \'true\' if App can be instantiated more than once (requires no editor, no ports)
+     * @type {boolean}
+     * @memberof AppManifestOneOf
+     */
+    'multiInstance'?: boolean;
+    /**
+     * Set of web-based UIs of the app
+     * @type {Array<AppManifestOneOfEditorsInner>}
+     * @memberof AppManifestOneOf
+     */
+    'editors'?: Array<AppManifestOneOfEditorsInner>;
+    /**
+     * Command line arguments passed to App entrypoint
+     * @type {Array<string>}
+     * @memberof AppManifestOneOf
+     */
+    'args'?: Array<string>;
+    /**
+     * Permissions required for the App to function correctly
+     * @type {Set<string>}
+     * @memberof AppManifestOneOf
+     */
+    'capabilities'?: Set<AppManifestOneOfCapabilitiesEnum>;
+    /**
+     * Configuration files used by the App
+     * @type {Array<string>}
+     * @memberof AppManifestOneOf
+     */
+    'conffiles'?: Array<string>;
+    /**
+     * Devices passed through to the App instances
+     * @type {Array<string>}
+     * @memberof AppManifestOneOf
+     */
+    'devices'?: Array<string>;
+    /**
+     * Environment variables for the App instances
+     * @type {Array<string>}
+     * @memberof AppManifestOneOf
+     */
+    'env'?: Array<string>;
+    /**
+     * DEPRECATED: true if App requires allocation of an interactive shell
+     * @type {boolean}
+     * @memberof AppManifestOneOf
+     * @deprecated
+     */
+    'interactive'?: boolean;
+    /**
+     * Port mappings for the App\'s instances (not allowed for multiInstance Apps)
+     * @type {Array<string>}
+     * @memberof AppManifestOneOf
+     */
+    'ports'?: Array<string>;
+    /**
+     * Virtual volumes and bind mounts for an App\'s instances
+     * @type {Array<string>}
+     * @memberof AppManifestOneOf
+     */
+    'volumes'?: Array<string>;
+    /**
+     * Labels for the App instances
+     * @type {Array<string>}
+     * @memberof AppManifestOneOf
+     */
+    'labels'?: Array<string>;
+    /**
+     * DEPRECATED: hostname of the started app, using this with multiInstance = true will cause problems
+     * @type {string}
+     * @memberof AppManifestOneOf
+     * @deprecated
+     */
+    'hostname'?: string;
+}
+
+export const AppManifestOneOfCapabilitiesEnum = {
+    Docker: 'DOCKER',
+    NetAdmin: 'NET_ADMIN',
+    SysNice: 'SYS_NICE',
+    IpcLock: 'IPC_LOCK',
+    NetRaw: 'NET_RAW'
+} as const;
+
+export type AppManifestOneOfCapabilitiesEnum = typeof AppManifestOneOfCapabilitiesEnum[keyof typeof AppManifestOneOfCapabilitiesEnum];
+
+/**
+ * 
+ * @export
+ * @interface AppManifestOneOf1
+ */
+export interface AppManifestOneOf1 {
+    /**
+     * Location of the JSON schema to validate against
+     * @type {string}
+     * @memberof AppManifestOneOf1
+     */
+    '$schema'?: string;
+    /**
+     * Version of the implemented FLECS App Manifest schema
+     * @type {string}
+     * @memberof AppManifestOneOf1
+     */
+    '_schemaVersion': string;
+    /**
+     * Minimum FLECS version needed for the app
+     * @type {string}
+     * @memberof AppManifestOneOf1
+     */
+    '_minimumFlecsVersion'?: string;
+    /**
+     * Unique App identifier in reverse domain name notation
+     * @type {string}
+     * @memberof AppManifestOneOf1
+     */
+    'app': string;
+    /**
+     * App version, naturally sortable
+     * @type {string}
+     * @memberof AppManifestOneOf1
+     */
+    'version': string;
+    /**
+     * App manifest revision. Increment if Manifest is changed within the same App version
+     * @type {string}
+     * @memberof AppManifestOneOf1
+     */
+    'revision'?: string;
+    /**
+     * 
+     * @type {AppManifestOneOf1Deployment}
+     * @memberof AppManifestOneOf1
+     */
+    'deployment': AppManifestOneOf1Deployment;
+}
+/**
+ * Method of deploying the App through FLECS
+ * @export
+ * @interface AppManifestOneOf1Deployment
+ */
+export interface AppManifestOneOf1Deployment {
+    /**
+     * 
+     * @type {AppManifestOneOf1DeploymentCompose}
+     * @memberof AppManifestOneOf1Deployment
+     */
+    'compose': AppManifestOneOf1DeploymentCompose;
+}
+/**
+ * 
+ * @export
+ * @interface AppManifestOneOf1DeploymentCompose
+ */
+export interface AppManifestOneOf1DeploymentCompose {
+    /**
+     * docker-compose.yml file converted to JSON
+     * @type {object}
+     * @memberof AppManifestOneOf1DeploymentCompose
+     */
+    'yaml'?: object;
+}
+/**
+ * 
+ * @export
+ * @interface AppManifestOneOfEditorsInner
+ */
+export interface AppManifestOneOfEditorsInner {
+    /**
+     * 
+     * @type {string}
+     * @memberof AppManifestOneOfEditorsInner
+     */
+    'name': string;
+    /**
+     * Port on which the editor is reachable on the docker container
+     * @type {number}
+     * @memberof AppManifestOneOfEditorsInner
+     */
+    'port': number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof AppManifestOneOfEditorsInner
+     */
+    'supportsReverseProxy'?: boolean;
+}
+/**
  * 
  * @export
  * @enum {string}
@@ -7611,6 +7852,202 @@ export class JobsApi extends BaseAPI {
      */
     public jobsJobIdGet(requestParameters: JobsApiJobsJobIdGetRequest, options?: RawAxiosRequestConfig) {
         return JobsApiFp(this.configuration).jobsJobIdGet(requestParameters.jobId, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+
+/**
+ * ManifestsApi - axios parameter creator
+ * @export
+ */
+export const ManifestsApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @summary Get a specific manifest
+         * @param {string} appName 
+         * @param {string} version 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        manifestsAppNameVersionGet: async (appName: string, version: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'appName' is not null or undefined
+            assertParamExists('manifestsAppNameVersionGet', 'appName', appName)
+            // verify required parameter 'version' is not null or undefined
+            assertParamExists('manifestsAppNameVersionGet', 'version', version)
+            const localVarPath = `/manifests/{app_name}/{version}`
+                .replace(`{${"app_name"}}`, encodeURIComponent(String(appName)))
+                .replace(`{${"version"}}`, encodeURIComponent(String(version)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Get a list of all manifests
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        manifestsGet: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/manifests`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * ManifestsApi - functional programming interface
+ * @export
+ */
+export const ManifestsApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = ManifestsApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * 
+         * @summary Get a specific manifest
+         * @param {string} appName 
+         * @param {string} version 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async manifestsAppNameVersionGet(appName: string, version: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AppManifest>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.manifestsAppNameVersionGet(appName, version, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ManifestsApi.manifestsAppNameVersionGet']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Get a list of all manifests
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async manifestsGet(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<AppManifest>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.manifestsGet(options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ManifestsApi.manifestsGet']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+    }
+};
+
+/**
+ * ManifestsApi - factory interface
+ * @export
+ */
+export const ManifestsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = ManifestsApiFp(configuration)
+    return {
+        /**
+         * 
+         * @summary Get a specific manifest
+         * @param {ManifestsApiManifestsAppNameVersionGetRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        manifestsAppNameVersionGet(requestParameters: ManifestsApiManifestsAppNameVersionGetRequest, options?: RawAxiosRequestConfig): AxiosPromise<AppManifest> {
+            return localVarFp.manifestsAppNameVersionGet(requestParameters.appName, requestParameters.version, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Get a list of all manifests
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        manifestsGet(options?: RawAxiosRequestConfig): AxiosPromise<Array<AppManifest>> {
+            return localVarFp.manifestsGet(options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * Request parameters for manifestsAppNameVersionGet operation in ManifestsApi.
+ * @export
+ * @interface ManifestsApiManifestsAppNameVersionGetRequest
+ */
+export interface ManifestsApiManifestsAppNameVersionGetRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof ManifestsApiManifestsAppNameVersionGet
+     */
+    readonly appName: string
+
+    /**
+     * 
+     * @type {string}
+     * @memberof ManifestsApiManifestsAppNameVersionGet
+     */
+    readonly version: string
+}
+
+/**
+ * ManifestsApi - object-oriented interface
+ * @export
+ * @class ManifestsApi
+ * @extends {BaseAPI}
+ */
+export class ManifestsApi extends BaseAPI {
+    /**
+     * 
+     * @summary Get a specific manifest
+     * @param {ManifestsApiManifestsAppNameVersionGetRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ManifestsApi
+     */
+    public manifestsAppNameVersionGet(requestParameters: ManifestsApiManifestsAppNameVersionGetRequest, options?: RawAxiosRequestConfig) {
+        return ManifestsApiFp(this.configuration).manifestsAppNameVersionGet(requestParameters.appName, requestParameters.version, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Get a list of all manifests
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ManifestsApi
+     */
+    public manifestsGet(options?: RawAxiosRequestConfig) {
+        return ManifestsApiFp(this.configuration).manifestsGet(options).then((request) => request(this.axios, this.basePath));
     }
 }
 
