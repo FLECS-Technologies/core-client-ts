@@ -161,6 +161,19 @@ export var NetworkType = {
  * @export
  * @enum {string}
  */
+export var QuestState = {
+    Failing: 'failing',
+    Ongoing: 'ongoing',
+    Pending: 'pending',
+    Failed: 'failed',
+    Success: 'success',
+    Skipped: 'skipped'
+};
+/**
+ *
+ * @export
+ * @enum {string}
+ */
 export var TransportProtocol = {
     Tcp: 'tcp',
     Udp: 'udp',
@@ -5938,6 +5951,274 @@ var ManifestsApi = /** @class */ (function (_super) {
     return ManifestsApi;
 }(BaseAPI));
 export { ManifestsApi };
+/**
+ * QuestsApi - axios parameter creator
+ * @export
+ */
+export var QuestsApiAxiosParamCreator = function (configuration) {
+    var _this = this;
+    return {
+        /**
+         *
+         * @summary Get a list of all quests
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        questsGet: function (options) {
+            if (options === void 0) { options = {}; }
+            return __awaiter(_this, void 0, void 0, function () {
+                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                return __generator(this, function (_a) {
+                    localVarPath = "/quests";
+                    localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+                    if (configuration) {
+                        baseOptions = configuration.baseOptions;
+                    }
+                    localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), options);
+                    localVarHeaderParameter = {};
+                    localVarQueryParameter = {};
+                    setSearchParams(localVarUrlObj, localVarQueryParameter);
+                    headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+                    localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
+                    return [2 /*return*/, {
+                            url: toPathString(localVarUrlObj),
+                            options: localVarRequestOptions,
+                        }];
+                });
+            });
+        },
+        /**
+         *
+         * @summary Delete a specific quest by its id
+         * @param {number} id
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        questsIdDelete: function (id, options) {
+            if (options === void 0) { options = {}; }
+            return __awaiter(_this, void 0, void 0, function () {
+                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                return __generator(this, function (_a) {
+                    // verify required parameter 'id' is not null or undefined
+                    assertParamExists('questsIdDelete', 'id', id);
+                    localVarPath = "/quests/{id}"
+                        .replace("{".concat("id", "}"), encodeURIComponent(String(id)));
+                    localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+                    if (configuration) {
+                        baseOptions = configuration.baseOptions;
+                    }
+                    localVarRequestOptions = __assign(__assign({ method: 'DELETE' }, baseOptions), options);
+                    localVarHeaderParameter = {};
+                    localVarQueryParameter = {};
+                    setSearchParams(localVarUrlObj, localVarQueryParameter);
+                    headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+                    localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
+                    return [2 /*return*/, {
+                            url: toPathString(localVarUrlObj),
+                            options: localVarRequestOptions,
+                        }];
+                });
+            });
+        },
+        /**
+         *
+         * @summary Get a specific quest by its id
+         * @param {number} id
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        questsIdGet: function (id, options) {
+            if (options === void 0) { options = {}; }
+            return __awaiter(_this, void 0, void 0, function () {
+                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                return __generator(this, function (_a) {
+                    // verify required parameter 'id' is not null or undefined
+                    assertParamExists('questsIdGet', 'id', id);
+                    localVarPath = "/quests/{id}"
+                        .replace("{".concat("id", "}"), encodeURIComponent(String(id)));
+                    localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+                    if (configuration) {
+                        baseOptions = configuration.baseOptions;
+                    }
+                    localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), options);
+                    localVarHeaderParameter = {};
+                    localVarQueryParameter = {};
+                    setSearchParams(localVarUrlObj, localVarQueryParameter);
+                    headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+                    localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
+                    return [2 /*return*/, {
+                            url: toPathString(localVarUrlObj),
+                            options: localVarRequestOptions,
+                        }];
+                });
+            });
+        },
+    };
+};
+/**
+ * QuestsApi - functional programming interface
+ * @export
+ */
+export var QuestsApiFp = function (configuration) {
+    var localVarAxiosParamCreator = QuestsApiAxiosParamCreator(configuration);
+    return {
+        /**
+         *
+         * @summary Get a list of all quests
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        questsGet: function (options) {
+            var _a, _b, _c;
+            return __awaiter(this, void 0, void 0, function () {
+                var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                return __generator(this, function (_d) {
+                    switch (_d.label) {
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.questsGet(options)];
+                        case 1:
+                            localVarAxiosArgs = _d.sent();
+                            localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
+                            localVarOperationServerBasePath = (_c = (_b = operationServerMap['QuestsApi.questsGet']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
+                            return [2 /*return*/, function (axios, basePath) { return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath); }];
+                    }
+                });
+            });
+        },
+        /**
+         *
+         * @summary Delete a specific quest by its id
+         * @param {number} id
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        questsIdDelete: function (id, options) {
+            var _a, _b, _c;
+            return __awaiter(this, void 0, void 0, function () {
+                var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                return __generator(this, function (_d) {
+                    switch (_d.label) {
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.questsIdDelete(id, options)];
+                        case 1:
+                            localVarAxiosArgs = _d.sent();
+                            localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
+                            localVarOperationServerBasePath = (_c = (_b = operationServerMap['QuestsApi.questsIdDelete']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
+                            return [2 /*return*/, function (axios, basePath) { return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath); }];
+                    }
+                });
+            });
+        },
+        /**
+         *
+         * @summary Get a specific quest by its id
+         * @param {number} id
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        questsIdGet: function (id, options) {
+            var _a, _b, _c;
+            return __awaiter(this, void 0, void 0, function () {
+                var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                return __generator(this, function (_d) {
+                    switch (_d.label) {
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.questsIdGet(id, options)];
+                        case 1:
+                            localVarAxiosArgs = _d.sent();
+                            localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
+                            localVarOperationServerBasePath = (_c = (_b = operationServerMap['QuestsApi.questsIdGet']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
+                            return [2 /*return*/, function (axios, basePath) { return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath); }];
+                    }
+                });
+            });
+        },
+    };
+};
+/**
+ * QuestsApi - factory interface
+ * @export
+ */
+export var QuestsApiFactory = function (configuration, basePath, axios) {
+    var localVarFp = QuestsApiFp(configuration);
+    return {
+        /**
+         *
+         * @summary Get a list of all quests
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        questsGet: function (options) {
+            return localVarFp.questsGet(options).then(function (request) { return request(axios, basePath); });
+        },
+        /**
+         *
+         * @summary Delete a specific quest by its id
+         * @param {QuestsApiQuestsIdDeleteRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        questsIdDelete: function (requestParameters, options) {
+            return localVarFp.questsIdDelete(requestParameters.id, options).then(function (request) { return request(axios, basePath); });
+        },
+        /**
+         *
+         * @summary Get a specific quest by its id
+         * @param {QuestsApiQuestsIdGetRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        questsIdGet: function (requestParameters, options) {
+            return localVarFp.questsIdGet(requestParameters.id, options).then(function (request) { return request(axios, basePath); });
+        },
+    };
+};
+/**
+ * QuestsApi - object-oriented interface
+ * @export
+ * @class QuestsApi
+ * @extends {BaseAPI}
+ */
+var QuestsApi = /** @class */ (function (_super) {
+    __extends(QuestsApi, _super);
+    function QuestsApi() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    /**
+     *
+     * @summary Get a list of all quests
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof QuestsApi
+     */
+    QuestsApi.prototype.questsGet = function (options) {
+        var _this = this;
+        return QuestsApiFp(this.configuration).questsGet(options).then(function (request) { return request(_this.axios, _this.basePath); });
+    };
+    /**
+     *
+     * @summary Delete a specific quest by its id
+     * @param {QuestsApiQuestsIdDeleteRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof QuestsApi
+     */
+    QuestsApi.prototype.questsIdDelete = function (requestParameters, options) {
+        var _this = this;
+        return QuestsApiFp(this.configuration).questsIdDelete(requestParameters.id, options).then(function (request) { return request(_this.axios, _this.basePath); });
+    };
+    /**
+     *
+     * @summary Get a specific quest by its id
+     * @param {QuestsApiQuestsIdGetRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof QuestsApi
+     */
+    QuestsApi.prototype.questsIdGet = function (requestParameters, options) {
+        var _this = this;
+        return QuestsApiFp(this.configuration).questsIdGet(requestParameters.id, options).then(function (request) { return request(_this.axios, _this.basePath); });
+    };
+    return QuestsApi;
+}(BaseAPI));
+export { QuestsApi };
 /**
  * SystemApi - axios parameter creator
  * @export
