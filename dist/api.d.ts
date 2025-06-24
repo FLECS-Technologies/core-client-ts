@@ -1525,6 +1525,88 @@ export interface PostDeploymentNetwork {
 /**
  *
  * @export
+ * @interface Quest
+ */
+export interface Quest {
+    /**
+     *
+     * @type {number}
+     * @memberof Quest
+     */
+    'id': number;
+    /**
+     *
+     * @type {string}
+     * @memberof Quest
+     */
+    'description': string;
+    /**
+     *
+     * @type {string}
+     * @memberof Quest
+     */
+    'detail'?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof Quest
+     */
+    'result'?: string;
+    /**
+     *
+     * @type {QuestState}
+     * @memberof Quest
+     */
+    'state': QuestState;
+    /**
+     *
+     * @type {QuestProgress}
+     * @memberof Quest
+     */
+    'progress'?: QuestProgress;
+    /**
+     *
+     * @type {Array<Quest>}
+     * @memberof Quest
+     */
+    'subquests'?: Array<Quest>;
+}
+/**
+ *
+ * @export
+ * @interface QuestProgress
+ */
+export interface QuestProgress {
+    /**
+     *
+     * @type {number}
+     * @memberof QuestProgress
+     */
+    'current': number;
+    /**
+     *
+     * @type {number}
+     * @memberof QuestProgress
+     */
+    'total'?: number;
+}
+/**
+ *
+ * @export
+ * @enum {string}
+ */
+export declare const QuestState: {
+    readonly Failing: "failing";
+    readonly Ongoing: "ongoing";
+    readonly Pending: "pending";
+    readonly Failed: "failed";
+    readonly Success: "success";
+    readonly Skipped: "skipped";
+};
+export type QuestState = typeof QuestState[keyof typeof QuestState];
+/**
+ *
+ * @export
  * @interface SessionId
  */
 export interface SessionId {
@@ -5217,6 +5299,153 @@ export declare class ManifestsApi extends BaseAPI {
      * @memberof ManifestsApi
      */
     manifestsGet(options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<AppManifest[], any>>;
+}
+/**
+ * QuestsApi - axios parameter creator
+ * @export
+ */
+export declare const QuestsApiAxiosParamCreator: (configuration?: Configuration) => {
+    /**
+     *
+     * @summary Get a list of all quests
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    questsGet: (options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
+    /**
+     *
+     * @summary Delete a specific quest by its id
+     * @param {number} id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    questsIdDelete: (id: number, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
+    /**
+     *
+     * @summary Get a specific quest by its id
+     * @param {number} id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    questsIdGet: (id: number, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
+};
+/**
+ * QuestsApi - functional programming interface
+ * @export
+ */
+export declare const QuestsApiFp: (configuration?: Configuration) => {
+    /**
+     *
+     * @summary Get a list of all quests
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    questsGet(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Quest>>>;
+    /**
+     *
+     * @summary Delete a specific quest by its id
+     * @param {number} id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    questsIdDelete(id: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>>;
+    /**
+     *
+     * @summary Get a specific quest by its id
+     * @param {number} id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    questsIdGet(id: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Quest>>;
+};
+/**
+ * QuestsApi - factory interface
+ * @export
+ */
+export declare const QuestsApiFactory: (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) => {
+    /**
+     *
+     * @summary Get a list of all quests
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    questsGet(options?: RawAxiosRequestConfig): AxiosPromise<Array<Quest>>;
+    /**
+     *
+     * @summary Delete a specific quest by its id
+     * @param {QuestsApiQuestsIdDeleteRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    questsIdDelete(requestParameters: QuestsApiQuestsIdDeleteRequest, options?: RawAxiosRequestConfig): AxiosPromise<void>;
+    /**
+     *
+     * @summary Get a specific quest by its id
+     * @param {QuestsApiQuestsIdGetRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    questsIdGet(requestParameters: QuestsApiQuestsIdGetRequest, options?: RawAxiosRequestConfig): AxiosPromise<Quest>;
+};
+/**
+ * Request parameters for questsIdDelete operation in QuestsApi.
+ * @export
+ * @interface QuestsApiQuestsIdDeleteRequest
+ */
+export interface QuestsApiQuestsIdDeleteRequest {
+    /**
+     *
+     * @type {number}
+     * @memberof QuestsApiQuestsIdDelete
+     */
+    readonly id: number;
+}
+/**
+ * Request parameters for questsIdGet operation in QuestsApi.
+ * @export
+ * @interface QuestsApiQuestsIdGetRequest
+ */
+export interface QuestsApiQuestsIdGetRequest {
+    /**
+     *
+     * @type {number}
+     * @memberof QuestsApiQuestsIdGet
+     */
+    readonly id: number;
+}
+/**
+ * QuestsApi - object-oriented interface
+ * @export
+ * @class QuestsApi
+ * @extends {BaseAPI}
+ */
+export declare class QuestsApi extends BaseAPI {
+    /**
+     *
+     * @summary Get a list of all quests
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof QuestsApi
+     */
+    questsGet(options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<Quest[], any>>;
+    /**
+     *
+     * @summary Delete a specific quest by its id
+     * @param {QuestsApiQuestsIdDeleteRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof QuestsApi
+     */
+    questsIdDelete(requestParameters: QuestsApiQuestsIdDeleteRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+    /**
+     *
+     * @summary Get a specific quest by its id
+     * @param {QuestsApiQuestsIdGetRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof QuestsApi
+     */
+    questsIdGet(requestParameters: QuestsApiQuestsIdGetRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<Quest, any>>;
 }
 /**
  * SystemApi - axios parameter creator

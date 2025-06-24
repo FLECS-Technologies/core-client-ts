@@ -1572,6 +1572,94 @@ export interface PostDeploymentNetwork {
 /**
  * 
  * @export
+ * @interface Quest
+ */
+export interface Quest {
+    /**
+     * 
+     * @type {number}
+     * @memberof Quest
+     */
+    'id': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof Quest
+     */
+    'description': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Quest
+     */
+    'detail'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Quest
+     */
+    'result'?: string;
+    /**
+     * 
+     * @type {QuestState}
+     * @memberof Quest
+     */
+    'state': QuestState;
+    /**
+     * 
+     * @type {QuestProgress}
+     * @memberof Quest
+     */
+    'progress'?: QuestProgress;
+    /**
+     * 
+     * @type {Array<Quest>}
+     * @memberof Quest
+     */
+    'subquests'?: Array<Quest>;
+}
+
+
+/**
+ * 
+ * @export
+ * @interface QuestProgress
+ */
+export interface QuestProgress {
+    /**
+     * 
+     * @type {number}
+     * @memberof QuestProgress
+     */
+    'current': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof QuestProgress
+     */
+    'total'?: number;
+}
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const QuestState = {
+    Failing: 'failing',
+    Ongoing: 'ongoing',
+    Pending: 'pending',
+    Failed: 'failed',
+    Success: 'success',
+    Skipped: 'skipped'
+} as const;
+
+export type QuestState = typeof QuestState[keyof typeof QuestState];
+
+
+/**
+ * 
+ * @export
  * @interface SessionId
  */
 export interface SessionId {
@@ -8048,6 +8136,273 @@ export class ManifestsApi extends BaseAPI {
      */
     public manifestsGet(options?: RawAxiosRequestConfig) {
         return ManifestsApiFp(this.configuration).manifestsGet(options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+
+/**
+ * QuestsApi - axios parameter creator
+ * @export
+ */
+export const QuestsApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @summary Get a list of all quests
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        questsGet: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/quests`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Delete a specific quest by its id
+         * @param {number} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        questsIdDelete: async (id: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('questsIdDelete', 'id', id)
+            const localVarPath = `/quests/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Get a specific quest by its id
+         * @param {number} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        questsIdGet: async (id: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('questsIdGet', 'id', id)
+            const localVarPath = `/quests/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * QuestsApi - functional programming interface
+ * @export
+ */
+export const QuestsApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = QuestsApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * 
+         * @summary Get a list of all quests
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async questsGet(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Quest>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.questsGet(options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['QuestsApi.questsGet']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Delete a specific quest by its id
+         * @param {number} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async questsIdDelete(id: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.questsIdDelete(id, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['QuestsApi.questsIdDelete']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Get a specific quest by its id
+         * @param {number} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async questsIdGet(id: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Quest>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.questsIdGet(id, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['QuestsApi.questsIdGet']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+    }
+};
+
+/**
+ * QuestsApi - factory interface
+ * @export
+ */
+export const QuestsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = QuestsApiFp(configuration)
+    return {
+        /**
+         * 
+         * @summary Get a list of all quests
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        questsGet(options?: RawAxiosRequestConfig): AxiosPromise<Array<Quest>> {
+            return localVarFp.questsGet(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Delete a specific quest by its id
+         * @param {QuestsApiQuestsIdDeleteRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        questsIdDelete(requestParameters: QuestsApiQuestsIdDeleteRequest, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.questsIdDelete(requestParameters.id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Get a specific quest by its id
+         * @param {QuestsApiQuestsIdGetRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        questsIdGet(requestParameters: QuestsApiQuestsIdGetRequest, options?: RawAxiosRequestConfig): AxiosPromise<Quest> {
+            return localVarFp.questsIdGet(requestParameters.id, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * Request parameters for questsIdDelete operation in QuestsApi.
+ * @export
+ * @interface QuestsApiQuestsIdDeleteRequest
+ */
+export interface QuestsApiQuestsIdDeleteRequest {
+    /**
+     * 
+     * @type {number}
+     * @memberof QuestsApiQuestsIdDelete
+     */
+    readonly id: number
+}
+
+/**
+ * Request parameters for questsIdGet operation in QuestsApi.
+ * @export
+ * @interface QuestsApiQuestsIdGetRequest
+ */
+export interface QuestsApiQuestsIdGetRequest {
+    /**
+     * 
+     * @type {number}
+     * @memberof QuestsApiQuestsIdGet
+     */
+    readonly id: number
+}
+
+/**
+ * QuestsApi - object-oriented interface
+ * @export
+ * @class QuestsApi
+ * @extends {BaseAPI}
+ */
+export class QuestsApi extends BaseAPI {
+    /**
+     * 
+     * @summary Get a list of all quests
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof QuestsApi
+     */
+    public questsGet(options?: RawAxiosRequestConfig) {
+        return QuestsApiFp(this.configuration).questsGet(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Delete a specific quest by its id
+     * @param {QuestsApiQuestsIdDeleteRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof QuestsApi
+     */
+    public questsIdDelete(requestParameters: QuestsApiQuestsIdDeleteRequest, options?: RawAxiosRequestConfig) {
+        return QuestsApiFp(this.configuration).questsIdDelete(requestParameters.id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Get a specific quest by its id
+     * @param {QuestsApiQuestsIdGetRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof QuestsApi
+     */
+    public questsIdGet(requestParameters: QuestsApiQuestsIdGetRequest, options?: RawAxiosRequestConfig) {
+        return QuestsApiFp(this.configuration).questsIdGet(requestParameters.id, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

@@ -47,8 +47,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g = Object.create((typeof Iterator === "function" ? Iterator : Object).prototype);
+    return g.next = verb(0), g["throw"] = verb(1), g["return"] = verb(2), typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
@@ -72,6 +72,15 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
+};
+var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
 };
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
@@ -161,6 +170,19 @@ export var NetworkType = {
  * @export
  * @enum {string}
  */
+export var QuestState = {
+    Failing: 'failing',
+    Ongoing: 'ongoing',
+    Pending: 'pending',
+    Failed: 'failed',
+    Success: 'success',
+    Skipped: 'skipped'
+};
+/**
+ *
+ * @export
+ * @enum {string}
+ */
 export var TransportProtocol = {
     Tcp: 'tcp',
     Udp: 'udp',
@@ -181,10 +203,14 @@ export var AppsApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        appsAppDelete: function (app, version, options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
+        appsAppDelete: function (app_1, version_1) {
+            var args_1 = [];
+            for (var _i = 2; _i < arguments.length; _i++) {
+                args_1[_i - 2] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([app_1, version_1], args_1, true), void 0, function (app, version, options) {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
                 return __generator(this, function (_a) {
                     // verify required parameter 'app' is not null or undefined
                     assertParamExists('appsAppDelete', 'app', app);
@@ -218,10 +244,14 @@ export var AppsApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        appsAppGet: function (app, version, options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
+        appsAppGet: function (app_1, version_1) {
+            var args_1 = [];
+            for (var _i = 2; _i < arguments.length; _i++) {
+                args_1[_i - 2] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([app_1, version_1], args_1, true), void 0, function (app, version, options) {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
                 return __generator(this, function (_a) {
                     // verify required parameter 'app' is not null or undefined
                     assertParamExists('appsAppGet', 'app', app);
@@ -253,10 +283,14 @@ export var AppsApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        appsGet: function (options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
+        appsGet: function () {
+            var args_1 = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args_1[_i] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([], args_1, true), void 0, function (options) {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
                 return __generator(this, function (_a) {
                     localVarPath = "/apps";
                     localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -283,10 +317,14 @@ export var AppsApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        appsInstallPost: function (appsInstallPostRequest, options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
+        appsInstallPost: function (appsInstallPostRequest_1) {
+            var args_1 = [];
+            for (var _i = 1; _i < arguments.length; _i++) {
+                args_1[_i - 1] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([appsInstallPostRequest_1], args_1, true), void 0, function (appsInstallPostRequest, options) {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
                 return __generator(this, function (_a) {
                     // verify required parameter 'appsInstallPostRequest' is not null or undefined
                     assertParamExists('appsInstallPost', 'appsInstallPostRequest', appsInstallPostRequest);
@@ -317,10 +355,14 @@ export var AppsApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        appsSideloadPost: function (appsSideloadPostRequest, options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
+        appsSideloadPost: function (appsSideloadPostRequest_1) {
+            var args_1 = [];
+            for (var _i = 1; _i < arguments.length; _i++) {
+                args_1[_i - 1] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([appsSideloadPostRequest_1], args_1, true), void 0, function (appsSideloadPostRequest, options) {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
                 return __generator(this, function (_a) {
                     // verify required parameter 'appsSideloadPostRequest' is not null or undefined
                     assertParamExists('appsSideloadPost', 'appsSideloadPostRequest', appsSideloadPostRequest);
@@ -362,9 +404,9 @@ export var AppsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         appsAppDelete: function (app, version, options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
                         case 0: return [4 /*yield*/, localVarAxiosParamCreator.appsAppDelete(app, version, options)];
@@ -386,9 +428,9 @@ export var AppsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         appsAppGet: function (app, version, options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
                         case 0: return [4 /*yield*/, localVarAxiosParamCreator.appsAppGet(app, version, options)];
@@ -408,9 +450,9 @@ export var AppsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         appsGet: function (options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
                         case 0: return [4 /*yield*/, localVarAxiosParamCreator.appsGet(options)];
@@ -431,9 +473,9 @@ export var AppsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         appsInstallPost: function (appsInstallPostRequest, options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
                         case 0: return [4 /*yield*/, localVarAxiosParamCreator.appsInstallPost(appsInstallPostRequest, options)];
@@ -454,9 +496,9 @@ export var AppsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         appsSideloadPost: function (appsSideloadPostRequest, options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
                         case 0: return [4 /*yield*/, localVarAxiosParamCreator.appsSideloadPost(appsSideloadPostRequest, options)];
@@ -615,10 +657,14 @@ export var ConsoleApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        consoleAuthenticationDelete: function (options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
+        consoleAuthenticationDelete: function () {
+            var args_1 = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args_1[_i] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([], args_1, true), void 0, function (options) {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
                 return __generator(this, function (_a) {
                     localVarPath = "/console/authentication";
                     localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -645,10 +691,14 @@ export var ConsoleApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        consoleAuthenticationPut: function (authResponseData, options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
+        consoleAuthenticationPut: function (authResponseData_1) {
+            var args_1 = [];
+            for (var _i = 1; _i < arguments.length; _i++) {
+                args_1[_i - 1] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([authResponseData_1], args_1, true), void 0, function (authResponseData, options) {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
                 return __generator(this, function (_a) {
                     // verify required parameter 'authResponseData' is not null or undefined
                     assertParamExists('consoleAuthenticationPut', 'authResponseData', authResponseData);
@@ -688,9 +738,9 @@ export var ConsoleApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         consoleAuthenticationDelete: function (options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
                         case 0: return [4 /*yield*/, localVarAxiosParamCreator.consoleAuthenticationDelete(options)];
@@ -711,9 +761,9 @@ export var ConsoleApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         consoleAuthenticationPut: function (authResponseData, options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
                         case 0: return [4 /*yield*/, localVarAxiosParamCreator.consoleAuthenticationPut(authResponseData, options)];
@@ -806,10 +856,14 @@ export var DeploymentsApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deploymentsDeploymentIdNetworksGet: function (deploymentId, options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
+        deploymentsDeploymentIdNetworksGet: function (deploymentId_1) {
+            var args_1 = [];
+            for (var _i = 1; _i < arguments.length; _i++) {
+                args_1[_i - 1] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([deploymentId_1], args_1, true), void 0, function (deploymentId, options) {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
                 return __generator(this, function (_a) {
                     // verify required parameter 'deploymentId' is not null or undefined
                     assertParamExists('deploymentsDeploymentIdNetworksGet', 'deploymentId', deploymentId);
@@ -839,10 +893,14 @@ export var DeploymentsApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deploymentsDeploymentIdNetworksNetworkIdDhcpIpv4Post: function (deploymentId, networkId, options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
+        deploymentsDeploymentIdNetworksNetworkIdDhcpIpv4Post: function (deploymentId_1, networkId_1) {
+            var args_1 = [];
+            for (var _i = 2; _i < arguments.length; _i++) {
+                args_1[_i - 2] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([deploymentId_1, networkId_1], args_1, true), void 0, function (deploymentId, networkId, options) {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
                 return __generator(this, function (_a) {
                     // verify required parameter 'deploymentId' is not null or undefined
                     assertParamExists('deploymentsDeploymentIdNetworksNetworkIdDhcpIpv4Post', 'deploymentId', deploymentId);
@@ -875,10 +933,14 @@ export var DeploymentsApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deploymentsDeploymentIdNetworksNetworkIdGet: function (deploymentId, networkId, options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
+        deploymentsDeploymentIdNetworksNetworkIdGet: function (deploymentId_1, networkId_1) {
+            var args_1 = [];
+            for (var _i = 2; _i < arguments.length; _i++) {
+                args_1[_i - 2] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([deploymentId_1, networkId_1], args_1, true), void 0, function (deploymentId, networkId, options) {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
                 return __generator(this, function (_a) {
                     // verify required parameter 'deploymentId' is not null or undefined
                     assertParamExists('deploymentsDeploymentIdNetworksNetworkIdGet', 'deploymentId', deploymentId);
@@ -911,10 +973,14 @@ export var DeploymentsApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deploymentsDeploymentIdNetworksPost: function (deploymentId, postDeploymentNetwork, options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
+        deploymentsDeploymentIdNetworksPost: function (deploymentId_1, postDeploymentNetwork_1) {
+            var args_1 = [];
+            for (var _i = 2; _i < arguments.length; _i++) {
+                args_1[_i - 2] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([deploymentId_1, postDeploymentNetwork_1], args_1, true), void 0, function (deploymentId, postDeploymentNetwork, options) {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
                 return __generator(this, function (_a) {
                     // verify required parameter 'deploymentId' is not null or undefined
                     assertParamExists('deploymentsDeploymentIdNetworksPost', 'deploymentId', deploymentId);
@@ -957,9 +1023,9 @@ export var DeploymentsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         deploymentsDeploymentIdNetworksGet: function (deploymentId, options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
                         case 0: return [4 /*yield*/, localVarAxiosParamCreator.deploymentsDeploymentIdNetworksGet(deploymentId, options)];
@@ -980,9 +1046,9 @@ export var DeploymentsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         deploymentsDeploymentIdNetworksNetworkIdDhcpIpv4Post: function (deploymentId, networkId, options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
                         case 0: return [4 /*yield*/, localVarAxiosParamCreator.deploymentsDeploymentIdNetworksNetworkIdDhcpIpv4Post(deploymentId, networkId, options)];
@@ -1003,9 +1069,9 @@ export var DeploymentsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         deploymentsDeploymentIdNetworksNetworkIdGet: function (deploymentId, networkId, options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
                         case 0: return [4 /*yield*/, localVarAxiosParamCreator.deploymentsDeploymentIdNetworksNetworkIdGet(deploymentId, networkId, options)];
@@ -1026,9 +1092,9 @@ export var DeploymentsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         deploymentsDeploymentIdNetworksPost: function (deploymentId, postDeploymentNetwork, options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
                         case 0: return [4 /*yield*/, localVarAxiosParamCreator.deploymentsDeploymentIdNetworksPost(deploymentId, postDeploymentNetwork, options)];
@@ -1159,10 +1225,14 @@ export var DeviceApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deviceLicenseActivationPost: function (options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
+        deviceLicenseActivationPost: function () {
+            var args_1 = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args_1[_i] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([], args_1, true), void 0, function (options) {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
                 return __generator(this, function (_a) {
                     localVarPath = "/device/license/activation";
                     localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -1188,10 +1258,14 @@ export var DeviceApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deviceLicenseActivationStatusGet: function (options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
+        deviceLicenseActivationStatusGet: function () {
+            var args_1 = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args_1[_i] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([], args_1, true), void 0, function (options) {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
                 return __generator(this, function (_a) {
                     localVarPath = "/device/license/activation/status";
                     localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -1217,10 +1291,14 @@ export var DeviceApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deviceLicenseInfoGet: function (options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
+        deviceLicenseInfoGet: function () {
+            var args_1 = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args_1[_i] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([], args_1, true), void 0, function (options) {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
                 return __generator(this, function (_a) {
                     localVarPath = "/device/license/info";
                     localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -1246,10 +1324,14 @@ export var DeviceApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deviceOnboardingPost: function (dOSManifest, options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
+        deviceOnboardingPost: function (dOSManifest_1) {
+            var args_1 = [];
+            for (var _i = 1; _i < arguments.length; _i++) {
+                args_1[_i - 1] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([dOSManifest_1], args_1, true), void 0, function (dOSManifest, options) {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
                 return __generator(this, function (_a) {
                     // verify required parameter 'dOSManifest' is not null or undefined
                     assertParamExists('deviceOnboardingPost', 'dOSManifest', dOSManifest);
@@ -1289,9 +1371,9 @@ export var DeviceApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         deviceLicenseActivationPost: function (options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
                         case 0: return [4 /*yield*/, localVarAxiosParamCreator.deviceLicenseActivationPost(options)];
@@ -1311,9 +1393,9 @@ export var DeviceApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         deviceLicenseActivationStatusGet: function (options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
                         case 0: return [4 /*yield*/, localVarAxiosParamCreator.deviceLicenseActivationStatusGet(options)];
@@ -1333,9 +1415,9 @@ export var DeviceApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         deviceLicenseInfoGet: function (options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
                         case 0: return [4 /*yield*/, localVarAxiosParamCreator.deviceLicenseInfoGet(options)];
@@ -1355,9 +1437,9 @@ export var DeviceApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         deviceOnboardingPost: function (dOSManifest, options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
                         case 0: return [4 /*yield*/, localVarAxiosParamCreator.deviceOnboardingPost(dOSManifest, options)];
@@ -1489,10 +1571,14 @@ export var FlecsportApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        exportsExportIdDelete: function (exportId, options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
+        exportsExportIdDelete: function (exportId_1) {
+            var args_1 = [];
+            for (var _i = 1; _i < arguments.length; _i++) {
+                args_1[_i - 1] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([exportId_1], args_1, true), void 0, function (exportId, options) {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
                 return __generator(this, function (_a) {
                     // verify required parameter 'exportId' is not null or undefined
                     assertParamExists('exportsExportIdDelete', 'exportId', exportId);
@@ -1522,10 +1608,14 @@ export var FlecsportApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        exportsExportIdGet: function (exportId, options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
+        exportsExportIdGet: function (exportId_1) {
+            var args_1 = [];
+            for (var _i = 1; _i < arguments.length; _i++) {
+                args_1[_i - 1] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([exportId_1], args_1, true), void 0, function (exportId, options) {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
                 return __generator(this, function (_a) {
                     // verify required parameter 'exportId' is not null or undefined
                     assertParamExists('exportsExportIdGet', 'exportId', exportId);
@@ -1554,10 +1644,14 @@ export var FlecsportApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        exportsGet: function (options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
+        exportsGet: function () {
+            var args_1 = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args_1[_i] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([], args_1, true), void 0, function (options) {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
                 return __generator(this, function (_a) {
                     localVarPath = "/exports";
                     localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -1584,10 +1678,14 @@ export var FlecsportApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        exportsPost: function (exportRequest, options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
+        exportsPost: function (exportRequest_1) {
+            var args_1 = [];
+            for (var _i = 1; _i < arguments.length; _i++) {
+                args_1[_i - 1] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([exportRequest_1], args_1, true), void 0, function (exportRequest, options) {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
                 return __generator(this, function (_a) {
                     // verify required parameter 'exportRequest' is not null or undefined
                     assertParamExists('exportsPost', 'exportRequest', exportRequest);
@@ -1619,10 +1717,14 @@ export var FlecsportApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        importsPost: function (contentDisposition, file, options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
+        importsPost: function (contentDisposition_1, file_1) {
+            var args_1 = [];
+            for (var _i = 2; _i < arguments.length; _i++) {
+                args_1[_i - 2] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([contentDisposition_1, file_1], args_1, true), void 0, function (contentDisposition, file, options) {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, localVarFormParams, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
                 return __generator(this, function (_a) {
                     // verify required parameter 'contentDisposition' is not null or undefined
                     assertParamExists('importsPost', 'contentDisposition', contentDisposition);
@@ -1670,9 +1772,9 @@ export var FlecsportApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         exportsExportIdDelete: function (exportId, options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
                         case 0: return [4 /*yield*/, localVarAxiosParamCreator.exportsExportIdDelete(exportId, options)];
@@ -1693,9 +1795,9 @@ export var FlecsportApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         exportsExportIdGet: function (exportId, options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
                         case 0: return [4 /*yield*/, localVarAxiosParamCreator.exportsExportIdGet(exportId, options)];
@@ -1715,9 +1817,9 @@ export var FlecsportApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         exportsGet: function (options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
                         case 0: return [4 /*yield*/, localVarAxiosParamCreator.exportsGet(options)];
@@ -1738,9 +1840,9 @@ export var FlecsportApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         exportsPost: function (exportRequest, options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
                         case 0: return [4 /*yield*/, localVarAxiosParamCreator.exportsPost(exportRequest, options)];
@@ -1762,9 +1864,9 @@ export var FlecsportApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         importsPost: function (contentDisposition, file, options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
                         case 0: return [4 /*yield*/, localVarAxiosParamCreator.importsPost(contentDisposition, file, options)];
@@ -1924,10 +2026,14 @@ export var InstancesApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesCreatePost: function (instancesCreatePostRequest, options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
+        instancesCreatePost: function (instancesCreatePostRequest_1) {
+            var args_1 = [];
+            for (var _i = 1; _i < arguments.length; _i++) {
+                args_1[_i - 1] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([instancesCreatePostRequest_1], args_1, true), void 0, function (instancesCreatePostRequest, options) {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
                 return __generator(this, function (_a) {
                     // verify required parameter 'instancesCreatePostRequest' is not null or undefined
                     assertParamExists('instancesCreatePost', 'instancesCreatePostRequest', instancesCreatePostRequest);
@@ -1959,10 +2065,14 @@ export var InstancesApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesGet: function (app, version, options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
+        instancesGet: function (app_1, version_1) {
+            var args_1 = [];
+            for (var _i = 2; _i < arguments.length; _i++) {
+                args_1[_i - 2] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([app_1, version_1], args_1, true), void 0, function (app, version, options) {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
                 return __generator(this, function (_a) {
                     localVarPath = "/instances";
                     localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -1995,10 +2105,14 @@ export var InstancesApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdConfigDevicesUsbDelete: function (instanceId, options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
+        instancesInstanceIdConfigDevicesUsbDelete: function (instanceId_1) {
+            var args_1 = [];
+            for (var _i = 1; _i < arguments.length; _i++) {
+                args_1[_i - 1] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([instanceId_1], args_1, true), void 0, function (instanceId, options) {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
                 return __generator(this, function (_a) {
                     // verify required parameter 'instanceId' is not null or undefined
                     assertParamExists('instancesInstanceIdConfigDevicesUsbDelete', 'instanceId', instanceId);
@@ -2028,10 +2142,14 @@ export var InstancesApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdConfigDevicesUsbGet: function (instanceId, options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
+        instancesInstanceIdConfigDevicesUsbGet: function (instanceId_1) {
+            var args_1 = [];
+            for (var _i = 1; _i < arguments.length; _i++) {
+                args_1[_i - 1] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([instanceId_1], args_1, true), void 0, function (instanceId, options) {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
                 return __generator(this, function (_a) {
                     // verify required parameter 'instanceId' is not null or undefined
                     assertParamExists('instancesInstanceIdConfigDevicesUsbGet', 'instanceId', instanceId);
@@ -2062,10 +2180,14 @@ export var InstancesApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdConfigDevicesUsbPortDelete: function (instanceId, port, options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
+        instancesInstanceIdConfigDevicesUsbPortDelete: function (instanceId_1, port_1) {
+            var args_1 = [];
+            for (var _i = 2; _i < arguments.length; _i++) {
+                args_1[_i - 2] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([instanceId_1, port_1], args_1, true), void 0, function (instanceId, port, options) {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
                 return __generator(this, function (_a) {
                     // verify required parameter 'instanceId' is not null or undefined
                     assertParamExists('instancesInstanceIdConfigDevicesUsbPortDelete', 'instanceId', instanceId);
@@ -2099,10 +2221,14 @@ export var InstancesApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdConfigDevicesUsbPortGet: function (instanceId, port, options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
+        instancesInstanceIdConfigDevicesUsbPortGet: function (instanceId_1, port_1) {
+            var args_1 = [];
+            for (var _i = 2; _i < arguments.length; _i++) {
+                args_1[_i - 2] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([instanceId_1, port_1], args_1, true), void 0, function (instanceId, port, options) {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
                 return __generator(this, function (_a) {
                     // verify required parameter 'instanceId' is not null or undefined
                     assertParamExists('instancesInstanceIdConfigDevicesUsbPortGet', 'instanceId', instanceId);
@@ -2136,10 +2262,14 @@ export var InstancesApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdConfigDevicesUsbPortPut: function (instanceId, port, options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
+        instancesInstanceIdConfigDevicesUsbPortPut: function (instanceId_1, port_1) {
+            var args_1 = [];
+            for (var _i = 2; _i < arguments.length; _i++) {
+                args_1[_i - 2] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([instanceId_1, port_1], args_1, true), void 0, function (instanceId, port, options) {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
                 return __generator(this, function (_a) {
                     // verify required parameter 'instanceId' is not null or undefined
                     assertParamExists('instancesInstanceIdConfigDevicesUsbPortPut', 'instanceId', instanceId);
@@ -2172,10 +2302,14 @@ export var InstancesApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdConfigEditorsGet: function (instanceId, options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
+        instancesInstanceIdConfigEditorsGet: function (instanceId_1) {
+            var args_1 = [];
+            for (var _i = 1; _i < arguments.length; _i++) {
+                args_1[_i - 1] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([instanceId_1], args_1, true), void 0, function (instanceId, options) {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
                 return __generator(this, function (_a) {
                     // verify required parameter 'instanceId' is not null or undefined
                     assertParamExists('instancesInstanceIdConfigEditorsGet', 'instanceId', instanceId);
@@ -2206,10 +2340,14 @@ export var InstancesApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdConfigEditorsPortGet: function (instanceId, port, options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
+        instancesInstanceIdConfigEditorsPortGet: function (instanceId_1, port_1) {
+            var args_1 = [];
+            for (var _i = 2; _i < arguments.length; _i++) {
+                args_1[_i - 2] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([instanceId_1, port_1], args_1, true), void 0, function (instanceId, port, options) {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
                 return __generator(this, function (_a) {
                     // verify required parameter 'instanceId' is not null or undefined
                     assertParamExists('instancesInstanceIdConfigEditorsPortGet', 'instanceId', instanceId);
@@ -2243,10 +2381,14 @@ export var InstancesApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdConfigEditorsPortPathPrefixDelete: function (instanceId, port, options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
+        instancesInstanceIdConfigEditorsPortPathPrefixDelete: function (instanceId_1, port_1) {
+            var args_1 = [];
+            for (var _i = 2; _i < arguments.length; _i++) {
+                args_1[_i - 2] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([instanceId_1, port_1], args_1, true), void 0, function (instanceId, port, options) {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
                 return __generator(this, function (_a) {
                     // verify required parameter 'instanceId' is not null or undefined
                     assertParamExists('instancesInstanceIdConfigEditorsPortPathPrefixDelete', 'instanceId', instanceId);
@@ -2281,10 +2423,14 @@ export var InstancesApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdConfigEditorsPortPathPrefixPut: function (instanceId, port, instancesInstanceIdConfigEditorsPortPathPrefixPutRequest, options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
+        instancesInstanceIdConfigEditorsPortPathPrefixPut: function (instanceId_1, port_1, instancesInstanceIdConfigEditorsPortPathPrefixPutRequest_1) {
+            var args_1 = [];
+            for (var _i = 3; _i < arguments.length; _i++) {
+                args_1[_i - 3] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([instanceId_1, port_1, instancesInstanceIdConfigEditorsPortPathPrefixPutRequest_1], args_1, true), void 0, function (instanceId, port, instancesInstanceIdConfigEditorsPortPathPrefixPutRequest, options) {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
                 return __generator(this, function (_a) {
                     // verify required parameter 'instanceId' is not null or undefined
                     assertParamExists('instancesInstanceIdConfigEditorsPortPathPrefixPut', 'instanceId', instanceId);
@@ -2321,10 +2467,14 @@ export var InstancesApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdConfigEnvironmentDelete: function (instanceId, options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
+        instancesInstanceIdConfigEnvironmentDelete: function (instanceId_1) {
+            var args_1 = [];
+            for (var _i = 1; _i < arguments.length; _i++) {
+                args_1[_i - 1] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([instanceId_1], args_1, true), void 0, function (instanceId, options) {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
                 return __generator(this, function (_a) {
                     // verify required parameter 'instanceId' is not null or undefined
                     assertParamExists('instancesInstanceIdConfigEnvironmentDelete', 'instanceId', instanceId);
@@ -2354,10 +2504,14 @@ export var InstancesApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdConfigEnvironmentGet: function (instanceId, options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
+        instancesInstanceIdConfigEnvironmentGet: function (instanceId_1) {
+            var args_1 = [];
+            for (var _i = 1; _i < arguments.length; _i++) {
+                args_1[_i - 1] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([instanceId_1], args_1, true), void 0, function (instanceId, options) {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
                 return __generator(this, function (_a) {
                     // verify required parameter 'instanceId' is not null or undefined
                     assertParamExists('instancesInstanceIdConfigEnvironmentGet', 'instanceId', instanceId);
@@ -2388,10 +2542,14 @@ export var InstancesApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdConfigEnvironmentPut: function (instanceId, instanceEnvironmentVariable, options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
+        instancesInstanceIdConfigEnvironmentPut: function (instanceId_1, instanceEnvironmentVariable_1) {
+            var args_1 = [];
+            for (var _i = 2; _i < arguments.length; _i++) {
+                args_1[_i - 2] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([instanceId_1, instanceEnvironmentVariable_1], args_1, true), void 0, function (instanceId, instanceEnvironmentVariable, options) {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
                 return __generator(this, function (_a) {
                     // verify required parameter 'instanceId' is not null or undefined
                     assertParamExists('instancesInstanceIdConfigEnvironmentPut', 'instanceId', instanceId);
@@ -2426,10 +2584,14 @@ export var InstancesApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdConfigEnvironmentVariableNameDelete: function (instanceId, variableName, options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
+        instancesInstanceIdConfigEnvironmentVariableNameDelete: function (instanceId_1, variableName_1) {
+            var args_1 = [];
+            for (var _i = 2; _i < arguments.length; _i++) {
+                args_1[_i - 2] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([instanceId_1, variableName_1], args_1, true), void 0, function (instanceId, variableName, options) {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
                 return __generator(this, function (_a) {
                     // verify required parameter 'instanceId' is not null or undefined
                     assertParamExists('instancesInstanceIdConfigEnvironmentVariableNameDelete', 'instanceId', instanceId);
@@ -2463,10 +2625,14 @@ export var InstancesApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdConfigEnvironmentVariableNameGet: function (instanceId, variableName, options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
+        instancesInstanceIdConfigEnvironmentVariableNameGet: function (instanceId_1, variableName_1) {
+            var args_1 = [];
+            for (var _i = 2; _i < arguments.length; _i++) {
+                args_1[_i - 2] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([instanceId_1, variableName_1], args_1, true), void 0, function (instanceId, variableName, options) {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
                 return __generator(this, function (_a) {
                     // verify required parameter 'instanceId' is not null or undefined
                     assertParamExists('instancesInstanceIdConfigEnvironmentVariableNameGet', 'instanceId', instanceId);
@@ -2501,10 +2667,14 @@ export var InstancesApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdConfigEnvironmentVariableNamePut: function (instanceId, variableName, instancesInstanceIdConfigEnvironmentVariableNameGet200Response, options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
+        instancesInstanceIdConfigEnvironmentVariableNamePut: function (instanceId_1, variableName_1, instancesInstanceIdConfigEnvironmentVariableNameGet200Response_1) {
+            var args_1 = [];
+            for (var _i = 3; _i < arguments.length; _i++) {
+                args_1[_i - 3] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([instanceId_1, variableName_1, instancesInstanceIdConfigEnvironmentVariableNameGet200Response_1], args_1, true), void 0, function (instanceId, variableName, instancesInstanceIdConfigEnvironmentVariableNameGet200Response, options) {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
                 return __generator(this, function (_a) {
                     // verify required parameter 'instanceId' is not null or undefined
                     assertParamExists('instancesInstanceIdConfigEnvironmentVariableNamePut', 'instanceId', instanceId);
@@ -2541,10 +2711,14 @@ export var InstancesApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdConfigLabelsGet: function (instanceId, options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
+        instancesInstanceIdConfigLabelsGet: function (instanceId_1) {
+            var args_1 = [];
+            for (var _i = 1; _i < arguments.length; _i++) {
+                args_1[_i - 1] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([instanceId_1], args_1, true), void 0, function (instanceId, options) {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
                 return __generator(this, function (_a) {
                     // verify required parameter 'instanceId' is not null or undefined
                     assertParamExists('instancesInstanceIdConfigLabelsGet', 'instanceId', instanceId);
@@ -2575,10 +2749,14 @@ export var InstancesApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdConfigLabelsLabelNameGet: function (instanceId, labelName, options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
+        instancesInstanceIdConfigLabelsLabelNameGet: function (instanceId_1, labelName_1) {
+            var args_1 = [];
+            for (var _i = 2; _i < arguments.length; _i++) {
+                args_1[_i - 2] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([instanceId_1, labelName_1], args_1, true), void 0, function (instanceId, labelName, options) {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
                 return __generator(this, function (_a) {
                     // verify required parameter 'instanceId' is not null or undefined
                     assertParamExists('instancesInstanceIdConfigLabelsLabelNameGet', 'instanceId', instanceId);
@@ -2612,10 +2790,14 @@ export var InstancesApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdConfigMountsBindContainerPathGet: function (instanceId, containerPath, options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
+        instancesInstanceIdConfigMountsBindContainerPathGet: function (instanceId_1, containerPath_1) {
+            var args_1 = [];
+            for (var _i = 2; _i < arguments.length; _i++) {
+                args_1[_i - 2] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([instanceId_1, containerPath_1], args_1, true), void 0, function (instanceId, containerPath, options) {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
                 return __generator(this, function (_a) {
                     // verify required parameter 'instanceId' is not null or undefined
                     assertParamExists('instancesInstanceIdConfigMountsBindContainerPathGet', 'instanceId', instanceId);
@@ -2648,10 +2830,14 @@ export var InstancesApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdConfigMountsBindGet: function (instanceId, options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
+        instancesInstanceIdConfigMountsBindGet: function (instanceId_1) {
+            var args_1 = [];
+            for (var _i = 1; _i < arguments.length; _i++) {
+                args_1[_i - 1] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([instanceId_1], args_1, true), void 0, function (instanceId, options) {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
                 return __generator(this, function (_a) {
                     // verify required parameter 'instanceId' is not null or undefined
                     assertParamExists('instancesInstanceIdConfigMountsBindGet', 'instanceId', instanceId);
@@ -2681,10 +2867,14 @@ export var InstancesApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdConfigMountsGet: function (instanceId, options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
+        instancesInstanceIdConfigMountsGet: function (instanceId_1) {
+            var args_1 = [];
+            for (var _i = 1; _i < arguments.length; _i++) {
+                args_1[_i - 1] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([instanceId_1], args_1, true), void 0, function (instanceId, options) {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
                 return __generator(this, function (_a) {
                     // verify required parameter 'instanceId' is not null or undefined
                     assertParamExists('instancesInstanceIdConfigMountsGet', 'instanceId', instanceId);
@@ -2714,10 +2904,14 @@ export var InstancesApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdConfigMountsVolumesGet: function (instanceId, options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
+        instancesInstanceIdConfigMountsVolumesGet: function (instanceId_1) {
+            var args_1 = [];
+            for (var _i = 1; _i < arguments.length; _i++) {
+                args_1[_i - 1] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([instanceId_1], args_1, true), void 0, function (instanceId, options) {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
                 return __generator(this, function (_a) {
                     // verify required parameter 'instanceId' is not null or undefined
                     assertParamExists('instancesInstanceIdConfigMountsVolumesGet', 'instanceId', instanceId);
@@ -2748,10 +2942,14 @@ export var InstancesApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdConfigMountsVolumesVolumeNameGet: function (instanceId, volumeName, options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
+        instancesInstanceIdConfigMountsVolumesVolumeNameGet: function (instanceId_1, volumeName_1) {
+            var args_1 = [];
+            for (var _i = 2; _i < arguments.length; _i++) {
+                args_1[_i - 2] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([instanceId_1, volumeName_1], args_1, true), void 0, function (instanceId, volumeName, options) {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
                 return __generator(this, function (_a) {
                     // verify required parameter 'instanceId' is not null or undefined
                     assertParamExists('instancesInstanceIdConfigMountsVolumesVolumeNameGet', 'instanceId', instanceId);
@@ -2784,10 +2982,14 @@ export var InstancesApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdConfigNetworksGet: function (instanceId, options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
+        instancesInstanceIdConfigNetworksGet: function (instanceId_1) {
+            var args_1 = [];
+            for (var _i = 1; _i < arguments.length; _i++) {
+                args_1[_i - 1] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([instanceId_1], args_1, true), void 0, function (instanceId, options) {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
                 return __generator(this, function (_a) {
                     // verify required parameter 'instanceId' is not null or undefined
                     assertParamExists('instancesInstanceIdConfigNetworksGet', 'instanceId', instanceId);
@@ -2818,10 +3020,14 @@ export var InstancesApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdConfigNetworksNetworkIdDelete: function (instanceId, networkId, options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
+        instancesInstanceIdConfigNetworksNetworkIdDelete: function (instanceId_1, networkId_1) {
+            var args_1 = [];
+            for (var _i = 2; _i < arguments.length; _i++) {
+                args_1[_i - 2] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([instanceId_1, networkId_1], args_1, true), void 0, function (instanceId, networkId, options) {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
                 return __generator(this, function (_a) {
                     // verify required parameter 'instanceId' is not null or undefined
                     assertParamExists('instancesInstanceIdConfigNetworksNetworkIdDelete', 'instanceId', instanceId);
@@ -2855,10 +3061,14 @@ export var InstancesApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdConfigNetworksNetworkIdGet: function (instanceId, networkId, options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
+        instancesInstanceIdConfigNetworksNetworkIdGet: function (instanceId_1, networkId_1) {
+            var args_1 = [];
+            for (var _i = 2; _i < arguments.length; _i++) {
+                args_1[_i - 2] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([instanceId_1, networkId_1], args_1, true), void 0, function (instanceId, networkId, options) {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
                 return __generator(this, function (_a) {
                     // verify required parameter 'instanceId' is not null or undefined
                     assertParamExists('instancesInstanceIdConfigNetworksNetworkIdGet', 'instanceId', instanceId);
@@ -2892,10 +3102,14 @@ export var InstancesApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdConfigNetworksPost: function (instanceId, instancesInstanceIdConfigNetworksPostRequest, options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
+        instancesInstanceIdConfigNetworksPost: function (instanceId_1, instancesInstanceIdConfigNetworksPostRequest_1) {
+            var args_1 = [];
+            for (var _i = 2; _i < arguments.length; _i++) {
+                args_1[_i - 2] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([instanceId_1, instancesInstanceIdConfigNetworksPostRequest_1], args_1, true), void 0, function (instanceId, instancesInstanceIdConfigNetworksPostRequest, options) {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
                 return __generator(this, function (_a) {
                     // verify required parameter 'instanceId' is not null or undefined
                     assertParamExists('instancesInstanceIdConfigNetworksPost', 'instanceId', instanceId);
@@ -2929,10 +3143,14 @@ export var InstancesApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdConfigPortsDelete: function (instanceId, options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
+        instancesInstanceIdConfigPortsDelete: function (instanceId_1) {
+            var args_1 = [];
+            for (var _i = 1; _i < arguments.length; _i++) {
+                args_1[_i - 1] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([instanceId_1], args_1, true), void 0, function (instanceId, options) {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
                 return __generator(this, function (_a) {
                     // verify required parameter 'instanceId' is not null or undefined
                     assertParamExists('instancesInstanceIdConfigPortsDelete', 'instanceId', instanceId);
@@ -2962,10 +3180,14 @@ export var InstancesApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdConfigPortsGet: function (instanceId, options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
+        instancesInstanceIdConfigPortsGet: function (instanceId_1) {
+            var args_1 = [];
+            for (var _i = 1; _i < arguments.length; _i++) {
+                args_1[_i - 1] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([instanceId_1], args_1, true), void 0, function (instanceId, options) {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
                 return __generator(this, function (_a) {
                     // verify required parameter 'instanceId' is not null or undefined
                     assertParamExists('instancesInstanceIdConfigPortsGet', 'instanceId', instanceId);
@@ -2996,10 +3218,14 @@ export var InstancesApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdConfigPortsTransportProtocolDelete: function (instanceId, transportProtocol, options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
+        instancesInstanceIdConfigPortsTransportProtocolDelete: function (instanceId_1, transportProtocol_1) {
+            var args_1 = [];
+            for (var _i = 2; _i < arguments.length; _i++) {
+                args_1[_i - 2] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([instanceId_1, transportProtocol_1], args_1, true), void 0, function (instanceId, transportProtocol, options) {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
                 return __generator(this, function (_a) {
                     // verify required parameter 'instanceId' is not null or undefined
                     assertParamExists('instancesInstanceIdConfigPortsTransportProtocolDelete', 'instanceId', instanceId);
@@ -3033,10 +3259,14 @@ export var InstancesApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdConfigPortsTransportProtocolGet: function (instanceId, transportProtocol, options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
+        instancesInstanceIdConfigPortsTransportProtocolGet: function (instanceId_1, transportProtocol_1) {
+            var args_1 = [];
+            for (var _i = 2; _i < arguments.length; _i++) {
+                args_1[_i - 2] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([instanceId_1, transportProtocol_1], args_1, true), void 0, function (instanceId, transportProtocol, options) {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
                 return __generator(this, function (_a) {
                     // verify required parameter 'instanceId' is not null or undefined
                     assertParamExists('instancesInstanceIdConfigPortsTransportProtocolGet', 'instanceId', instanceId);
@@ -3071,10 +3301,14 @@ export var InstancesApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdConfigPortsTransportProtocolHostPortRangeDelete: function (instanceId, transportProtocol, hostPortRange, options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
+        instancesInstanceIdConfigPortsTransportProtocolHostPortRangeDelete: function (instanceId_1, transportProtocol_1, hostPortRange_1) {
+            var args_1 = [];
+            for (var _i = 3; _i < arguments.length; _i++) {
+                args_1[_i - 3] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([instanceId_1, transportProtocol_1, hostPortRange_1], args_1, true), void 0, function (instanceId, transportProtocol, hostPortRange, options) {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
                 return __generator(this, function (_a) {
                     // verify required parameter 'instanceId' is not null or undefined
                     assertParamExists('instancesInstanceIdConfigPortsTransportProtocolHostPortRangeDelete', 'instanceId', instanceId);
@@ -3112,10 +3346,14 @@ export var InstancesApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdConfigPortsTransportProtocolHostPortRangeGet: function (instanceId, transportProtocol, hostPortRange, options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
+        instancesInstanceIdConfigPortsTransportProtocolHostPortRangeGet: function (instanceId_1, transportProtocol_1, hostPortRange_1) {
+            var args_1 = [];
+            for (var _i = 3; _i < arguments.length; _i++) {
+                args_1[_i - 3] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([instanceId_1, transportProtocol_1, hostPortRange_1], args_1, true), void 0, function (instanceId, transportProtocol, hostPortRange, options) {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
                 return __generator(this, function (_a) {
                     // verify required parameter 'instanceId' is not null or undefined
                     assertParamExists('instancesInstanceIdConfigPortsTransportProtocolHostPortRangeGet', 'instanceId', instanceId);
@@ -3154,10 +3392,14 @@ export var InstancesApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdConfigPortsTransportProtocolHostPortRangePut: function (instanceId, transportProtocol, hostPortRange, instancesInstanceIdConfigPortsTransportProtocolHostPortRangePutRequest, options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
+        instancesInstanceIdConfigPortsTransportProtocolHostPortRangePut: function (instanceId_1, transportProtocol_1, hostPortRange_1, instancesInstanceIdConfigPortsTransportProtocolHostPortRangePutRequest_1) {
+            var args_1 = [];
+            for (var _i = 4; _i < arguments.length; _i++) {
+                args_1[_i - 4] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([instanceId_1, transportProtocol_1, hostPortRange_1, instancesInstanceIdConfigPortsTransportProtocolHostPortRangePutRequest_1], args_1, true), void 0, function (instanceId, transportProtocol, hostPortRange, instancesInstanceIdConfigPortsTransportProtocolHostPortRangePutRequest, options) {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
                 return __generator(this, function (_a) {
                     // verify required parameter 'instanceId' is not null or undefined
                     assertParamExists('instancesInstanceIdConfigPortsTransportProtocolHostPortRangePut', 'instanceId', instanceId);
@@ -3199,10 +3441,14 @@ export var InstancesApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdConfigPortsTransportProtocolPut: function (instanceId, transportProtocol, instancePortMapping, options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
+        instancesInstanceIdConfigPortsTransportProtocolPut: function (instanceId_1, transportProtocol_1, instancePortMapping_1) {
+            var args_1 = [];
+            for (var _i = 3; _i < arguments.length; _i++) {
+                args_1[_i - 3] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([instanceId_1, transportProtocol_1, instancePortMapping_1], args_1, true), void 0, function (instanceId, transportProtocol, instancePortMapping, options) {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
                 return __generator(this, function (_a) {
                     // verify required parameter 'instanceId' is not null or undefined
                     assertParamExists('instancesInstanceIdConfigPortsTransportProtocolPut', 'instanceId', instanceId);
@@ -3239,10 +3485,14 @@ export var InstancesApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdDelete: function (instanceId, options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
+        instancesInstanceIdDelete: function (instanceId_1) {
+            var args_1 = [];
+            for (var _i = 1; _i < arguments.length; _i++) {
+                args_1[_i - 1] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([instanceId_1], args_1, true), void 0, function (instanceId, options) {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
                 return __generator(this, function (_a) {
                     // verify required parameter 'instanceId' is not null or undefined
                     assertParamExists('instancesInstanceIdDelete', 'instanceId', instanceId);
@@ -3273,10 +3523,14 @@ export var InstancesApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdEditorPortGet: function (instanceId, port, options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
+        instancesInstanceIdEditorPortGet: function (instanceId_1, port_1) {
+            var args_1 = [];
+            for (var _i = 2; _i < arguments.length; _i++) {
+                args_1[_i - 2] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([instanceId_1, port_1], args_1, true), void 0, function (instanceId, port, options) {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
                 return __generator(this, function (_a) {
                     // verify required parameter 'instanceId' is not null or undefined
                     assertParamExists('instancesInstanceIdEditorPortGet', 'instanceId', instanceId);
@@ -3309,10 +3563,14 @@ export var InstancesApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdGet: function (instanceId, options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
+        instancesInstanceIdGet: function (instanceId_1) {
+            var args_1 = [];
+            for (var _i = 1; _i < arguments.length; _i++) {
+                args_1[_i - 1] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([instanceId_1], args_1, true), void 0, function (instanceId, options) {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
                 return __generator(this, function (_a) {
                     // verify required parameter 'instanceId' is not null or undefined
                     assertParamExists('instancesInstanceIdGet', 'instanceId', instanceId);
@@ -3342,10 +3600,14 @@ export var InstancesApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdLogsGet: function (instanceId, options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
+        instancesInstanceIdLogsGet: function (instanceId_1) {
+            var args_1 = [];
+            for (var _i = 1; _i < arguments.length; _i++) {
+                args_1[_i - 1] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([instanceId_1], args_1, true), void 0, function (instanceId, options) {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
                 return __generator(this, function (_a) {
                     // verify required parameter 'instanceId' is not null or undefined
                     assertParamExists('instancesInstanceIdLogsGet', 'instanceId', instanceId);
@@ -3376,10 +3638,14 @@ export var InstancesApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdPatch: function (instanceId, instancesInstanceIdPatchRequest, options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
+        instancesInstanceIdPatch: function (instanceId_1, instancesInstanceIdPatchRequest_1) {
+            var args_1 = [];
+            for (var _i = 2; _i < arguments.length; _i++) {
+                args_1[_i - 2] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([instanceId_1, instancesInstanceIdPatchRequest_1], args_1, true), void 0, function (instanceId, instancesInstanceIdPatchRequest, options) {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
                 return __generator(this, function (_a) {
                     // verify required parameter 'instanceId' is not null or undefined
                     assertParamExists('instancesInstanceIdPatch', 'instanceId', instanceId);
@@ -3413,10 +3679,14 @@ export var InstancesApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdStartPost: function (instanceId, options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
+        instancesInstanceIdStartPost: function (instanceId_1) {
+            var args_1 = [];
+            for (var _i = 1; _i < arguments.length; _i++) {
+                args_1[_i - 1] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([instanceId_1], args_1, true), void 0, function (instanceId, options) {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
                 return __generator(this, function (_a) {
                     // verify required parameter 'instanceId' is not null or undefined
                     assertParamExists('instancesInstanceIdStartPost', 'instanceId', instanceId);
@@ -3446,10 +3716,14 @@ export var InstancesApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdStopPost: function (instanceId, options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
+        instancesInstanceIdStopPost: function (instanceId_1) {
+            var args_1 = [];
+            for (var _i = 1; _i < arguments.length; _i++) {
+                args_1[_i - 1] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([instanceId_1], args_1, true), void 0, function (instanceId, options) {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
                 return __generator(this, function (_a) {
                     // verify required parameter 'instanceId' is not null or undefined
                     assertParamExists('instancesInstanceIdStopPost', 'instanceId', instanceId);
@@ -3489,9 +3763,9 @@ export var InstancesApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         instancesCreatePost: function (instancesCreatePostRequest, options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
                         case 0: return [4 /*yield*/, localVarAxiosParamCreator.instancesCreatePost(instancesCreatePostRequest, options)];
@@ -3513,9 +3787,9 @@ export var InstancesApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         instancesGet: function (app, version, options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
                         case 0: return [4 /*yield*/, localVarAxiosParamCreator.instancesGet(app, version, options)];
@@ -3536,9 +3810,9 @@ export var InstancesApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         instancesInstanceIdConfigDevicesUsbDelete: function (instanceId, options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
                         case 0: return [4 /*yield*/, localVarAxiosParamCreator.instancesInstanceIdConfigDevicesUsbDelete(instanceId, options)];
@@ -3559,9 +3833,9 @@ export var InstancesApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         instancesInstanceIdConfigDevicesUsbGet: function (instanceId, options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
                         case 0: return [4 /*yield*/, localVarAxiosParamCreator.instancesInstanceIdConfigDevicesUsbGet(instanceId, options)];
@@ -3583,9 +3857,9 @@ export var InstancesApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         instancesInstanceIdConfigDevicesUsbPortDelete: function (instanceId, port, options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
                         case 0: return [4 /*yield*/, localVarAxiosParamCreator.instancesInstanceIdConfigDevicesUsbPortDelete(instanceId, port, options)];
@@ -3607,9 +3881,9 @@ export var InstancesApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         instancesInstanceIdConfigDevicesUsbPortGet: function (instanceId, port, options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
                         case 0: return [4 /*yield*/, localVarAxiosParamCreator.instancesInstanceIdConfigDevicesUsbPortGet(instanceId, port, options)];
@@ -3631,9 +3905,9 @@ export var InstancesApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         instancesInstanceIdConfigDevicesUsbPortPut: function (instanceId, port, options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
                         case 0: return [4 /*yield*/, localVarAxiosParamCreator.instancesInstanceIdConfigDevicesUsbPortPut(instanceId, port, options)];
@@ -3654,9 +3928,9 @@ export var InstancesApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         instancesInstanceIdConfigEditorsGet: function (instanceId, options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
                         case 0: return [4 /*yield*/, localVarAxiosParamCreator.instancesInstanceIdConfigEditorsGet(instanceId, options)];
@@ -3678,9 +3952,9 @@ export var InstancesApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         instancesInstanceIdConfigEditorsPortGet: function (instanceId, port, options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
                         case 0: return [4 /*yield*/, localVarAxiosParamCreator.instancesInstanceIdConfigEditorsPortGet(instanceId, port, options)];
@@ -3702,9 +3976,9 @@ export var InstancesApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         instancesInstanceIdConfigEditorsPortPathPrefixDelete: function (instanceId, port, options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
                         case 0: return [4 /*yield*/, localVarAxiosParamCreator.instancesInstanceIdConfigEditorsPortPathPrefixDelete(instanceId, port, options)];
@@ -3727,9 +4001,9 @@ export var InstancesApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         instancesInstanceIdConfigEditorsPortPathPrefixPut: function (instanceId, port, instancesInstanceIdConfigEditorsPortPathPrefixPutRequest, options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
                         case 0: return [4 /*yield*/, localVarAxiosParamCreator.instancesInstanceIdConfigEditorsPortPathPrefixPut(instanceId, port, instancesInstanceIdConfigEditorsPortPathPrefixPutRequest, options)];
@@ -3750,9 +4024,9 @@ export var InstancesApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         instancesInstanceIdConfigEnvironmentDelete: function (instanceId, options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
                         case 0: return [4 /*yield*/, localVarAxiosParamCreator.instancesInstanceIdConfigEnvironmentDelete(instanceId, options)];
@@ -3773,9 +4047,9 @@ export var InstancesApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         instancesInstanceIdConfigEnvironmentGet: function (instanceId, options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
                         case 0: return [4 /*yield*/, localVarAxiosParamCreator.instancesInstanceIdConfigEnvironmentGet(instanceId, options)];
@@ -3797,9 +4071,9 @@ export var InstancesApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         instancesInstanceIdConfigEnvironmentPut: function (instanceId, instanceEnvironmentVariable, options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
                         case 0: return [4 /*yield*/, localVarAxiosParamCreator.instancesInstanceIdConfigEnvironmentPut(instanceId, instanceEnvironmentVariable, options)];
@@ -3821,9 +4095,9 @@ export var InstancesApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         instancesInstanceIdConfigEnvironmentVariableNameDelete: function (instanceId, variableName, options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
                         case 0: return [4 /*yield*/, localVarAxiosParamCreator.instancesInstanceIdConfigEnvironmentVariableNameDelete(instanceId, variableName, options)];
@@ -3845,9 +4119,9 @@ export var InstancesApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         instancesInstanceIdConfigEnvironmentVariableNameGet: function (instanceId, variableName, options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
                         case 0: return [4 /*yield*/, localVarAxiosParamCreator.instancesInstanceIdConfigEnvironmentVariableNameGet(instanceId, variableName, options)];
@@ -3870,9 +4144,9 @@ export var InstancesApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         instancesInstanceIdConfigEnvironmentVariableNamePut: function (instanceId, variableName, instancesInstanceIdConfigEnvironmentVariableNameGet200Response, options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
                         case 0: return [4 /*yield*/, localVarAxiosParamCreator.instancesInstanceIdConfigEnvironmentVariableNamePut(instanceId, variableName, instancesInstanceIdConfigEnvironmentVariableNameGet200Response, options)];
@@ -3893,9 +4167,9 @@ export var InstancesApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         instancesInstanceIdConfigLabelsGet: function (instanceId, options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
                         case 0: return [4 /*yield*/, localVarAxiosParamCreator.instancesInstanceIdConfigLabelsGet(instanceId, options)];
@@ -3917,9 +4191,9 @@ export var InstancesApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         instancesInstanceIdConfigLabelsLabelNameGet: function (instanceId, labelName, options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
                         case 0: return [4 /*yield*/, localVarAxiosParamCreator.instancesInstanceIdConfigLabelsLabelNameGet(instanceId, labelName, options)];
@@ -3941,9 +4215,9 @@ export var InstancesApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         instancesInstanceIdConfigMountsBindContainerPathGet: function (instanceId, containerPath, options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
                         case 0: return [4 /*yield*/, localVarAxiosParamCreator.instancesInstanceIdConfigMountsBindContainerPathGet(instanceId, containerPath, options)];
@@ -3964,9 +4238,9 @@ export var InstancesApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         instancesInstanceIdConfigMountsBindGet: function (instanceId, options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
                         case 0: return [4 /*yield*/, localVarAxiosParamCreator.instancesInstanceIdConfigMountsBindGet(instanceId, options)];
@@ -3987,9 +4261,9 @@ export var InstancesApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         instancesInstanceIdConfigMountsGet: function (instanceId, options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
                         case 0: return [4 /*yield*/, localVarAxiosParamCreator.instancesInstanceIdConfigMountsGet(instanceId, options)];
@@ -4010,9 +4284,9 @@ export var InstancesApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         instancesInstanceIdConfigMountsVolumesGet: function (instanceId, options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
                         case 0: return [4 /*yield*/, localVarAxiosParamCreator.instancesInstanceIdConfigMountsVolumesGet(instanceId, options)];
@@ -4034,9 +4308,9 @@ export var InstancesApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         instancesInstanceIdConfigMountsVolumesVolumeNameGet: function (instanceId, volumeName, options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
                         case 0: return [4 /*yield*/, localVarAxiosParamCreator.instancesInstanceIdConfigMountsVolumesVolumeNameGet(instanceId, volumeName, options)];
@@ -4057,9 +4331,9 @@ export var InstancesApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         instancesInstanceIdConfigNetworksGet: function (instanceId, options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
                         case 0: return [4 /*yield*/, localVarAxiosParamCreator.instancesInstanceIdConfigNetworksGet(instanceId, options)];
@@ -4081,9 +4355,9 @@ export var InstancesApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         instancesInstanceIdConfigNetworksNetworkIdDelete: function (instanceId, networkId, options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
                         case 0: return [4 /*yield*/, localVarAxiosParamCreator.instancesInstanceIdConfigNetworksNetworkIdDelete(instanceId, networkId, options)];
@@ -4105,9 +4379,9 @@ export var InstancesApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         instancesInstanceIdConfigNetworksNetworkIdGet: function (instanceId, networkId, options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
                         case 0: return [4 /*yield*/, localVarAxiosParamCreator.instancesInstanceIdConfigNetworksNetworkIdGet(instanceId, networkId, options)];
@@ -4129,9 +4403,9 @@ export var InstancesApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         instancesInstanceIdConfigNetworksPost: function (instanceId, instancesInstanceIdConfigNetworksPostRequest, options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
                         case 0: return [4 /*yield*/, localVarAxiosParamCreator.instancesInstanceIdConfigNetworksPost(instanceId, instancesInstanceIdConfigNetworksPostRequest, options)];
@@ -4152,9 +4426,9 @@ export var InstancesApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         instancesInstanceIdConfigPortsDelete: function (instanceId, options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
                         case 0: return [4 /*yield*/, localVarAxiosParamCreator.instancesInstanceIdConfigPortsDelete(instanceId, options)];
@@ -4175,9 +4449,9 @@ export var InstancesApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         instancesInstanceIdConfigPortsGet: function (instanceId, options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
                         case 0: return [4 /*yield*/, localVarAxiosParamCreator.instancesInstanceIdConfigPortsGet(instanceId, options)];
@@ -4199,9 +4473,9 @@ export var InstancesApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         instancesInstanceIdConfigPortsTransportProtocolDelete: function (instanceId, transportProtocol, options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
                         case 0: return [4 /*yield*/, localVarAxiosParamCreator.instancesInstanceIdConfigPortsTransportProtocolDelete(instanceId, transportProtocol, options)];
@@ -4223,9 +4497,9 @@ export var InstancesApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         instancesInstanceIdConfigPortsTransportProtocolGet: function (instanceId, transportProtocol, options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
                         case 0: return [4 /*yield*/, localVarAxiosParamCreator.instancesInstanceIdConfigPortsTransportProtocolGet(instanceId, transportProtocol, options)];
@@ -4248,9 +4522,9 @@ export var InstancesApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         instancesInstanceIdConfigPortsTransportProtocolHostPortRangeDelete: function (instanceId, transportProtocol, hostPortRange, options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
                         case 0: return [4 /*yield*/, localVarAxiosParamCreator.instancesInstanceIdConfigPortsTransportProtocolHostPortRangeDelete(instanceId, transportProtocol, hostPortRange, options)];
@@ -4273,9 +4547,9 @@ export var InstancesApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         instancesInstanceIdConfigPortsTransportProtocolHostPortRangeGet: function (instanceId, transportProtocol, hostPortRange, options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
                         case 0: return [4 /*yield*/, localVarAxiosParamCreator.instancesInstanceIdConfigPortsTransportProtocolHostPortRangeGet(instanceId, transportProtocol, hostPortRange, options)];
@@ -4299,9 +4573,9 @@ export var InstancesApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         instancesInstanceIdConfigPortsTransportProtocolHostPortRangePut: function (instanceId, transportProtocol, hostPortRange, instancesInstanceIdConfigPortsTransportProtocolHostPortRangePutRequest, options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
                         case 0: return [4 /*yield*/, localVarAxiosParamCreator.instancesInstanceIdConfigPortsTransportProtocolHostPortRangePut(instanceId, transportProtocol, hostPortRange, instancesInstanceIdConfigPortsTransportProtocolHostPortRangePutRequest, options)];
@@ -4324,9 +4598,9 @@ export var InstancesApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         instancesInstanceIdConfigPortsTransportProtocolPut: function (instanceId, transportProtocol, instancePortMapping, options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
                         case 0: return [4 /*yield*/, localVarAxiosParamCreator.instancesInstanceIdConfigPortsTransportProtocolPut(instanceId, transportProtocol, instancePortMapping, options)];
@@ -4347,9 +4621,9 @@ export var InstancesApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         instancesInstanceIdDelete: function (instanceId, options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
                         case 0: return [4 /*yield*/, localVarAxiosParamCreator.instancesInstanceIdDelete(instanceId, options)];
@@ -4371,9 +4645,9 @@ export var InstancesApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         instancesInstanceIdEditorPortGet: function (instanceId, port, options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
                         case 0: return [4 /*yield*/, localVarAxiosParamCreator.instancesInstanceIdEditorPortGet(instanceId, port, options)];
@@ -4394,9 +4668,9 @@ export var InstancesApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         instancesInstanceIdGet: function (instanceId, options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
                         case 0: return [4 /*yield*/, localVarAxiosParamCreator.instancesInstanceIdGet(instanceId, options)];
@@ -4417,9 +4691,9 @@ export var InstancesApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         instancesInstanceIdLogsGet: function (instanceId, options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
                         case 0: return [4 /*yield*/, localVarAxiosParamCreator.instancesInstanceIdLogsGet(instanceId, options)];
@@ -4441,9 +4715,9 @@ export var InstancesApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         instancesInstanceIdPatch: function (instanceId, instancesInstanceIdPatchRequest, options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
                         case 0: return [4 /*yield*/, localVarAxiosParamCreator.instancesInstanceIdPatch(instanceId, instancesInstanceIdPatchRequest, options)];
@@ -4464,9 +4738,9 @@ export var InstancesApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         instancesInstanceIdStartPost: function (instanceId, options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
                         case 0: return [4 /*yield*/, localVarAxiosParamCreator.instancesInstanceIdStartPost(instanceId, options)];
@@ -4487,9 +4761,9 @@ export var InstancesApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         instancesInstanceIdStopPost: function (instanceId, options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
                         case 0: return [4 /*yield*/, localVarAxiosParamCreator.instancesInstanceIdStopPost(instanceId, options)];
@@ -5488,10 +5762,14 @@ export var JobsApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        jobsGet: function (options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
+        jobsGet: function () {
+            var args_1 = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args_1[_i] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([], args_1, true), void 0, function (options) {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
                 return __generator(this, function (_a) {
                     localVarPath = "/jobs";
                     localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -5518,10 +5796,14 @@ export var JobsApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        jobsJobIdDelete: function (jobId, options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
+        jobsJobIdDelete: function (jobId_1) {
+            var args_1 = [];
+            for (var _i = 1; _i < arguments.length; _i++) {
+                args_1[_i - 1] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([jobId_1], args_1, true), void 0, function (jobId, options) {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
                 return __generator(this, function (_a) {
                     // verify required parameter 'jobId' is not null or undefined
                     assertParamExists('jobsJobIdDelete', 'jobId', jobId);
@@ -5551,10 +5833,14 @@ export var JobsApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        jobsJobIdGet: function (jobId, options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
+        jobsJobIdGet: function (jobId_1) {
+            var args_1 = [];
+            for (var _i = 1; _i < arguments.length; _i++) {
+                args_1[_i - 1] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([jobId_1], args_1, true), void 0, function (jobId, options) {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
                 return __generator(this, function (_a) {
                     // verify required parameter 'jobId' is not null or undefined
                     assertParamExists('jobsJobIdGet', 'jobId', jobId);
@@ -5593,9 +5879,9 @@ export var JobsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         jobsGet: function (options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
                         case 0: return [4 /*yield*/, localVarAxiosParamCreator.jobsGet(options)];
@@ -5616,9 +5902,9 @@ export var JobsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         jobsJobIdDelete: function (jobId, options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
                         case 0: return [4 /*yield*/, localVarAxiosParamCreator.jobsJobIdDelete(jobId, options)];
@@ -5639,9 +5925,9 @@ export var JobsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         jobsJobIdGet: function (jobId, options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
                         case 0: return [4 /*yield*/, localVarAxiosParamCreator.jobsJobIdGet(jobId, options)];
@@ -5758,10 +6044,14 @@ export var ManifestsApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        manifestsAppNameVersionGet: function (appName, version, options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
+        manifestsAppNameVersionGet: function (appName_1, version_1) {
+            var args_1 = [];
+            for (var _i = 2; _i < arguments.length; _i++) {
+                args_1[_i - 2] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([appName_1, version_1], args_1, true), void 0, function (appName, version, options) {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
                 return __generator(this, function (_a) {
                     // verify required parameter 'appName' is not null or undefined
                     assertParamExists('manifestsAppNameVersionGet', 'appName', appName);
@@ -5793,10 +6083,14 @@ export var ManifestsApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        manifestsGet: function (options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
+        manifestsGet: function () {
+            var args_1 = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args_1[_i] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([], args_1, true), void 0, function (options) {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
                 return __generator(this, function (_a) {
                     localVarPath = "/manifests";
                     localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -5834,9 +6128,9 @@ export var ManifestsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         manifestsAppNameVersionGet: function (appName, version, options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
                         case 0: return [4 /*yield*/, localVarAxiosParamCreator.manifestsAppNameVersionGet(appName, version, options)];
@@ -5856,9 +6150,9 @@ export var ManifestsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         manifestsGet: function (options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
                         case 0: return [4 /*yield*/, localVarAxiosParamCreator.manifestsGet(options)];
@@ -5939,6 +6233,286 @@ var ManifestsApi = /** @class */ (function (_super) {
 }(BaseAPI));
 export { ManifestsApi };
 /**
+ * QuestsApi - axios parameter creator
+ * @export
+ */
+export var QuestsApiAxiosParamCreator = function (configuration) {
+    var _this = this;
+    return {
+        /**
+         *
+         * @summary Get a list of all quests
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        questsGet: function () {
+            var args_1 = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args_1[_i] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([], args_1, true), void 0, function (options) {
+                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
+                return __generator(this, function (_a) {
+                    localVarPath = "/quests";
+                    localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+                    if (configuration) {
+                        baseOptions = configuration.baseOptions;
+                    }
+                    localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), options);
+                    localVarHeaderParameter = {};
+                    localVarQueryParameter = {};
+                    setSearchParams(localVarUrlObj, localVarQueryParameter);
+                    headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+                    localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
+                    return [2 /*return*/, {
+                            url: toPathString(localVarUrlObj),
+                            options: localVarRequestOptions,
+                        }];
+                });
+            });
+        },
+        /**
+         *
+         * @summary Delete a specific quest by its id
+         * @param {number} id
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        questsIdDelete: function (id_1) {
+            var args_1 = [];
+            for (var _i = 1; _i < arguments.length; _i++) {
+                args_1[_i - 1] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([id_1], args_1, true), void 0, function (id, options) {
+                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
+                return __generator(this, function (_a) {
+                    // verify required parameter 'id' is not null or undefined
+                    assertParamExists('questsIdDelete', 'id', id);
+                    localVarPath = "/quests/{id}"
+                        .replace("{".concat("id", "}"), encodeURIComponent(String(id)));
+                    localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+                    if (configuration) {
+                        baseOptions = configuration.baseOptions;
+                    }
+                    localVarRequestOptions = __assign(__assign({ method: 'DELETE' }, baseOptions), options);
+                    localVarHeaderParameter = {};
+                    localVarQueryParameter = {};
+                    setSearchParams(localVarUrlObj, localVarQueryParameter);
+                    headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+                    localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
+                    return [2 /*return*/, {
+                            url: toPathString(localVarUrlObj),
+                            options: localVarRequestOptions,
+                        }];
+                });
+            });
+        },
+        /**
+         *
+         * @summary Get a specific quest by its id
+         * @param {number} id
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        questsIdGet: function (id_1) {
+            var args_1 = [];
+            for (var _i = 1; _i < arguments.length; _i++) {
+                args_1[_i - 1] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([id_1], args_1, true), void 0, function (id, options) {
+                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
+                return __generator(this, function (_a) {
+                    // verify required parameter 'id' is not null or undefined
+                    assertParamExists('questsIdGet', 'id', id);
+                    localVarPath = "/quests/{id}"
+                        .replace("{".concat("id", "}"), encodeURIComponent(String(id)));
+                    localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+                    if (configuration) {
+                        baseOptions = configuration.baseOptions;
+                    }
+                    localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), options);
+                    localVarHeaderParameter = {};
+                    localVarQueryParameter = {};
+                    setSearchParams(localVarUrlObj, localVarQueryParameter);
+                    headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+                    localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
+                    return [2 /*return*/, {
+                            url: toPathString(localVarUrlObj),
+                            options: localVarRequestOptions,
+                        }];
+                });
+            });
+        },
+    };
+};
+/**
+ * QuestsApi - functional programming interface
+ * @export
+ */
+export var QuestsApiFp = function (configuration) {
+    var localVarAxiosParamCreator = QuestsApiAxiosParamCreator(configuration);
+    return {
+        /**
+         *
+         * @summary Get a list of all quests
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        questsGet: function (options) {
+            return __awaiter(this, void 0, void 0, function () {
+                var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
+                return __generator(this, function (_d) {
+                    switch (_d.label) {
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.questsGet(options)];
+                        case 1:
+                            localVarAxiosArgs = _d.sent();
+                            localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
+                            localVarOperationServerBasePath = (_c = (_b = operationServerMap['QuestsApi.questsGet']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
+                            return [2 /*return*/, function (axios, basePath) { return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath); }];
+                    }
+                });
+            });
+        },
+        /**
+         *
+         * @summary Delete a specific quest by its id
+         * @param {number} id
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        questsIdDelete: function (id, options) {
+            return __awaiter(this, void 0, void 0, function () {
+                var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
+                return __generator(this, function (_d) {
+                    switch (_d.label) {
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.questsIdDelete(id, options)];
+                        case 1:
+                            localVarAxiosArgs = _d.sent();
+                            localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
+                            localVarOperationServerBasePath = (_c = (_b = operationServerMap['QuestsApi.questsIdDelete']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
+                            return [2 /*return*/, function (axios, basePath) { return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath); }];
+                    }
+                });
+            });
+        },
+        /**
+         *
+         * @summary Get a specific quest by its id
+         * @param {number} id
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        questsIdGet: function (id, options) {
+            return __awaiter(this, void 0, void 0, function () {
+                var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
+                return __generator(this, function (_d) {
+                    switch (_d.label) {
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.questsIdGet(id, options)];
+                        case 1:
+                            localVarAxiosArgs = _d.sent();
+                            localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
+                            localVarOperationServerBasePath = (_c = (_b = operationServerMap['QuestsApi.questsIdGet']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
+                            return [2 /*return*/, function (axios, basePath) { return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath); }];
+                    }
+                });
+            });
+        },
+    };
+};
+/**
+ * QuestsApi - factory interface
+ * @export
+ */
+export var QuestsApiFactory = function (configuration, basePath, axios) {
+    var localVarFp = QuestsApiFp(configuration);
+    return {
+        /**
+         *
+         * @summary Get a list of all quests
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        questsGet: function (options) {
+            return localVarFp.questsGet(options).then(function (request) { return request(axios, basePath); });
+        },
+        /**
+         *
+         * @summary Delete a specific quest by its id
+         * @param {QuestsApiQuestsIdDeleteRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        questsIdDelete: function (requestParameters, options) {
+            return localVarFp.questsIdDelete(requestParameters.id, options).then(function (request) { return request(axios, basePath); });
+        },
+        /**
+         *
+         * @summary Get a specific quest by its id
+         * @param {QuestsApiQuestsIdGetRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        questsIdGet: function (requestParameters, options) {
+            return localVarFp.questsIdGet(requestParameters.id, options).then(function (request) { return request(axios, basePath); });
+        },
+    };
+};
+/**
+ * QuestsApi - object-oriented interface
+ * @export
+ * @class QuestsApi
+ * @extends {BaseAPI}
+ */
+var QuestsApi = /** @class */ (function (_super) {
+    __extends(QuestsApi, _super);
+    function QuestsApi() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    /**
+     *
+     * @summary Get a list of all quests
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof QuestsApi
+     */
+    QuestsApi.prototype.questsGet = function (options) {
+        var _this = this;
+        return QuestsApiFp(this.configuration).questsGet(options).then(function (request) { return request(_this.axios, _this.basePath); });
+    };
+    /**
+     *
+     * @summary Delete a specific quest by its id
+     * @param {QuestsApiQuestsIdDeleteRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof QuestsApi
+     */
+    QuestsApi.prototype.questsIdDelete = function (requestParameters, options) {
+        var _this = this;
+        return QuestsApiFp(this.configuration).questsIdDelete(requestParameters.id, options).then(function (request) { return request(_this.axios, _this.basePath); });
+    };
+    /**
+     *
+     * @summary Get a specific quest by its id
+     * @param {QuestsApiQuestsIdGetRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof QuestsApi
+     */
+    QuestsApi.prototype.questsIdGet = function (requestParameters, options) {
+        var _this = this;
+        return QuestsApiFp(this.configuration).questsIdGet(requestParameters.id, options).then(function (request) { return request(_this.axios, _this.basePath); });
+    };
+    return QuestsApi;
+}(BaseAPI));
+export { QuestsApi };
+/**
  * SystemApi - axios parameter creator
  * @export
  */
@@ -5951,10 +6525,14 @@ export var SystemApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        systemDevicesGet: function (options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
+        systemDevicesGet: function () {
+            var args_1 = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args_1[_i] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([], args_1, true), void 0, function (options) {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
                 return __generator(this, function (_a) {
                     localVarPath = "/system/devices";
                     localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -5980,10 +6558,14 @@ export var SystemApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        systemDevicesUsbGet: function (options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
+        systemDevicesUsbGet: function () {
+            var args_1 = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args_1[_i] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([], args_1, true), void 0, function (options) {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
                 return __generator(this, function (_a) {
                     localVarPath = "/system/devices/usb";
                     localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -6010,10 +6592,14 @@ export var SystemApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        systemDevicesUsbPortGet: function (port, options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
+        systemDevicesUsbPortGet: function (port_1) {
+            var args_1 = [];
+            for (var _i = 1; _i < arguments.length; _i++) {
+                args_1[_i - 1] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([port_1], args_1, true), void 0, function (port, options) {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
                 return __generator(this, function (_a) {
                     // verify required parameter 'port' is not null or undefined
                     assertParamExists('systemDevicesUsbPortGet', 'port', port);
@@ -6042,10 +6628,14 @@ export var SystemApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        systemInfoGet: function (options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
+        systemInfoGet: function () {
+            var args_1 = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args_1[_i] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([], args_1, true), void 0, function (options) {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
                 return __generator(this, function (_a) {
                     localVarPath = "/system/info";
                     localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -6071,10 +6661,14 @@ export var SystemApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        systemNetworkAdaptersGet: function (options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
+        systemNetworkAdaptersGet: function () {
+            var args_1 = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args_1[_i] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([], args_1, true), void 0, function (options) {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
                 return __generator(this, function (_a) {
                     localVarPath = "/system/network_adapters";
                     localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -6101,10 +6695,14 @@ export var SystemApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        systemNetworkAdaptersNetworkAdapterIdGet: function (networkAdapterId, options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
+        systemNetworkAdaptersNetworkAdapterIdGet: function (networkAdapterId_1) {
+            var args_1 = [];
+            for (var _i = 1; _i < arguments.length; _i++) {
+                args_1[_i - 1] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([networkAdapterId_1], args_1, true), void 0, function (networkAdapterId, options) {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
                 return __generator(this, function (_a) {
                     // verify required parameter 'networkAdapterId' is not null or undefined
                     assertParamExists('systemNetworkAdaptersNetworkAdapterIdGet', 'networkAdapterId', networkAdapterId);
@@ -6133,10 +6731,14 @@ export var SystemApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        systemPingGet: function (options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
+        systemPingGet: function () {
+            var args_1 = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args_1[_i] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([], args_1, true), void 0, function (options) {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
                 return __generator(this, function (_a) {
                     localVarPath = "/system/ping";
                     localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -6162,10 +6764,14 @@ export var SystemApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        systemVersionGet: function (options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
+        systemVersionGet: function () {
+            var args_1 = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args_1[_i] = arguments[_i];
+            }
+            return __awaiter(_this, __spreadArray([], args_1, true), void 0, function (options) {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                if (options === void 0) { options = {}; }
                 return __generator(this, function (_a) {
                     localVarPath = "/system/version";
                     localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -6201,9 +6807,9 @@ export var SystemApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         systemDevicesGet: function (options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
                         case 0: return [4 /*yield*/, localVarAxiosParamCreator.systemDevicesGet(options)];
@@ -6223,9 +6829,9 @@ export var SystemApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         systemDevicesUsbGet: function (options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
                         case 0: return [4 /*yield*/, localVarAxiosParamCreator.systemDevicesUsbGet(options)];
@@ -6246,9 +6852,9 @@ export var SystemApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         systemDevicesUsbPortGet: function (port, options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
                         case 0: return [4 /*yield*/, localVarAxiosParamCreator.systemDevicesUsbPortGet(port, options)];
@@ -6268,9 +6874,9 @@ export var SystemApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         systemInfoGet: function (options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
                         case 0: return [4 /*yield*/, localVarAxiosParamCreator.systemInfoGet(options)];
@@ -6290,9 +6896,9 @@ export var SystemApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         systemNetworkAdaptersGet: function (options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
                         case 0: return [4 /*yield*/, localVarAxiosParamCreator.systemNetworkAdaptersGet(options)];
@@ -6313,9 +6919,9 @@ export var SystemApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         systemNetworkAdaptersNetworkAdapterIdGet: function (networkAdapterId, options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
                         case 0: return [4 /*yield*/, localVarAxiosParamCreator.systemNetworkAdaptersNetworkAdapterIdGet(networkAdapterId, options)];
@@ -6335,9 +6941,9 @@ export var SystemApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         systemPingGet: function (options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
                         case 0: return [4 /*yield*/, localVarAxiosParamCreator.systemPingGet(options)];
@@ -6357,9 +6963,9 @@ export var SystemApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         systemVersionGet: function (options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs, localVarOperationServerIndex, localVarOperationServerBasePath;
+                var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
                         case 0: return [4 /*yield*/, localVarAxiosParamCreator.systemVersionGet(options)];
