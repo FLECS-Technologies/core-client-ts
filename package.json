@@ -4,24 +4,22 @@
     "description": "Core client for TypeScript project",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
-    "files": [
-        "dist"
-    ],
+    "files": ["dist"],
     "scripts": {
-        "generate:client": "openapi-generator-cli generate -i https://raw.githubusercontent.com/FLECS-Technologies/flecs-public/refs/heads/main/api/openapi.yaml -g typescript-axios -o ./typescript-axios --additional-properties=supportsES6=true,useSingleRequestParameter=true && rm -rf src && mkdir src && cp -r typescript-axios/* src/ && npm run build",
-        "build": "tsc",
-        "prepare": "rm -rf dist && npm run generate:client"
+      "generate:client": "openapi-generator-cli generate -i https://raw.githubusercontent.com/FLECS-Technologies/flecs-public/refs/heads/main/api/openapi.yaml -g typescript-axios -o ./src",
+      "build": "tsc"
     },
     "keywords": [],
     "author": "",
     "license": "MIT",
-    "devDependencies": {
-        "@openapitools/openapi-generator-cli": "^2.18.4",
-        "jest": "^29.0.0",
-        "typescript": "^5.0.0"
-    },
-    "packageManager": "pnpm@10.12.3+sha512.467df2c586056165580ad6dfb54ceaad94c5a30f80893ebdec5a44c5aa73c205ae4a5bb9d5ed6bb84ea7c249ece786642bbb49d06a307df218d03da41c317417",
     "dependencies": {
-        "axios": "^1.10.0"
-    }
-}
+      "axios": "^1.10.0"
+    },
+    "devDependencies": {
+      "@openapitools/openapi-generator-cli": "^2.18.4",
+      "jest": "^29.0.0",
+      "typescript": "^5.0.0"
+    },
+    "packageManager": "pnpm@10.12.3"
+  }
+  
