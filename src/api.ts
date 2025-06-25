@@ -2141,22 +2141,24 @@ export const AppsApiFactory = function (configuration?: Configuration, basePath?
         /**
          * 
          * @summary Uninstall one or all versions an App
-         * @param {AppsApiAppsAppDeleteRequest} requestParameters Request parameters.
+         * @param {string} app 
+         * @param {string} [version] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        appsAppDelete(requestParameters: AppsApiAppsAppDeleteRequest, options?: RawAxiosRequestConfig): AxiosPromise<JobMeta> {
-            return localVarFp.appsAppDelete(requestParameters.app, requestParameters.version, options).then((request) => request(axios, basePath));
+        appsAppDelete(app: string, version?: string, options?: RawAxiosRequestConfig): AxiosPromise<JobMeta> {
+            return localVarFp.appsAppDelete(app, version, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary Query all versions or specific versions of an App
-         * @param {AppsApiAppsAppGetRequest} requestParameters Request parameters.
+         * @param {string} app 
+         * @param {string} [version] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        appsAppGet(requestParameters: AppsApiAppsAppGetRequest, options?: RawAxiosRequestConfig): AxiosPromise<Array<InstalledApp>> {
-            return localVarFp.appsAppGet(requestParameters.app, requestParameters.version, options).then((request) => request(axios, basePath));
+        appsAppGet(app: string, version?: string, options?: RawAxiosRequestConfig): AxiosPromise<Array<InstalledApp>> {
+            return localVarFp.appsAppGet(app, version, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -2170,95 +2172,25 @@ export const AppsApiFactory = function (configuration?: Configuration, basePath?
         /**
          * 
          * @summary Install an App from the FLECS marketplace
-         * @param {AppsApiAppsInstallPostRequest} requestParameters Request parameters.
+         * @param {AppsInstallPostRequest} appsInstallPostRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        appsInstallPost(requestParameters: AppsApiAppsInstallPostRequest, options?: RawAxiosRequestConfig): AxiosPromise<JobMeta> {
-            return localVarFp.appsInstallPost(requestParameters.appsInstallPostRequest, options).then((request) => request(axios, basePath));
+        appsInstallPost(appsInstallPostRequest: AppsInstallPostRequest, options?: RawAxiosRequestConfig): AxiosPromise<JobMeta> {
+            return localVarFp.appsInstallPost(appsInstallPostRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary Sideload an App from its manifest
-         * @param {AppsApiAppsSideloadPostRequest} requestParameters Request parameters.
+         * @param {AppsSideloadPostRequest} appsSideloadPostRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        appsSideloadPost(requestParameters: AppsApiAppsSideloadPostRequest, options?: RawAxiosRequestConfig): AxiosPromise<JobMeta> {
-            return localVarFp.appsSideloadPost(requestParameters.appsSideloadPostRequest, options).then((request) => request(axios, basePath));
+        appsSideloadPost(appsSideloadPostRequest: AppsSideloadPostRequest, options?: RawAxiosRequestConfig): AxiosPromise<JobMeta> {
+            return localVarFp.appsSideloadPost(appsSideloadPostRequest, options).then((request) => request(axios, basePath));
         },
     };
 };
-
-/**
- * Request parameters for appsAppDelete operation in AppsApi.
- * @export
- * @interface AppsApiAppsAppDeleteRequest
- */
-export interface AppsApiAppsAppDeleteRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof AppsApiAppsAppDelete
-     */
-    readonly app: string
-
-    /**
-     * 
-     * @type {string}
-     * @memberof AppsApiAppsAppDelete
-     */
-    readonly version?: string
-}
-
-/**
- * Request parameters for appsAppGet operation in AppsApi.
- * @export
- * @interface AppsApiAppsAppGetRequest
- */
-export interface AppsApiAppsAppGetRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof AppsApiAppsAppGet
-     */
-    readonly app: string
-
-    /**
-     * 
-     * @type {string}
-     * @memberof AppsApiAppsAppGet
-     */
-    readonly version?: string
-}
-
-/**
- * Request parameters for appsInstallPost operation in AppsApi.
- * @export
- * @interface AppsApiAppsInstallPostRequest
- */
-export interface AppsApiAppsInstallPostRequest {
-    /**
-     * 
-     * @type {AppsInstallPostRequest}
-     * @memberof AppsApiAppsInstallPost
-     */
-    readonly appsInstallPostRequest: AppsInstallPostRequest
-}
-
-/**
- * Request parameters for appsSideloadPost operation in AppsApi.
- * @export
- * @interface AppsApiAppsSideloadPostRequest
- */
-export interface AppsApiAppsSideloadPostRequest {
-    /**
-     * 
-     * @type {AppsSideloadPostRequest}
-     * @memberof AppsApiAppsSideloadPost
-     */
-    readonly appsSideloadPostRequest: AppsSideloadPostRequest
-}
 
 /**
  * AppsApi - object-oriented interface
@@ -2270,25 +2202,27 @@ export class AppsApi extends BaseAPI {
     /**
      * 
      * @summary Uninstall one or all versions an App
-     * @param {AppsApiAppsAppDeleteRequest} requestParameters Request parameters.
+     * @param {string} app 
+     * @param {string} [version] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AppsApi
      */
-    public appsAppDelete(requestParameters: AppsApiAppsAppDeleteRequest, options?: RawAxiosRequestConfig) {
-        return AppsApiFp(this.configuration).appsAppDelete(requestParameters.app, requestParameters.version, options).then((request) => request(this.axios, this.basePath));
+    public appsAppDelete(app: string, version?: string, options?: RawAxiosRequestConfig) {
+        return AppsApiFp(this.configuration).appsAppDelete(app, version, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @summary Query all versions or specific versions of an App
-     * @param {AppsApiAppsAppGetRequest} requestParameters Request parameters.
+     * @param {string} app 
+     * @param {string} [version] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AppsApi
      */
-    public appsAppGet(requestParameters: AppsApiAppsAppGetRequest, options?: RawAxiosRequestConfig) {
-        return AppsApiFp(this.configuration).appsAppGet(requestParameters.app, requestParameters.version, options).then((request) => request(this.axios, this.basePath));
+    public appsAppGet(app: string, version?: string, options?: RawAxiosRequestConfig) {
+        return AppsApiFp(this.configuration).appsAppGet(app, version, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -2305,25 +2239,25 @@ export class AppsApi extends BaseAPI {
     /**
      * 
      * @summary Install an App from the FLECS marketplace
-     * @param {AppsApiAppsInstallPostRequest} requestParameters Request parameters.
+     * @param {AppsInstallPostRequest} appsInstallPostRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AppsApi
      */
-    public appsInstallPost(requestParameters: AppsApiAppsInstallPostRequest, options?: RawAxiosRequestConfig) {
-        return AppsApiFp(this.configuration).appsInstallPost(requestParameters.appsInstallPostRequest, options).then((request) => request(this.axios, this.basePath));
+    public appsInstallPost(appsInstallPostRequest: AppsInstallPostRequest, options?: RawAxiosRequestConfig) {
+        return AppsApiFp(this.configuration).appsInstallPost(appsInstallPostRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @summary Sideload an App from its manifest
-     * @param {AppsApiAppsSideloadPostRequest} requestParameters Request parameters.
+     * @param {AppsSideloadPostRequest} appsSideloadPostRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AppsApi
      */
-    public appsSideloadPost(requestParameters: AppsApiAppsSideloadPostRequest, options?: RawAxiosRequestConfig) {
-        return AppsApiFp(this.configuration).appsSideloadPost(requestParameters.appsSideloadPostRequest, options).then((request) => request(this.axios, this.basePath));
+    public appsSideloadPost(appsSideloadPostRequest: AppsSideloadPostRequest, options?: RawAxiosRequestConfig) {
+        return AppsApiFp(this.configuration).appsSideloadPost(appsSideloadPostRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -2458,29 +2392,15 @@ export const ConsoleApiFactory = function (configuration?: Configuration, basePa
         /**
          * 
          * @summary Set the authentication information
-         * @param {ConsoleApiConsoleAuthenticationPutRequest} requestParameters Request parameters.
+         * @param {AuthResponseData} authResponseData 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        consoleAuthenticationPut(requestParameters: ConsoleApiConsoleAuthenticationPutRequest, options?: RawAxiosRequestConfig): AxiosPromise<void> {
-            return localVarFp.consoleAuthenticationPut(requestParameters.authResponseData, options).then((request) => request(axios, basePath));
+        consoleAuthenticationPut(authResponseData: AuthResponseData, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.consoleAuthenticationPut(authResponseData, options).then((request) => request(axios, basePath));
         },
     };
 };
-
-/**
- * Request parameters for consoleAuthenticationPut operation in ConsoleApi.
- * @export
- * @interface ConsoleApiConsoleAuthenticationPutRequest
- */
-export interface ConsoleApiConsoleAuthenticationPutRequest {
-    /**
-     * 
-     * @type {AuthResponseData}
-     * @memberof ConsoleApiConsoleAuthenticationPut
-     */
-    readonly authResponseData: AuthResponseData
-}
 
 /**
  * ConsoleApi - object-oriented interface
@@ -2503,13 +2423,13 @@ export class ConsoleApi extends BaseAPI {
     /**
      * 
      * @summary Set the authentication information
-     * @param {ConsoleApiConsoleAuthenticationPutRequest} requestParameters Request parameters.
+     * @param {AuthResponseData} authResponseData 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ConsoleApi
      */
-    public consoleAuthenticationPut(requestParameters: ConsoleApiConsoleAuthenticationPutRequest, options?: RawAxiosRequestConfig) {
-        return ConsoleApiFp(this.configuration).consoleAuthenticationPut(requestParameters.authResponseData, options).then((request) => request(this.axios, this.basePath));
+    public consoleAuthenticationPut(authResponseData: AuthResponseData, options?: RawAxiosRequestConfig) {
+        return ConsoleApiFp(this.configuration).consoleAuthenticationPut(authResponseData, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -2740,119 +2660,45 @@ export const DeploymentsApiFactory = function (configuration?: Configuration, ba
     return {
         /**
          * 
-         * @param {DeploymentsApiDeploymentsDeploymentIdNetworksGetRequest} requestParameters Request parameters.
+         * @param {string} deploymentId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deploymentsDeploymentIdNetworksGet(requestParameters: DeploymentsApiDeploymentsDeploymentIdNetworksGetRequest, options?: RawAxiosRequestConfig): AxiosPromise<Array<DeploymentNetwork>> {
-            return localVarFp.deploymentsDeploymentIdNetworksGet(requestParameters.deploymentId, options).then((request) => request(axios, basePath));
+        deploymentsDeploymentIdNetworksGet(deploymentId: string, options?: RawAxiosRequestConfig): AxiosPromise<Array<DeploymentNetwork>> {
+            return localVarFp.deploymentsDeploymentIdNetworksGet(deploymentId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @param {DeploymentsApiDeploymentsDeploymentIdNetworksNetworkIdDhcpIpv4PostRequest} requestParameters Request parameters.
+         * @param {string} deploymentId 
+         * @param {string} networkId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deploymentsDeploymentIdNetworksNetworkIdDhcpIpv4Post(requestParameters: DeploymentsApiDeploymentsDeploymentIdNetworksNetworkIdDhcpIpv4PostRequest, options?: RawAxiosRequestConfig): AxiosPromise<DeploymentsDeploymentIdNetworksNetworkIdDhcpIpv4Post200Response> {
-            return localVarFp.deploymentsDeploymentIdNetworksNetworkIdDhcpIpv4Post(requestParameters.deploymentId, requestParameters.networkId, options).then((request) => request(axios, basePath));
+        deploymentsDeploymentIdNetworksNetworkIdDhcpIpv4Post(deploymentId: string, networkId: string, options?: RawAxiosRequestConfig): AxiosPromise<DeploymentsDeploymentIdNetworksNetworkIdDhcpIpv4Post200Response> {
+            return localVarFp.deploymentsDeploymentIdNetworksNetworkIdDhcpIpv4Post(deploymentId, networkId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @param {DeploymentsApiDeploymentsDeploymentIdNetworksNetworkIdGetRequest} requestParameters Request parameters.
+         * @param {string} deploymentId 
+         * @param {string} networkId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deploymentsDeploymentIdNetworksNetworkIdGet(requestParameters: DeploymentsApiDeploymentsDeploymentIdNetworksNetworkIdGetRequest, options?: RawAxiosRequestConfig): AxiosPromise<DeploymentNetwork> {
-            return localVarFp.deploymentsDeploymentIdNetworksNetworkIdGet(requestParameters.deploymentId, requestParameters.networkId, options).then((request) => request(axios, basePath));
+        deploymentsDeploymentIdNetworksNetworkIdGet(deploymentId: string, networkId: string, options?: RawAxiosRequestConfig): AxiosPromise<DeploymentNetwork> {
+            return localVarFp.deploymentsDeploymentIdNetworksNetworkIdGet(deploymentId, networkId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @param {DeploymentsApiDeploymentsDeploymentIdNetworksPostRequest} requestParameters Request parameters.
+         * @param {string} deploymentId 
+         * @param {PostDeploymentNetwork} postDeploymentNetwork 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deploymentsDeploymentIdNetworksPost(requestParameters: DeploymentsApiDeploymentsDeploymentIdNetworksPostRequest, options?: RawAxiosRequestConfig): AxiosPromise<void> {
-            return localVarFp.deploymentsDeploymentIdNetworksPost(requestParameters.deploymentId, requestParameters.postDeploymentNetwork, options).then((request) => request(axios, basePath));
+        deploymentsDeploymentIdNetworksPost(deploymentId: string, postDeploymentNetwork: PostDeploymentNetwork, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.deploymentsDeploymentIdNetworksPost(deploymentId, postDeploymentNetwork, options).then((request) => request(axios, basePath));
         },
     };
 };
-
-/**
- * Request parameters for deploymentsDeploymentIdNetworksGet operation in DeploymentsApi.
- * @export
- * @interface DeploymentsApiDeploymentsDeploymentIdNetworksGetRequest
- */
-export interface DeploymentsApiDeploymentsDeploymentIdNetworksGetRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof DeploymentsApiDeploymentsDeploymentIdNetworksGet
-     */
-    readonly deploymentId: string
-}
-
-/**
- * Request parameters for deploymentsDeploymentIdNetworksNetworkIdDhcpIpv4Post operation in DeploymentsApi.
- * @export
- * @interface DeploymentsApiDeploymentsDeploymentIdNetworksNetworkIdDhcpIpv4PostRequest
- */
-export interface DeploymentsApiDeploymentsDeploymentIdNetworksNetworkIdDhcpIpv4PostRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof DeploymentsApiDeploymentsDeploymentIdNetworksNetworkIdDhcpIpv4Post
-     */
-    readonly deploymentId: string
-
-    /**
-     * 
-     * @type {string}
-     * @memberof DeploymentsApiDeploymentsDeploymentIdNetworksNetworkIdDhcpIpv4Post
-     */
-    readonly networkId: string
-}
-
-/**
- * Request parameters for deploymentsDeploymentIdNetworksNetworkIdGet operation in DeploymentsApi.
- * @export
- * @interface DeploymentsApiDeploymentsDeploymentIdNetworksNetworkIdGetRequest
- */
-export interface DeploymentsApiDeploymentsDeploymentIdNetworksNetworkIdGetRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof DeploymentsApiDeploymentsDeploymentIdNetworksNetworkIdGet
-     */
-    readonly deploymentId: string
-
-    /**
-     * 
-     * @type {string}
-     * @memberof DeploymentsApiDeploymentsDeploymentIdNetworksNetworkIdGet
-     */
-    readonly networkId: string
-}
-
-/**
- * Request parameters for deploymentsDeploymentIdNetworksPost operation in DeploymentsApi.
- * @export
- * @interface DeploymentsApiDeploymentsDeploymentIdNetworksPostRequest
- */
-export interface DeploymentsApiDeploymentsDeploymentIdNetworksPostRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof DeploymentsApiDeploymentsDeploymentIdNetworksPost
-     */
-    readonly deploymentId: string
-
-    /**
-     * 
-     * @type {PostDeploymentNetwork}
-     * @memberof DeploymentsApiDeploymentsDeploymentIdNetworksPost
-     */
-    readonly postDeploymentNetwork: PostDeploymentNetwork
-}
 
 /**
  * DeploymentsApi - object-oriented interface
@@ -2863,46 +2709,49 @@ export interface DeploymentsApiDeploymentsDeploymentIdNetworksPostRequest {
 export class DeploymentsApi extends BaseAPI {
     /**
      * 
-     * @param {DeploymentsApiDeploymentsDeploymentIdNetworksGetRequest} requestParameters Request parameters.
+     * @param {string} deploymentId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DeploymentsApi
      */
-    public deploymentsDeploymentIdNetworksGet(requestParameters: DeploymentsApiDeploymentsDeploymentIdNetworksGetRequest, options?: RawAxiosRequestConfig) {
-        return DeploymentsApiFp(this.configuration).deploymentsDeploymentIdNetworksGet(requestParameters.deploymentId, options).then((request) => request(this.axios, this.basePath));
+    public deploymentsDeploymentIdNetworksGet(deploymentId: string, options?: RawAxiosRequestConfig) {
+        return DeploymentsApiFp(this.configuration).deploymentsDeploymentIdNetworksGet(deploymentId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @param {DeploymentsApiDeploymentsDeploymentIdNetworksNetworkIdDhcpIpv4PostRequest} requestParameters Request parameters.
+     * @param {string} deploymentId 
+     * @param {string} networkId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DeploymentsApi
      */
-    public deploymentsDeploymentIdNetworksNetworkIdDhcpIpv4Post(requestParameters: DeploymentsApiDeploymentsDeploymentIdNetworksNetworkIdDhcpIpv4PostRequest, options?: RawAxiosRequestConfig) {
-        return DeploymentsApiFp(this.configuration).deploymentsDeploymentIdNetworksNetworkIdDhcpIpv4Post(requestParameters.deploymentId, requestParameters.networkId, options).then((request) => request(this.axios, this.basePath));
+    public deploymentsDeploymentIdNetworksNetworkIdDhcpIpv4Post(deploymentId: string, networkId: string, options?: RawAxiosRequestConfig) {
+        return DeploymentsApiFp(this.configuration).deploymentsDeploymentIdNetworksNetworkIdDhcpIpv4Post(deploymentId, networkId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @param {DeploymentsApiDeploymentsDeploymentIdNetworksNetworkIdGetRequest} requestParameters Request parameters.
+     * @param {string} deploymentId 
+     * @param {string} networkId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DeploymentsApi
      */
-    public deploymentsDeploymentIdNetworksNetworkIdGet(requestParameters: DeploymentsApiDeploymentsDeploymentIdNetworksNetworkIdGetRequest, options?: RawAxiosRequestConfig) {
-        return DeploymentsApiFp(this.configuration).deploymentsDeploymentIdNetworksNetworkIdGet(requestParameters.deploymentId, requestParameters.networkId, options).then((request) => request(this.axios, this.basePath));
+    public deploymentsDeploymentIdNetworksNetworkIdGet(deploymentId: string, networkId: string, options?: RawAxiosRequestConfig) {
+        return DeploymentsApiFp(this.configuration).deploymentsDeploymentIdNetworksNetworkIdGet(deploymentId, networkId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @param {DeploymentsApiDeploymentsDeploymentIdNetworksPostRequest} requestParameters Request parameters.
+     * @param {string} deploymentId 
+     * @param {PostDeploymentNetwork} postDeploymentNetwork 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DeploymentsApi
      */
-    public deploymentsDeploymentIdNetworksPost(requestParameters: DeploymentsApiDeploymentsDeploymentIdNetworksPostRequest, options?: RawAxiosRequestConfig) {
-        return DeploymentsApiFp(this.configuration).deploymentsDeploymentIdNetworksPost(requestParameters.deploymentId, requestParameters.postDeploymentNetwork, options).then((request) => request(this.axios, this.basePath));
+    public deploymentsDeploymentIdNetworksPost(deploymentId: string, postDeploymentNetwork: PostDeploymentNetwork, options?: RawAxiosRequestConfig) {
+        return DeploymentsApiFp(this.configuration).deploymentsDeploymentIdNetworksPost(deploymentId, postDeploymentNetwork, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -3136,29 +2985,15 @@ export const DeviceApiFactory = function (configuration?: Configuration, basePat
         },
         /**
          * 
-         * @param {DeviceApiDeviceOnboardingPostRequest} requestParameters Request parameters.
+         * @param {DOSManifest} dOSManifest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deviceOnboardingPost(requestParameters: DeviceApiDeviceOnboardingPostRequest, options?: RawAxiosRequestConfig): AxiosPromise<JobMeta> {
-            return localVarFp.deviceOnboardingPost(requestParameters.dOSManifest, options).then((request) => request(axios, basePath));
+        deviceOnboardingPost(dOSManifest: DOSManifest, options?: RawAxiosRequestConfig): AxiosPromise<JobMeta> {
+            return localVarFp.deviceOnboardingPost(dOSManifest, options).then((request) => request(axios, basePath));
         },
     };
 };
-
-/**
- * Request parameters for deviceOnboardingPost operation in DeviceApi.
- * @export
- * @interface DeviceApiDeviceOnboardingPostRequest
- */
-export interface DeviceApiDeviceOnboardingPostRequest {
-    /**
-     * 
-     * @type {DOSManifest}
-     * @memberof DeviceApiDeviceOnboardingPost
-     */
-    readonly dOSManifest: DOSManifest
-}
 
 /**
  * DeviceApi - object-oriented interface
@@ -3202,13 +3037,13 @@ export class DeviceApi extends BaseAPI {
 
     /**
      * 
-     * @param {DeviceApiDeviceOnboardingPostRequest} requestParameters Request parameters.
+     * @param {DOSManifest} dOSManifest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DeviceApi
      */
-    public deviceOnboardingPost(requestParameters: DeviceApiDeviceOnboardingPostRequest, options?: RawAxiosRequestConfig) {
-        return DeviceApiFp(this.configuration).deviceOnboardingPost(requestParameters.dOSManifest, options).then((request) => request(this.axios, this.basePath));
+    public deviceOnboardingPost(dOSManifest: DOSManifest, options?: RawAxiosRequestConfig) {
+        return DeviceApiFp(this.configuration).deviceOnboardingPost(dOSManifest, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -3487,22 +3322,22 @@ export const FlecsportApiFactory = function (configuration?: Configuration, base
         /**
          * 
          * @summary Delete specified export
-         * @param {FlecsportApiExportsExportIdDeleteRequest} requestParameters Request parameters.
+         * @param {string} exportId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        exportsExportIdDelete(requestParameters: FlecsportApiExportsExportIdDeleteRequest, options?: RawAxiosRequestConfig): AxiosPromise<void> {
-            return localVarFp.exportsExportIdDelete(requestParameters.exportId, options).then((request) => request(axios, basePath));
+        exportsExportIdDelete(exportId: string, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.exportsExportIdDelete(exportId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary Download specified export
-         * @param {FlecsportApiExportsExportIdGetRequest} requestParameters Request parameters.
+         * @param {string} exportId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        exportsExportIdGet(requestParameters: FlecsportApiExportsExportIdGetRequest, options?: RawAxiosRequestConfig): AxiosPromise<File> {
-            return localVarFp.exportsExportIdGet(requestParameters.exportId, options).then((request) => request(axios, basePath));
+        exportsExportIdGet(exportId: string, options?: RawAxiosRequestConfig): AxiosPromise<File> {
+            return localVarFp.exportsExportIdGet(exportId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -3516,88 +3351,26 @@ export const FlecsportApiFactory = function (configuration?: Configuration, base
         /**
          * 
          * @summary Create an export
-         * @param {FlecsportApiExportsPostRequest} requestParameters Request parameters.
+         * @param {ExportRequest} exportRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        exportsPost(requestParameters: FlecsportApiExportsPostRequest, options?: RawAxiosRequestConfig): AxiosPromise<JobMeta> {
-            return localVarFp.exportsPost(requestParameters.exportRequest, options).then((request) => request(axios, basePath));
+        exportsPost(exportRequest: ExportRequest, options?: RawAxiosRequestConfig): AxiosPromise<JobMeta> {
+            return localVarFp.exportsPost(exportRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary Upload and import an export file
-         * @param {FlecsportApiImportsPostRequest} requestParameters Request parameters.
+         * @param {string} contentDisposition File name of the export, e.g. my-export.tar
+         * @param {File} [file] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        importsPost(requestParameters: FlecsportApiImportsPostRequest, options?: RawAxiosRequestConfig): AxiosPromise<JobMeta> {
-            return localVarFp.importsPost(requestParameters.contentDisposition, requestParameters.file, options).then((request) => request(axios, basePath));
+        importsPost(contentDisposition: string, file?: File, options?: RawAxiosRequestConfig): AxiosPromise<JobMeta> {
+            return localVarFp.importsPost(contentDisposition, file, options).then((request) => request(axios, basePath));
         },
     };
 };
-
-/**
- * Request parameters for exportsExportIdDelete operation in FlecsportApi.
- * @export
- * @interface FlecsportApiExportsExportIdDeleteRequest
- */
-export interface FlecsportApiExportsExportIdDeleteRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof FlecsportApiExportsExportIdDelete
-     */
-    readonly exportId: string
-}
-
-/**
- * Request parameters for exportsExportIdGet operation in FlecsportApi.
- * @export
- * @interface FlecsportApiExportsExportIdGetRequest
- */
-export interface FlecsportApiExportsExportIdGetRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof FlecsportApiExportsExportIdGet
-     */
-    readonly exportId: string
-}
-
-/**
- * Request parameters for exportsPost operation in FlecsportApi.
- * @export
- * @interface FlecsportApiExportsPostRequest
- */
-export interface FlecsportApiExportsPostRequest {
-    /**
-     * 
-     * @type {ExportRequest}
-     * @memberof FlecsportApiExportsPost
-     */
-    readonly exportRequest: ExportRequest
-}
-
-/**
- * Request parameters for importsPost operation in FlecsportApi.
- * @export
- * @interface FlecsportApiImportsPostRequest
- */
-export interface FlecsportApiImportsPostRequest {
-    /**
-     * File name of the export, e.g. my-export.tar
-     * @type {string}
-     * @memberof FlecsportApiImportsPost
-     */
-    readonly contentDisposition: string
-
-    /**
-     * 
-     * @type {File}
-     * @memberof FlecsportApiImportsPost
-     */
-    readonly file?: File
-}
 
 /**
  * FlecsportApi - object-oriented interface
@@ -3609,25 +3382,25 @@ export class FlecsportApi extends BaseAPI {
     /**
      * 
      * @summary Delete specified export
-     * @param {FlecsportApiExportsExportIdDeleteRequest} requestParameters Request parameters.
+     * @param {string} exportId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof FlecsportApi
      */
-    public exportsExportIdDelete(requestParameters: FlecsportApiExportsExportIdDeleteRequest, options?: RawAxiosRequestConfig) {
-        return FlecsportApiFp(this.configuration).exportsExportIdDelete(requestParameters.exportId, options).then((request) => request(this.axios, this.basePath));
+    public exportsExportIdDelete(exportId: string, options?: RawAxiosRequestConfig) {
+        return FlecsportApiFp(this.configuration).exportsExportIdDelete(exportId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @summary Download specified export
-     * @param {FlecsportApiExportsExportIdGetRequest} requestParameters Request parameters.
+     * @param {string} exportId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof FlecsportApi
      */
-    public exportsExportIdGet(requestParameters: FlecsportApiExportsExportIdGetRequest, options?: RawAxiosRequestConfig) {
-        return FlecsportApiFp(this.configuration).exportsExportIdGet(requestParameters.exportId, options).then((request) => request(this.axios, this.basePath));
+    public exportsExportIdGet(exportId: string, options?: RawAxiosRequestConfig) {
+        return FlecsportApiFp(this.configuration).exportsExportIdGet(exportId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -3644,25 +3417,26 @@ export class FlecsportApi extends BaseAPI {
     /**
      * 
      * @summary Create an export
-     * @param {FlecsportApiExportsPostRequest} requestParameters Request parameters.
+     * @param {ExportRequest} exportRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof FlecsportApi
      */
-    public exportsPost(requestParameters: FlecsportApiExportsPostRequest, options?: RawAxiosRequestConfig) {
-        return FlecsportApiFp(this.configuration).exportsPost(requestParameters.exportRequest, options).then((request) => request(this.axios, this.basePath));
+    public exportsPost(exportRequest: ExportRequest, options?: RawAxiosRequestConfig) {
+        return FlecsportApiFp(this.configuration).exportsPost(exportRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @summary Upload and import an export file
-     * @param {FlecsportApiImportsPostRequest} requestParameters Request parameters.
+     * @param {string} contentDisposition File name of the export, e.g. my-export.tar
+     * @param {File} [file] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof FlecsportApi
      */
-    public importsPost(requestParameters: FlecsportApiImportsPostRequest, options?: RawAxiosRequestConfig) {
-        return FlecsportApiFp(this.configuration).importsPost(requestParameters.contentDisposition, requestParameters.file, options).then((request) => request(this.axios, this.basePath));
+    public importsPost(contentDisposition: string, file?: File, options?: RawAxiosRequestConfig) {
+        return FlecsportApiFp(this.configuration).importsPost(contentDisposition, file, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -5896,1261 +5670,467 @@ export const InstancesApiFactory = function (configuration?: Configuration, base
         /**
          * 
          * @summary Create new instance of an installed App
-         * @param {InstancesApiInstancesCreatePostRequest} requestParameters Request parameters.
+         * @param {InstancesCreatePostRequest} instancesCreatePostRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesCreatePost(requestParameters: InstancesApiInstancesCreatePostRequest, options?: RawAxiosRequestConfig): AxiosPromise<JobMeta> {
-            return localVarFp.instancesCreatePost(requestParameters.instancesCreatePostRequest, options).then((request) => request(axios, basePath));
+        instancesCreatePost(instancesCreatePostRequest: InstancesCreatePostRequest, options?: RawAxiosRequestConfig): AxiosPromise<JobMeta> {
+            return localVarFp.instancesCreatePost(instancesCreatePostRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary Query all instances of one or all Apps
-         * @param {InstancesApiInstancesGetRequest} requestParameters Request parameters.
+         * @param {string} [app] 
+         * @param {string} [version] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesGet(requestParameters: InstancesApiInstancesGetRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<Array<AppInstance>> {
-            return localVarFp.instancesGet(requestParameters.app, requestParameters.version, options).then((request) => request(axios, basePath));
+        instancesGet(app?: string, version?: string, options?: RawAxiosRequestConfig): AxiosPromise<Array<AppInstance>> {
+            return localVarFp.instancesGet(app, version, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary Remove all passed through usb devices of an instance
-         * @param {InstancesApiInstancesInstanceIdConfigDevicesUsbDeleteRequest} requestParameters Request parameters.
+         * @param {string} instanceId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdConfigDevicesUsbDelete(requestParameters: InstancesApiInstancesInstanceIdConfigDevicesUsbDeleteRequest, options?: RawAxiosRequestConfig): AxiosPromise<void> {
-            return localVarFp.instancesInstanceIdConfigDevicesUsbDelete(requestParameters.instanceId, options).then((request) => request(axios, basePath));
+        instancesInstanceIdConfigDevicesUsbDelete(instanceId: string, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.instancesInstanceIdConfigDevicesUsbDelete(instanceId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary Retrieve passed through usb devices of an instance
-         * @param {InstancesApiInstancesInstanceIdConfigDevicesUsbGetRequest} requestParameters Request parameters.
+         * @param {string} instanceId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdConfigDevicesUsbGet(requestParameters: InstancesApiInstancesInstanceIdConfigDevicesUsbGetRequest, options?: RawAxiosRequestConfig): AxiosPromise<Array<InstanceConfigUsbDevice>> {
-            return localVarFp.instancesInstanceIdConfigDevicesUsbGet(requestParameters.instanceId, options).then((request) => request(axios, basePath));
+        instancesInstanceIdConfigDevicesUsbGet(instanceId: string, options?: RawAxiosRequestConfig): AxiosPromise<Array<InstanceConfigUsbDevice>> {
+            return localVarFp.instancesInstanceIdConfigDevicesUsbGet(instanceId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary Delete passed through usb device of the instance with the given port
-         * @param {InstancesApiInstancesInstanceIdConfigDevicesUsbPortDeleteRequest} requestParameters Request parameters.
+         * @param {string} instanceId 
+         * @param {string} port 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdConfigDevicesUsbPortDelete(requestParameters: InstancesApiInstancesInstanceIdConfigDevicesUsbPortDeleteRequest, options?: RawAxiosRequestConfig): AxiosPromise<void> {
-            return localVarFp.instancesInstanceIdConfigDevicesUsbPortDelete(requestParameters.instanceId, requestParameters.port, options).then((request) => request(axios, basePath));
+        instancesInstanceIdConfigDevicesUsbPortDelete(instanceId: string, port: string, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.instancesInstanceIdConfigDevicesUsbPortDelete(instanceId, port, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary Retrieve passed through usb device of the instance with the given port
-         * @param {InstancesApiInstancesInstanceIdConfigDevicesUsbPortGetRequest} requestParameters Request parameters.
+         * @param {string} instanceId 
+         * @param {string} port 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdConfigDevicesUsbPortGet(requestParameters: InstancesApiInstancesInstanceIdConfigDevicesUsbPortGetRequest, options?: RawAxiosRequestConfig): AxiosPromise<InstanceConfigUsbDevice> {
-            return localVarFp.instancesInstanceIdConfigDevicesUsbPortGet(requestParameters.instanceId, requestParameters.port, options).then((request) => request(axios, basePath));
+        instancesInstanceIdConfigDevicesUsbPortGet(instanceId: string, port: string, options?: RawAxiosRequestConfig): AxiosPromise<InstanceConfigUsbDevice> {
+            return localVarFp.instancesInstanceIdConfigDevicesUsbPortGet(instanceId, port, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary Pass through usb device with the given port to the instance
-         * @param {InstancesApiInstancesInstanceIdConfigDevicesUsbPortPutRequest} requestParameters Request parameters.
+         * @param {string} instanceId 
+         * @param {string} port 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdConfigDevicesUsbPortPut(requestParameters: InstancesApiInstancesInstanceIdConfigDevicesUsbPortPutRequest, options?: RawAxiosRequestConfig): AxiosPromise<void> {
-            return localVarFp.instancesInstanceIdConfigDevicesUsbPortPut(requestParameters.instanceId, requestParameters.port, options).then((request) => request(axios, basePath));
+        instancesInstanceIdConfigDevicesUsbPortPut(instanceId: string, port: string, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.instancesInstanceIdConfigDevicesUsbPortPut(instanceId, port, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary Retrieve editors of an instance
-         * @param {InstancesApiInstancesInstanceIdConfigEditorsGetRequest} requestParameters Request parameters.
+         * @param {string} instanceId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdConfigEditorsGet(requestParameters: InstancesApiInstancesInstanceIdConfigEditorsGetRequest, options?: RawAxiosRequestConfig): AxiosPromise<Array<InstanceEditor>> {
-            return localVarFp.instancesInstanceIdConfigEditorsGet(requestParameters.instanceId, options).then((request) => request(axios, basePath));
+        instancesInstanceIdConfigEditorsGet(instanceId: string, options?: RawAxiosRequestConfig): AxiosPromise<Array<InstanceEditor>> {
+            return localVarFp.instancesInstanceIdConfigEditorsGet(instanceId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary Retrieve an editor of an instance
-         * @param {InstancesApiInstancesInstanceIdConfigEditorsPortGetRequest} requestParameters Request parameters.
+         * @param {string} instanceId 
+         * @param {number} port 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdConfigEditorsPortGet(requestParameters: InstancesApiInstancesInstanceIdConfigEditorsPortGetRequest, options?: RawAxiosRequestConfig): AxiosPromise<InstanceEditor> {
-            return localVarFp.instancesInstanceIdConfigEditorsPortGet(requestParameters.instanceId, requestParameters.port, options).then((request) => request(axios, basePath));
+        instancesInstanceIdConfigEditorsPortGet(instanceId: string, port: number, options?: RawAxiosRequestConfig): AxiosPromise<InstanceEditor> {
+            return localVarFp.instancesInstanceIdConfigEditorsPortGet(instanceId, port, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary Remove the path prefix used in the editor uri of an instance editor, this will revert to the default behaviour (/v2/instances/{instance_id}/editor/{port})
-         * @param {InstancesApiInstancesInstanceIdConfigEditorsPortPathPrefixDeleteRequest} requestParameters Request parameters.
+         * @param {string} instanceId 
+         * @param {number} port 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdConfigEditorsPortPathPrefixDelete(requestParameters: InstancesApiInstancesInstanceIdConfigEditorsPortPathPrefixDeleteRequest, options?: RawAxiosRequestConfig): AxiosPromise<void> {
-            return localVarFp.instancesInstanceIdConfigEditorsPortPathPrefixDelete(requestParameters.instanceId, requestParameters.port, options).then((request) => request(axios, basePath));
+        instancesInstanceIdConfigEditorsPortPathPrefixDelete(instanceId: string, port: number, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.instancesInstanceIdConfigEditorsPortPathPrefixDelete(instanceId, port, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary Modify the path prefix used in the editor uri of an instance editor
-         * @param {InstancesApiInstancesInstanceIdConfigEditorsPortPathPrefixPutRequest} requestParameters Request parameters.
+         * @param {string} instanceId 
+         * @param {number} port 
+         * @param {InstancesInstanceIdConfigEditorsPortPathPrefixPutRequest} instancesInstanceIdConfigEditorsPortPathPrefixPutRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdConfigEditorsPortPathPrefixPut(requestParameters: InstancesApiInstancesInstanceIdConfigEditorsPortPathPrefixPutRequest, options?: RawAxiosRequestConfig): AxiosPromise<void> {
-            return localVarFp.instancesInstanceIdConfigEditorsPortPathPrefixPut(requestParameters.instanceId, requestParameters.port, requestParameters.instancesInstanceIdConfigEditorsPortPathPrefixPutRequest, options).then((request) => request(axios, basePath));
+        instancesInstanceIdConfigEditorsPortPathPrefixPut(instanceId: string, port: number, instancesInstanceIdConfigEditorsPortPathPrefixPutRequest: InstancesInstanceIdConfigEditorsPortPathPrefixPutRequest, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.instancesInstanceIdConfigEditorsPortPathPrefixPut(instanceId, port, instancesInstanceIdConfigEditorsPortPathPrefixPutRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary Delete environment of an instance
-         * @param {InstancesApiInstancesInstanceIdConfigEnvironmentDeleteRequest} requestParameters Request parameters.
+         * @param {string} instanceId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdConfigEnvironmentDelete(requestParameters: InstancesApiInstancesInstanceIdConfigEnvironmentDeleteRequest, options?: RawAxiosRequestConfig): AxiosPromise<void> {
-            return localVarFp.instancesInstanceIdConfigEnvironmentDelete(requestParameters.instanceId, options).then((request) => request(axios, basePath));
+        instancesInstanceIdConfigEnvironmentDelete(instanceId: string, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.instancesInstanceIdConfigEnvironmentDelete(instanceId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary Retrieve environment of an instance
-         * @param {InstancesApiInstancesInstanceIdConfigEnvironmentGetRequest} requestParameters Request parameters.
+         * @param {string} instanceId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdConfigEnvironmentGet(requestParameters: InstancesApiInstancesInstanceIdConfigEnvironmentGetRequest, options?: RawAxiosRequestConfig): AxiosPromise<Array<InstanceEnvironmentVariable>> {
-            return localVarFp.instancesInstanceIdConfigEnvironmentGet(requestParameters.instanceId, options).then((request) => request(axios, basePath));
+        instancesInstanceIdConfigEnvironmentGet(instanceId: string, options?: RawAxiosRequestConfig): AxiosPromise<Array<InstanceEnvironmentVariable>> {
+            return localVarFp.instancesInstanceIdConfigEnvironmentGet(instanceId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary Modify or create environment of an instance
-         * @param {InstancesApiInstancesInstanceIdConfigEnvironmentPutRequest} requestParameters Request parameters.
+         * @param {string} instanceId 
+         * @param {Array<InstanceEnvironmentVariable>} instanceEnvironmentVariable 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdConfigEnvironmentPut(requestParameters: InstancesApiInstancesInstanceIdConfigEnvironmentPutRequest, options?: RawAxiosRequestConfig): AxiosPromise<void> {
-            return localVarFp.instancesInstanceIdConfigEnvironmentPut(requestParameters.instanceId, requestParameters.instanceEnvironmentVariable, options).then((request) => request(axios, basePath));
+        instancesInstanceIdConfigEnvironmentPut(instanceId: string, instanceEnvironmentVariable: Array<InstanceEnvironmentVariable>, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.instancesInstanceIdConfigEnvironmentPut(instanceId, instanceEnvironmentVariable, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary Remove an environment variable of an instance
-         * @param {InstancesApiInstancesInstanceIdConfigEnvironmentVariableNameDeleteRequest} requestParameters Request parameters.
+         * @param {string} instanceId 
+         * @param {string} variableName 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdConfigEnvironmentVariableNameDelete(requestParameters: InstancesApiInstancesInstanceIdConfigEnvironmentVariableNameDeleteRequest, options?: RawAxiosRequestConfig): AxiosPromise<void> {
-            return localVarFp.instancesInstanceIdConfigEnvironmentVariableNameDelete(requestParameters.instanceId, requestParameters.variableName, options).then((request) => request(axios, basePath));
+        instancesInstanceIdConfigEnvironmentVariableNameDelete(instanceId: string, variableName: string, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.instancesInstanceIdConfigEnvironmentVariableNameDelete(instanceId, variableName, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary Retrieve the value of an environment variable
-         * @param {InstancesApiInstancesInstanceIdConfigEnvironmentVariableNameGetRequest} requestParameters Request parameters.
+         * @param {string} instanceId 
+         * @param {string} variableName 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdConfigEnvironmentVariableNameGet(requestParameters: InstancesApiInstancesInstanceIdConfigEnvironmentVariableNameGetRequest, options?: RawAxiosRequestConfig): AxiosPromise<InstancesInstanceIdConfigEnvironmentVariableNameGet200Response> {
-            return localVarFp.instancesInstanceIdConfigEnvironmentVariableNameGet(requestParameters.instanceId, requestParameters.variableName, options).then((request) => request(axios, basePath));
+        instancesInstanceIdConfigEnvironmentVariableNameGet(instanceId: string, variableName: string, options?: RawAxiosRequestConfig): AxiosPromise<InstancesInstanceIdConfigEnvironmentVariableNameGet200Response> {
+            return localVarFp.instancesInstanceIdConfigEnvironmentVariableNameGet(instanceId, variableName, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary Set the value of an environment variable of an instance
-         * @param {InstancesApiInstancesInstanceIdConfigEnvironmentVariableNamePutRequest} requestParameters Request parameters.
+         * @param {string} instanceId 
+         * @param {string} variableName 
+         * @param {InstancesInstanceIdConfigEnvironmentVariableNameGet200Response} instancesInstanceIdConfigEnvironmentVariableNameGet200Response 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdConfigEnvironmentVariableNamePut(requestParameters: InstancesApiInstancesInstanceIdConfigEnvironmentVariableNamePutRequest, options?: RawAxiosRequestConfig): AxiosPromise<void> {
-            return localVarFp.instancesInstanceIdConfigEnvironmentVariableNamePut(requestParameters.instanceId, requestParameters.variableName, requestParameters.instancesInstanceIdConfigEnvironmentVariableNameGet200Response, options).then((request) => request(axios, basePath));
+        instancesInstanceIdConfigEnvironmentVariableNamePut(instanceId: string, variableName: string, instancesInstanceIdConfigEnvironmentVariableNameGet200Response: InstancesInstanceIdConfigEnvironmentVariableNameGet200Response, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.instancesInstanceIdConfigEnvironmentVariableNamePut(instanceId, variableName, instancesInstanceIdConfigEnvironmentVariableNameGet200Response, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary Retrieve labels of an instance
-         * @param {InstancesApiInstancesInstanceIdConfigLabelsGetRequest} requestParameters Request parameters.
+         * @param {string} instanceId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdConfigLabelsGet(requestParameters: InstancesApiInstancesInstanceIdConfigLabelsGetRequest, options?: RawAxiosRequestConfig): AxiosPromise<Array<InstanceLabel>> {
-            return localVarFp.instancesInstanceIdConfigLabelsGet(requestParameters.instanceId, options).then((request) => request(axios, basePath));
+        instancesInstanceIdConfigLabelsGet(instanceId: string, options?: RawAxiosRequestConfig): AxiosPromise<Array<InstanceLabel>> {
+            return localVarFp.instancesInstanceIdConfigLabelsGet(instanceId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary Retrieve value of a specific label of an instance
-         * @param {InstancesApiInstancesInstanceIdConfigLabelsLabelNameGetRequest} requestParameters Request parameters.
+         * @param {string} instanceId 
+         * @param {string} labelName 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdConfigLabelsLabelNameGet(requestParameters: InstancesApiInstancesInstanceIdConfigLabelsLabelNameGetRequest, options?: RawAxiosRequestConfig): AxiosPromise<InstancesInstanceIdConfigLabelsLabelNameGet200Response> {
-            return localVarFp.instancesInstanceIdConfigLabelsLabelNameGet(requestParameters.instanceId, requestParameters.labelName, options).then((request) => request(axios, basePath));
+        instancesInstanceIdConfigLabelsLabelNameGet(instanceId: string, labelName: string, options?: RawAxiosRequestConfig): AxiosPromise<InstancesInstanceIdConfigLabelsLabelNameGet200Response> {
+            return localVarFp.instancesInstanceIdConfigLabelsLabelNameGet(instanceId, labelName, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary Retrieve bind mount of an instance
-         * @param {InstancesApiInstancesInstanceIdConfigMountsBindContainerPathGetRequest} requestParameters Request parameters.
+         * @param {string} instanceId 
+         * @param {string} containerPath 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdConfigMountsBindContainerPathGet(requestParameters: InstancesApiInstancesInstanceIdConfigMountsBindContainerPathGetRequest, options?: RawAxiosRequestConfig): AxiosPromise<BindMount> {
-            return localVarFp.instancesInstanceIdConfigMountsBindContainerPathGet(requestParameters.instanceId, requestParameters.containerPath, options).then((request) => request(axios, basePath));
+        instancesInstanceIdConfigMountsBindContainerPathGet(instanceId: string, containerPath: string, options?: RawAxiosRequestConfig): AxiosPromise<BindMount> {
+            return localVarFp.instancesInstanceIdConfigMountsBindContainerPathGet(instanceId, containerPath, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary Retrieve bind mounts of an instance
-         * @param {InstancesApiInstancesInstanceIdConfigMountsBindGetRequest} requestParameters Request parameters.
+         * @param {string} instanceId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdConfigMountsBindGet(requestParameters: InstancesApiInstancesInstanceIdConfigMountsBindGetRequest, options?: RawAxiosRequestConfig): AxiosPromise<Array<BindMount>> {
-            return localVarFp.instancesInstanceIdConfigMountsBindGet(requestParameters.instanceId, options).then((request) => request(axios, basePath));
+        instancesInstanceIdConfigMountsBindGet(instanceId: string, options?: RawAxiosRequestConfig): AxiosPromise<Array<BindMount>> {
+            return localVarFp.instancesInstanceIdConfigMountsBindGet(instanceId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary Retrieve volumes of an instance
-         * @param {InstancesApiInstancesInstanceIdConfigMountsGetRequest} requestParameters Request parameters.
+         * @param {string} instanceId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdConfigMountsGet(requestParameters: InstancesApiInstancesInstanceIdConfigMountsGetRequest, options?: RawAxiosRequestConfig): AxiosPromise<Mounts> {
-            return localVarFp.instancesInstanceIdConfigMountsGet(requestParameters.instanceId, options).then((request) => request(axios, basePath));
+        instancesInstanceIdConfigMountsGet(instanceId: string, options?: RawAxiosRequestConfig): AxiosPromise<Mounts> {
+            return localVarFp.instancesInstanceIdConfigMountsGet(instanceId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary Retrieve volumes mounts of an instance
-         * @param {InstancesApiInstancesInstanceIdConfigMountsVolumesGetRequest} requestParameters Request parameters.
+         * @param {string} instanceId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdConfigMountsVolumesGet(requestParameters: InstancesApiInstancesInstanceIdConfigMountsVolumesGetRequest, options?: RawAxiosRequestConfig): AxiosPromise<Array<InstanceDetailVolume>> {
-            return localVarFp.instancesInstanceIdConfigMountsVolumesGet(requestParameters.instanceId, options).then((request) => request(axios, basePath));
+        instancesInstanceIdConfigMountsVolumesGet(instanceId: string, options?: RawAxiosRequestConfig): AxiosPromise<Array<InstanceDetailVolume>> {
+            return localVarFp.instancesInstanceIdConfigMountsVolumesGet(instanceId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary Retrieve volume mount of an instance
-         * @param {InstancesApiInstancesInstanceIdConfigMountsVolumesVolumeNameGetRequest} requestParameters Request parameters.
+         * @param {string} instanceId 
+         * @param {string} volumeName 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdConfigMountsVolumesVolumeNameGet(requestParameters: InstancesApiInstancesInstanceIdConfigMountsVolumesVolumeNameGetRequest, options?: RawAxiosRequestConfig): AxiosPromise<InstanceDetailVolume> {
-            return localVarFp.instancesInstanceIdConfigMountsVolumesVolumeNameGet(requestParameters.instanceId, requestParameters.volumeName, options).then((request) => request(axios, basePath));
+        instancesInstanceIdConfigMountsVolumesVolumeNameGet(instanceId: string, volumeName: string, options?: RawAxiosRequestConfig): AxiosPromise<InstanceDetailVolume> {
+            return localVarFp.instancesInstanceIdConfigMountsVolumesVolumeNameGet(instanceId, volumeName, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary Retrieve connected networks of instance
-         * @param {InstancesApiInstancesInstanceIdConfigNetworksGetRequest} requestParameters Request parameters.
+         * @param {string} instanceId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdConfigNetworksGet(requestParameters: InstancesApiInstancesInstanceIdConfigNetworksGetRequest, options?: RawAxiosRequestConfig): AxiosPromise<Array<InstanceConfigNetwork>> {
-            return localVarFp.instancesInstanceIdConfigNetworksGet(requestParameters.instanceId, options).then((request) => request(axios, basePath));
+        instancesInstanceIdConfigNetworksGet(instanceId: string, options?: RawAxiosRequestConfig): AxiosPromise<Array<InstanceConfigNetwork>> {
+            return localVarFp.instancesInstanceIdConfigNetworksGet(instanceId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary Remove connected network of instance
-         * @param {InstancesApiInstancesInstanceIdConfigNetworksNetworkIdDeleteRequest} requestParameters Request parameters.
+         * @param {string} instanceId 
+         * @param {string} networkId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdConfigNetworksNetworkIdDelete(requestParameters: InstancesApiInstancesInstanceIdConfigNetworksNetworkIdDeleteRequest, options?: RawAxiosRequestConfig): AxiosPromise<void> {
-            return localVarFp.instancesInstanceIdConfigNetworksNetworkIdDelete(requestParameters.instanceId, requestParameters.networkId, options).then((request) => request(axios, basePath));
+        instancesInstanceIdConfigNetworksNetworkIdDelete(instanceId: string, networkId: string, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.instancesInstanceIdConfigNetworksNetworkIdDelete(instanceId, networkId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary Retrieve connected network of instance
-         * @param {InstancesApiInstancesInstanceIdConfigNetworksNetworkIdGetRequest} requestParameters Request parameters.
+         * @param {string} instanceId 
+         * @param {string} networkId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdConfigNetworksNetworkIdGet(requestParameters: InstancesApiInstancesInstanceIdConfigNetworksNetworkIdGetRequest, options?: RawAxiosRequestConfig): AxiosPromise<InstanceConfigNetwork> {
-            return localVarFp.instancesInstanceIdConfigNetworksNetworkIdGet(requestParameters.instanceId, requestParameters.networkId, options).then((request) => request(axios, basePath));
+        instancesInstanceIdConfigNetworksNetworkIdGet(instanceId: string, networkId: string, options?: RawAxiosRequestConfig): AxiosPromise<InstanceConfigNetwork> {
+            return localVarFp.instancesInstanceIdConfigNetworksNetworkIdGet(instanceId, networkId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary Connect instance to network
-         * @param {InstancesApiInstancesInstanceIdConfigNetworksPostRequest} requestParameters Request parameters.
+         * @param {string} instanceId 
+         * @param {InstancesInstanceIdConfigNetworksPostRequest} instancesInstanceIdConfigNetworksPostRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdConfigNetworksPost(requestParameters: InstancesApiInstancesInstanceIdConfigNetworksPostRequest, options?: RawAxiosRequestConfig): AxiosPromise<void> {
-            return localVarFp.instancesInstanceIdConfigNetworksPost(requestParameters.instanceId, requestParameters.instancesInstanceIdConfigNetworksPostRequest, options).then((request) => request(axios, basePath));
+        instancesInstanceIdConfigNetworksPost(instanceId: string, instancesInstanceIdConfigNetworksPostRequest: InstancesInstanceIdConfigNetworksPostRequest, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.instancesInstanceIdConfigNetworksPost(instanceId, instancesInstanceIdConfigNetworksPostRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary Delete exposed ports of an instance
-         * @param {InstancesApiInstancesInstanceIdConfigPortsDeleteRequest} requestParameters Request parameters.
+         * @param {string} instanceId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdConfigPortsDelete(requestParameters: InstancesApiInstancesInstanceIdConfigPortsDeleteRequest, options?: RawAxiosRequestConfig): AxiosPromise<void> {
-            return localVarFp.instancesInstanceIdConfigPortsDelete(requestParameters.instanceId, options).then((request) => request(axios, basePath));
+        instancesInstanceIdConfigPortsDelete(instanceId: string, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.instancesInstanceIdConfigPortsDelete(instanceId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary Retrieve exposed ports of an instance
-         * @param {InstancesApiInstancesInstanceIdConfigPortsGetRequest} requestParameters Request parameters.
+         * @param {string} instanceId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdConfigPortsGet(requestParameters: InstancesApiInstancesInstanceIdConfigPortsGetRequest, options?: RawAxiosRequestConfig): AxiosPromise<InstancePorts> {
-            return localVarFp.instancesInstanceIdConfigPortsGet(requestParameters.instanceId, options).then((request) => request(axios, basePath));
+        instancesInstanceIdConfigPortsGet(instanceId: string, options?: RawAxiosRequestConfig): AxiosPromise<InstancePorts> {
+            return localVarFp.instancesInstanceIdConfigPortsGet(instanceId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary Remove all published ports of an instance for the given transport_protocol
-         * @param {InstancesApiInstancesInstanceIdConfigPortsTransportProtocolDeleteRequest} requestParameters Request parameters.
+         * @param {string} instanceId 
+         * @param {TransportProtocol} transportProtocol 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdConfigPortsTransportProtocolDelete(requestParameters: InstancesApiInstancesInstanceIdConfigPortsTransportProtocolDeleteRequest, options?: RawAxiosRequestConfig): AxiosPromise<void> {
-            return localVarFp.instancesInstanceIdConfigPortsTransportProtocolDelete(requestParameters.instanceId, requestParameters.transportProtocol, options).then((request) => request(axios, basePath));
+        instancesInstanceIdConfigPortsTransportProtocolDelete(instanceId: string, transportProtocol: TransportProtocol, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.instancesInstanceIdConfigPortsTransportProtocolDelete(instanceId, transportProtocol, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary Get published ports of an instance for the given transport_protocol
-         * @param {InstancesApiInstancesInstanceIdConfigPortsTransportProtocolGetRequest} requestParameters Request parameters.
+         * @param {string} instanceId 
+         * @param {TransportProtocol} transportProtocol 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdConfigPortsTransportProtocolGet(requestParameters: InstancesApiInstancesInstanceIdConfigPortsTransportProtocolGetRequest, options?: RawAxiosRequestConfig): AxiosPromise<Array<InstancePortMapping>> {
-            return localVarFp.instancesInstanceIdConfigPortsTransportProtocolGet(requestParameters.instanceId, requestParameters.transportProtocol, options).then((request) => request(axios, basePath));
+        instancesInstanceIdConfigPortsTransportProtocolGet(instanceId: string, transportProtocol: TransportProtocol, options?: RawAxiosRequestConfig): AxiosPromise<Array<InstancePortMapping>> {
+            return localVarFp.instancesInstanceIdConfigPortsTransportProtocolGet(instanceId, transportProtocol, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary Remove instance port range that is mapped to the given host port range
-         * @param {InstancesApiInstancesInstanceIdConfigPortsTransportProtocolHostPortRangeDeleteRequest} requestParameters Request parameters.
+         * @param {string} instanceId 
+         * @param {TransportProtocol} transportProtocol 
+         * @param {string} hostPortRange 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdConfigPortsTransportProtocolHostPortRangeDelete(requestParameters: InstancesApiInstancesInstanceIdConfigPortsTransportProtocolHostPortRangeDeleteRequest, options?: RawAxiosRequestConfig): AxiosPromise<void> {
-            return localVarFp.instancesInstanceIdConfigPortsTransportProtocolHostPortRangeDelete(requestParameters.instanceId, requestParameters.transportProtocol, requestParameters.hostPortRange, options).then((request) => request(axios, basePath));
+        instancesInstanceIdConfigPortsTransportProtocolHostPortRangeDelete(instanceId: string, transportProtocol: TransportProtocol, hostPortRange: string, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.instancesInstanceIdConfigPortsTransportProtocolHostPortRangeDelete(instanceId, transportProtocol, hostPortRange, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary Retrieve instance port range that is mapped to the given host port range
-         * @param {InstancesApiInstancesInstanceIdConfigPortsTransportProtocolHostPortRangeGetRequest} requestParameters Request parameters.
+         * @param {string} instanceId 
+         * @param {TransportProtocol} transportProtocol 
+         * @param {string} hostPortRange 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdConfigPortsTransportProtocolHostPortRangeGet(requestParameters: InstancesApiInstancesInstanceIdConfigPortsTransportProtocolHostPortRangeGetRequest, options?: RawAxiosRequestConfig): AxiosPromise<InstancePortMapping> {
-            return localVarFp.instancesInstanceIdConfigPortsTransportProtocolHostPortRangeGet(requestParameters.instanceId, requestParameters.transportProtocol, requestParameters.hostPortRange, options).then((request) => request(axios, basePath));
+        instancesInstanceIdConfigPortsTransportProtocolHostPortRangeGet(instanceId: string, transportProtocol: TransportProtocol, hostPortRange: string, options?: RawAxiosRequestConfig): AxiosPromise<InstancePortMapping> {
+            return localVarFp.instancesInstanceIdConfigPortsTransportProtocolHostPortRangeGet(instanceId, transportProtocol, hostPortRange, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary Set instance port range that is mapped to the given host port range
-         * @param {InstancesApiInstancesInstanceIdConfigPortsTransportProtocolHostPortRangePutRequest} requestParameters Request parameters.
+         * @param {string} instanceId 
+         * @param {TransportProtocol} transportProtocol 
+         * @param {string} hostPortRange 
+         * @param {InstancesInstanceIdConfigPortsTransportProtocolHostPortRangePutRequest} instancesInstanceIdConfigPortsTransportProtocolHostPortRangePutRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdConfigPortsTransportProtocolHostPortRangePut(requestParameters: InstancesApiInstancesInstanceIdConfigPortsTransportProtocolHostPortRangePutRequest, options?: RawAxiosRequestConfig): AxiosPromise<void> {
-            return localVarFp.instancesInstanceIdConfigPortsTransportProtocolHostPortRangePut(requestParameters.instanceId, requestParameters.transportProtocol, requestParameters.hostPortRange, requestParameters.instancesInstanceIdConfigPortsTransportProtocolHostPortRangePutRequest, options).then((request) => request(axios, basePath));
+        instancesInstanceIdConfigPortsTransportProtocolHostPortRangePut(instanceId: string, transportProtocol: TransportProtocol, hostPortRange: string, instancesInstanceIdConfigPortsTransportProtocolHostPortRangePutRequest: InstancesInstanceIdConfigPortsTransportProtocolHostPortRangePutRequest, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.instancesInstanceIdConfigPortsTransportProtocolHostPortRangePut(instanceId, transportProtocol, hostPortRange, instancesInstanceIdConfigPortsTransportProtocolHostPortRangePutRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary Update or create published ports of an instance for the given transport protocol
-         * @param {InstancesApiInstancesInstanceIdConfigPortsTransportProtocolPutRequest} requestParameters Request parameters.
+         * @param {string} instanceId 
+         * @param {TransportProtocol} transportProtocol 
+         * @param {Array<InstancePortMapping>} instancePortMapping 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdConfigPortsTransportProtocolPut(requestParameters: InstancesApiInstancesInstanceIdConfigPortsTransportProtocolPutRequest, options?: RawAxiosRequestConfig): AxiosPromise<void> {
-            return localVarFp.instancesInstanceIdConfigPortsTransportProtocolPut(requestParameters.instanceId, requestParameters.transportProtocol, requestParameters.instancePortMapping, options).then((request) => request(axios, basePath));
+        instancesInstanceIdConfigPortsTransportProtocolPut(instanceId: string, transportProtocol: TransportProtocol, instancePortMapping: Array<InstancePortMapping>, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.instancesInstanceIdConfigPortsTransportProtocolPut(instanceId, transportProtocol, instancePortMapping, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary Delete a single instance
-         * @param {InstancesApiInstancesInstanceIdDeleteRequest} requestParameters Request parameters.
+         * @param {string} instanceId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdDelete(requestParameters: InstancesApiInstancesInstanceIdDeleteRequest, options?: RawAxiosRequestConfig): AxiosPromise<JobMeta> {
-            return localVarFp.instancesInstanceIdDelete(requestParameters.instanceId, options).then((request) => request(axios, basePath));
+        instancesInstanceIdDelete(instanceId: string, options?: RawAxiosRequestConfig): AxiosPromise<JobMeta> {
+            return localVarFp.instancesInstanceIdDelete(instanceId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary Access an editor of an app
-         * @param {InstancesApiInstancesInstanceIdEditorPortGetRequest} requestParameters Request parameters.
+         * @param {string} instanceId 
+         * @param {number} port 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdEditorPortGet(requestParameters: InstancesApiInstancesInstanceIdEditorPortGetRequest, options?: RawAxiosRequestConfig): AxiosPromise<void> {
-            return localVarFp.instancesInstanceIdEditorPortGet(requestParameters.instanceId, requestParameters.port, options).then((request) => request(axios, basePath));
+        instancesInstanceIdEditorPortGet(instanceId: string, port: number, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.instancesInstanceIdEditorPortGet(instanceId, port, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary Obtain details of an App instance
-         * @param {InstancesApiInstancesInstanceIdGetRequest} requestParameters Request parameters.
+         * @param {string} instanceId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdGet(requestParameters: InstancesApiInstancesInstanceIdGetRequest, options?: RawAxiosRequestConfig): AxiosPromise<InstancesInstanceIdGet200Response> {
-            return localVarFp.instancesInstanceIdGet(requestParameters.instanceId, options).then((request) => request(axios, basePath));
+        instancesInstanceIdGet(instanceId: string, options?: RawAxiosRequestConfig): AxiosPromise<InstancesInstanceIdGet200Response> {
+            return localVarFp.instancesInstanceIdGet(instanceId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary Retrieve logs of an Instance
-         * @param {InstancesApiInstancesInstanceIdLogsGetRequest} requestParameters Request parameters.
+         * @param {string} instanceId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdLogsGet(requestParameters: InstancesApiInstancesInstanceIdLogsGetRequest, options?: RawAxiosRequestConfig): AxiosPromise<InstancesInstanceIdLogsGet200Response> {
-            return localVarFp.instancesInstanceIdLogsGet(requestParameters.instanceId, options).then((request) => request(axios, basePath));
+        instancesInstanceIdLogsGet(instanceId: string, options?: RawAxiosRequestConfig): AxiosPromise<InstancesInstanceIdLogsGet200Response> {
+            return localVarFp.instancesInstanceIdLogsGet(instanceId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary Update or downgrade Instance to another App version
-         * @param {InstancesApiInstancesInstanceIdPatchRequest} requestParameters Request parameters.
+         * @param {string} instanceId 
+         * @param {InstancesInstanceIdPatchRequest} instancesInstanceIdPatchRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdPatch(requestParameters: InstancesApiInstancesInstanceIdPatchRequest, options?: RawAxiosRequestConfig): AxiosPromise<JobMeta> {
-            return localVarFp.instancesInstanceIdPatch(requestParameters.instanceId, requestParameters.instancesInstanceIdPatchRequest, options).then((request) => request(axios, basePath));
+        instancesInstanceIdPatch(instanceId: string, instancesInstanceIdPatchRequest: InstancesInstanceIdPatchRequest, options?: RawAxiosRequestConfig): AxiosPromise<JobMeta> {
+            return localVarFp.instancesInstanceIdPatch(instanceId, instancesInstanceIdPatchRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary Start an App instance
-         * @param {InstancesApiInstancesInstanceIdStartPostRequest} requestParameters Request parameters.
+         * @param {string} instanceId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdStartPost(requestParameters: InstancesApiInstancesInstanceIdStartPostRequest, options?: RawAxiosRequestConfig): AxiosPromise<JobMeta> {
-            return localVarFp.instancesInstanceIdStartPost(requestParameters.instanceId, options).then((request) => request(axios, basePath));
+        instancesInstanceIdStartPost(instanceId: string, options?: RawAxiosRequestConfig): AxiosPromise<JobMeta> {
+            return localVarFp.instancesInstanceIdStartPost(instanceId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary Stop an App instance
-         * @param {InstancesApiInstancesInstanceIdStopPostRequest} requestParameters Request parameters.
+         * @param {string} instanceId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        instancesInstanceIdStopPost(requestParameters: InstancesApiInstancesInstanceIdStopPostRequest, options?: RawAxiosRequestConfig): AxiosPromise<JobMeta> {
-            return localVarFp.instancesInstanceIdStopPost(requestParameters.instanceId, options).then((request) => request(axios, basePath));
+        instancesInstanceIdStopPost(instanceId: string, options?: RawAxiosRequestConfig): AxiosPromise<JobMeta> {
+            return localVarFp.instancesInstanceIdStopPost(instanceId, options).then((request) => request(axios, basePath));
         },
     };
 };
-
-/**
- * Request parameters for instancesCreatePost operation in InstancesApi.
- * @export
- * @interface InstancesApiInstancesCreatePostRequest
- */
-export interface InstancesApiInstancesCreatePostRequest {
-    /**
-     * 
-     * @type {InstancesCreatePostRequest}
-     * @memberof InstancesApiInstancesCreatePost
-     */
-    readonly instancesCreatePostRequest: InstancesCreatePostRequest
-}
-
-/**
- * Request parameters for instancesGet operation in InstancesApi.
- * @export
- * @interface InstancesApiInstancesGetRequest
- */
-export interface InstancesApiInstancesGetRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof InstancesApiInstancesGet
-     */
-    readonly app?: string
-
-    /**
-     * 
-     * @type {string}
-     * @memberof InstancesApiInstancesGet
-     */
-    readonly version?: string
-}
-
-/**
- * Request parameters for instancesInstanceIdConfigDevicesUsbDelete operation in InstancesApi.
- * @export
- * @interface InstancesApiInstancesInstanceIdConfigDevicesUsbDeleteRequest
- */
-export interface InstancesApiInstancesInstanceIdConfigDevicesUsbDeleteRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof InstancesApiInstancesInstanceIdConfigDevicesUsbDelete
-     */
-    readonly instanceId: string
-}
-
-/**
- * Request parameters for instancesInstanceIdConfigDevicesUsbGet operation in InstancesApi.
- * @export
- * @interface InstancesApiInstancesInstanceIdConfigDevicesUsbGetRequest
- */
-export interface InstancesApiInstancesInstanceIdConfigDevicesUsbGetRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof InstancesApiInstancesInstanceIdConfigDevicesUsbGet
-     */
-    readonly instanceId: string
-}
-
-/**
- * Request parameters for instancesInstanceIdConfigDevicesUsbPortDelete operation in InstancesApi.
- * @export
- * @interface InstancesApiInstancesInstanceIdConfigDevicesUsbPortDeleteRequest
- */
-export interface InstancesApiInstancesInstanceIdConfigDevicesUsbPortDeleteRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof InstancesApiInstancesInstanceIdConfigDevicesUsbPortDelete
-     */
-    readonly instanceId: string
-
-    /**
-     * 
-     * @type {string}
-     * @memberof InstancesApiInstancesInstanceIdConfigDevicesUsbPortDelete
-     */
-    readonly port: string
-}
-
-/**
- * Request parameters for instancesInstanceIdConfigDevicesUsbPortGet operation in InstancesApi.
- * @export
- * @interface InstancesApiInstancesInstanceIdConfigDevicesUsbPortGetRequest
- */
-export interface InstancesApiInstancesInstanceIdConfigDevicesUsbPortGetRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof InstancesApiInstancesInstanceIdConfigDevicesUsbPortGet
-     */
-    readonly instanceId: string
-
-    /**
-     * 
-     * @type {string}
-     * @memberof InstancesApiInstancesInstanceIdConfigDevicesUsbPortGet
-     */
-    readonly port: string
-}
-
-/**
- * Request parameters for instancesInstanceIdConfigDevicesUsbPortPut operation in InstancesApi.
- * @export
- * @interface InstancesApiInstancesInstanceIdConfigDevicesUsbPortPutRequest
- */
-export interface InstancesApiInstancesInstanceIdConfigDevicesUsbPortPutRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof InstancesApiInstancesInstanceIdConfigDevicesUsbPortPut
-     */
-    readonly instanceId: string
-
-    /**
-     * 
-     * @type {string}
-     * @memberof InstancesApiInstancesInstanceIdConfigDevicesUsbPortPut
-     */
-    readonly port: string
-}
-
-/**
- * Request parameters for instancesInstanceIdConfigEditorsGet operation in InstancesApi.
- * @export
- * @interface InstancesApiInstancesInstanceIdConfigEditorsGetRequest
- */
-export interface InstancesApiInstancesInstanceIdConfigEditorsGetRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof InstancesApiInstancesInstanceIdConfigEditorsGet
-     */
-    readonly instanceId: string
-}
-
-/**
- * Request parameters for instancesInstanceIdConfigEditorsPortGet operation in InstancesApi.
- * @export
- * @interface InstancesApiInstancesInstanceIdConfigEditorsPortGetRequest
- */
-export interface InstancesApiInstancesInstanceIdConfigEditorsPortGetRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof InstancesApiInstancesInstanceIdConfigEditorsPortGet
-     */
-    readonly instanceId: string
-
-    /**
-     * 
-     * @type {number}
-     * @memberof InstancesApiInstancesInstanceIdConfigEditorsPortGet
-     */
-    readonly port: number
-}
-
-/**
- * Request parameters for instancesInstanceIdConfigEditorsPortPathPrefixDelete operation in InstancesApi.
- * @export
- * @interface InstancesApiInstancesInstanceIdConfigEditorsPortPathPrefixDeleteRequest
- */
-export interface InstancesApiInstancesInstanceIdConfigEditorsPortPathPrefixDeleteRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof InstancesApiInstancesInstanceIdConfigEditorsPortPathPrefixDelete
-     */
-    readonly instanceId: string
-
-    /**
-     * 
-     * @type {number}
-     * @memberof InstancesApiInstancesInstanceIdConfigEditorsPortPathPrefixDelete
-     */
-    readonly port: number
-}
-
-/**
- * Request parameters for instancesInstanceIdConfigEditorsPortPathPrefixPut operation in InstancesApi.
- * @export
- * @interface InstancesApiInstancesInstanceIdConfigEditorsPortPathPrefixPutRequest
- */
-export interface InstancesApiInstancesInstanceIdConfigEditorsPortPathPrefixPutRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof InstancesApiInstancesInstanceIdConfigEditorsPortPathPrefixPut
-     */
-    readonly instanceId: string
-
-    /**
-     * 
-     * @type {number}
-     * @memberof InstancesApiInstancesInstanceIdConfigEditorsPortPathPrefixPut
-     */
-    readonly port: number
-
-    /**
-     * 
-     * @type {InstancesInstanceIdConfigEditorsPortPathPrefixPutRequest}
-     * @memberof InstancesApiInstancesInstanceIdConfigEditorsPortPathPrefixPut
-     */
-    readonly instancesInstanceIdConfigEditorsPortPathPrefixPutRequest: InstancesInstanceIdConfigEditorsPortPathPrefixPutRequest
-}
-
-/**
- * Request parameters for instancesInstanceIdConfigEnvironmentDelete operation in InstancesApi.
- * @export
- * @interface InstancesApiInstancesInstanceIdConfigEnvironmentDeleteRequest
- */
-export interface InstancesApiInstancesInstanceIdConfigEnvironmentDeleteRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof InstancesApiInstancesInstanceIdConfigEnvironmentDelete
-     */
-    readonly instanceId: string
-}
-
-/**
- * Request parameters for instancesInstanceIdConfigEnvironmentGet operation in InstancesApi.
- * @export
- * @interface InstancesApiInstancesInstanceIdConfigEnvironmentGetRequest
- */
-export interface InstancesApiInstancesInstanceIdConfigEnvironmentGetRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof InstancesApiInstancesInstanceIdConfigEnvironmentGet
-     */
-    readonly instanceId: string
-}
-
-/**
- * Request parameters for instancesInstanceIdConfigEnvironmentPut operation in InstancesApi.
- * @export
- * @interface InstancesApiInstancesInstanceIdConfigEnvironmentPutRequest
- */
-export interface InstancesApiInstancesInstanceIdConfigEnvironmentPutRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof InstancesApiInstancesInstanceIdConfigEnvironmentPut
-     */
-    readonly instanceId: string
-
-    /**
-     * 
-     * @type {Array<InstanceEnvironmentVariable>}
-     * @memberof InstancesApiInstancesInstanceIdConfigEnvironmentPut
-     */
-    readonly instanceEnvironmentVariable: Array<InstanceEnvironmentVariable>
-}
-
-/**
- * Request parameters for instancesInstanceIdConfigEnvironmentVariableNameDelete operation in InstancesApi.
- * @export
- * @interface InstancesApiInstancesInstanceIdConfigEnvironmentVariableNameDeleteRequest
- */
-export interface InstancesApiInstancesInstanceIdConfigEnvironmentVariableNameDeleteRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof InstancesApiInstancesInstanceIdConfigEnvironmentVariableNameDelete
-     */
-    readonly instanceId: string
-
-    /**
-     * 
-     * @type {string}
-     * @memberof InstancesApiInstancesInstanceIdConfigEnvironmentVariableNameDelete
-     */
-    readonly variableName: string
-}
-
-/**
- * Request parameters for instancesInstanceIdConfigEnvironmentVariableNameGet operation in InstancesApi.
- * @export
- * @interface InstancesApiInstancesInstanceIdConfigEnvironmentVariableNameGetRequest
- */
-export interface InstancesApiInstancesInstanceIdConfigEnvironmentVariableNameGetRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof InstancesApiInstancesInstanceIdConfigEnvironmentVariableNameGet
-     */
-    readonly instanceId: string
-
-    /**
-     * 
-     * @type {string}
-     * @memberof InstancesApiInstancesInstanceIdConfigEnvironmentVariableNameGet
-     */
-    readonly variableName: string
-}
-
-/**
- * Request parameters for instancesInstanceIdConfigEnvironmentVariableNamePut operation in InstancesApi.
- * @export
- * @interface InstancesApiInstancesInstanceIdConfigEnvironmentVariableNamePutRequest
- */
-export interface InstancesApiInstancesInstanceIdConfigEnvironmentVariableNamePutRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof InstancesApiInstancesInstanceIdConfigEnvironmentVariableNamePut
-     */
-    readonly instanceId: string
-
-    /**
-     * 
-     * @type {string}
-     * @memberof InstancesApiInstancesInstanceIdConfigEnvironmentVariableNamePut
-     */
-    readonly variableName: string
-
-    /**
-     * 
-     * @type {InstancesInstanceIdConfigEnvironmentVariableNameGet200Response}
-     * @memberof InstancesApiInstancesInstanceIdConfigEnvironmentVariableNamePut
-     */
-    readonly instancesInstanceIdConfigEnvironmentVariableNameGet200Response: InstancesInstanceIdConfigEnvironmentVariableNameGet200Response
-}
-
-/**
- * Request parameters for instancesInstanceIdConfigLabelsGet operation in InstancesApi.
- * @export
- * @interface InstancesApiInstancesInstanceIdConfigLabelsGetRequest
- */
-export interface InstancesApiInstancesInstanceIdConfigLabelsGetRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof InstancesApiInstancesInstanceIdConfigLabelsGet
-     */
-    readonly instanceId: string
-}
-
-/**
- * Request parameters for instancesInstanceIdConfigLabelsLabelNameGet operation in InstancesApi.
- * @export
- * @interface InstancesApiInstancesInstanceIdConfigLabelsLabelNameGetRequest
- */
-export interface InstancesApiInstancesInstanceIdConfigLabelsLabelNameGetRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof InstancesApiInstancesInstanceIdConfigLabelsLabelNameGet
-     */
-    readonly instanceId: string
-
-    /**
-     * 
-     * @type {string}
-     * @memberof InstancesApiInstancesInstanceIdConfigLabelsLabelNameGet
-     */
-    readonly labelName: string
-}
-
-/**
- * Request parameters for instancesInstanceIdConfigMountsBindContainerPathGet operation in InstancesApi.
- * @export
- * @interface InstancesApiInstancesInstanceIdConfigMountsBindContainerPathGetRequest
- */
-export interface InstancesApiInstancesInstanceIdConfigMountsBindContainerPathGetRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof InstancesApiInstancesInstanceIdConfigMountsBindContainerPathGet
-     */
-    readonly instanceId: string
-
-    /**
-     * 
-     * @type {string}
-     * @memberof InstancesApiInstancesInstanceIdConfigMountsBindContainerPathGet
-     */
-    readonly containerPath: string
-}
-
-/**
- * Request parameters for instancesInstanceIdConfigMountsBindGet operation in InstancesApi.
- * @export
- * @interface InstancesApiInstancesInstanceIdConfigMountsBindGetRequest
- */
-export interface InstancesApiInstancesInstanceIdConfigMountsBindGetRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof InstancesApiInstancesInstanceIdConfigMountsBindGet
-     */
-    readonly instanceId: string
-}
-
-/**
- * Request parameters for instancesInstanceIdConfigMountsGet operation in InstancesApi.
- * @export
- * @interface InstancesApiInstancesInstanceIdConfigMountsGetRequest
- */
-export interface InstancesApiInstancesInstanceIdConfigMountsGetRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof InstancesApiInstancesInstanceIdConfigMountsGet
-     */
-    readonly instanceId: string
-}
-
-/**
- * Request parameters for instancesInstanceIdConfigMountsVolumesGet operation in InstancesApi.
- * @export
- * @interface InstancesApiInstancesInstanceIdConfigMountsVolumesGetRequest
- */
-export interface InstancesApiInstancesInstanceIdConfigMountsVolumesGetRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof InstancesApiInstancesInstanceIdConfigMountsVolumesGet
-     */
-    readonly instanceId: string
-}
-
-/**
- * Request parameters for instancesInstanceIdConfigMountsVolumesVolumeNameGet operation in InstancesApi.
- * @export
- * @interface InstancesApiInstancesInstanceIdConfigMountsVolumesVolumeNameGetRequest
- */
-export interface InstancesApiInstancesInstanceIdConfigMountsVolumesVolumeNameGetRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof InstancesApiInstancesInstanceIdConfigMountsVolumesVolumeNameGet
-     */
-    readonly instanceId: string
-
-    /**
-     * 
-     * @type {string}
-     * @memberof InstancesApiInstancesInstanceIdConfigMountsVolumesVolumeNameGet
-     */
-    readonly volumeName: string
-}
-
-/**
- * Request parameters for instancesInstanceIdConfigNetworksGet operation in InstancesApi.
- * @export
- * @interface InstancesApiInstancesInstanceIdConfigNetworksGetRequest
- */
-export interface InstancesApiInstancesInstanceIdConfigNetworksGetRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof InstancesApiInstancesInstanceIdConfigNetworksGet
-     */
-    readonly instanceId: string
-}
-
-/**
- * Request parameters for instancesInstanceIdConfigNetworksNetworkIdDelete operation in InstancesApi.
- * @export
- * @interface InstancesApiInstancesInstanceIdConfigNetworksNetworkIdDeleteRequest
- */
-export interface InstancesApiInstancesInstanceIdConfigNetworksNetworkIdDeleteRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof InstancesApiInstancesInstanceIdConfigNetworksNetworkIdDelete
-     */
-    readonly instanceId: string
-
-    /**
-     * 
-     * @type {string}
-     * @memberof InstancesApiInstancesInstanceIdConfigNetworksNetworkIdDelete
-     */
-    readonly networkId: string
-}
-
-/**
- * Request parameters for instancesInstanceIdConfigNetworksNetworkIdGet operation in InstancesApi.
- * @export
- * @interface InstancesApiInstancesInstanceIdConfigNetworksNetworkIdGetRequest
- */
-export interface InstancesApiInstancesInstanceIdConfigNetworksNetworkIdGetRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof InstancesApiInstancesInstanceIdConfigNetworksNetworkIdGet
-     */
-    readonly instanceId: string
-
-    /**
-     * 
-     * @type {string}
-     * @memberof InstancesApiInstancesInstanceIdConfigNetworksNetworkIdGet
-     */
-    readonly networkId: string
-}
-
-/**
- * Request parameters for instancesInstanceIdConfigNetworksPost operation in InstancesApi.
- * @export
- * @interface InstancesApiInstancesInstanceIdConfigNetworksPostRequest
- */
-export interface InstancesApiInstancesInstanceIdConfigNetworksPostRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof InstancesApiInstancesInstanceIdConfigNetworksPost
-     */
-    readonly instanceId: string
-
-    /**
-     * 
-     * @type {InstancesInstanceIdConfigNetworksPostRequest}
-     * @memberof InstancesApiInstancesInstanceIdConfigNetworksPost
-     */
-    readonly instancesInstanceIdConfigNetworksPostRequest: InstancesInstanceIdConfigNetworksPostRequest
-}
-
-/**
- * Request parameters for instancesInstanceIdConfigPortsDelete operation in InstancesApi.
- * @export
- * @interface InstancesApiInstancesInstanceIdConfigPortsDeleteRequest
- */
-export interface InstancesApiInstancesInstanceIdConfigPortsDeleteRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof InstancesApiInstancesInstanceIdConfigPortsDelete
-     */
-    readonly instanceId: string
-}
-
-/**
- * Request parameters for instancesInstanceIdConfigPortsGet operation in InstancesApi.
- * @export
- * @interface InstancesApiInstancesInstanceIdConfigPortsGetRequest
- */
-export interface InstancesApiInstancesInstanceIdConfigPortsGetRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof InstancesApiInstancesInstanceIdConfigPortsGet
-     */
-    readonly instanceId: string
-}
-
-/**
- * Request parameters for instancesInstanceIdConfigPortsTransportProtocolDelete operation in InstancesApi.
- * @export
- * @interface InstancesApiInstancesInstanceIdConfigPortsTransportProtocolDeleteRequest
- */
-export interface InstancesApiInstancesInstanceIdConfigPortsTransportProtocolDeleteRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof InstancesApiInstancesInstanceIdConfigPortsTransportProtocolDelete
-     */
-    readonly instanceId: string
-
-    /**
-     * 
-     * @type {TransportProtocol}
-     * @memberof InstancesApiInstancesInstanceIdConfigPortsTransportProtocolDelete
-     */
-    readonly transportProtocol: TransportProtocol
-}
-
-/**
- * Request parameters for instancesInstanceIdConfigPortsTransportProtocolGet operation in InstancesApi.
- * @export
- * @interface InstancesApiInstancesInstanceIdConfigPortsTransportProtocolGetRequest
- */
-export interface InstancesApiInstancesInstanceIdConfigPortsTransportProtocolGetRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof InstancesApiInstancesInstanceIdConfigPortsTransportProtocolGet
-     */
-    readonly instanceId: string
-
-    /**
-     * 
-     * @type {TransportProtocol}
-     * @memberof InstancesApiInstancesInstanceIdConfigPortsTransportProtocolGet
-     */
-    readonly transportProtocol: TransportProtocol
-}
-
-/**
- * Request parameters for instancesInstanceIdConfigPortsTransportProtocolHostPortRangeDelete operation in InstancesApi.
- * @export
- * @interface InstancesApiInstancesInstanceIdConfigPortsTransportProtocolHostPortRangeDeleteRequest
- */
-export interface InstancesApiInstancesInstanceIdConfigPortsTransportProtocolHostPortRangeDeleteRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof InstancesApiInstancesInstanceIdConfigPortsTransportProtocolHostPortRangeDelete
-     */
-    readonly instanceId: string
-
-    /**
-     * 
-     * @type {TransportProtocol}
-     * @memberof InstancesApiInstancesInstanceIdConfigPortsTransportProtocolHostPortRangeDelete
-     */
-    readonly transportProtocol: TransportProtocol
-
-    /**
-     * 
-     * @type {string}
-     * @memberof InstancesApiInstancesInstanceIdConfigPortsTransportProtocolHostPortRangeDelete
-     */
-    readonly hostPortRange: string
-}
-
-/**
- * Request parameters for instancesInstanceIdConfigPortsTransportProtocolHostPortRangeGet operation in InstancesApi.
- * @export
- * @interface InstancesApiInstancesInstanceIdConfigPortsTransportProtocolHostPortRangeGetRequest
- */
-export interface InstancesApiInstancesInstanceIdConfigPortsTransportProtocolHostPortRangeGetRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof InstancesApiInstancesInstanceIdConfigPortsTransportProtocolHostPortRangeGet
-     */
-    readonly instanceId: string
-
-    /**
-     * 
-     * @type {TransportProtocol}
-     * @memberof InstancesApiInstancesInstanceIdConfigPortsTransportProtocolHostPortRangeGet
-     */
-    readonly transportProtocol: TransportProtocol
-
-    /**
-     * 
-     * @type {string}
-     * @memberof InstancesApiInstancesInstanceIdConfigPortsTransportProtocolHostPortRangeGet
-     */
-    readonly hostPortRange: string
-}
-
-/**
- * Request parameters for instancesInstanceIdConfigPortsTransportProtocolHostPortRangePut operation in InstancesApi.
- * @export
- * @interface InstancesApiInstancesInstanceIdConfigPortsTransportProtocolHostPortRangePutRequest
- */
-export interface InstancesApiInstancesInstanceIdConfigPortsTransportProtocolHostPortRangePutRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof InstancesApiInstancesInstanceIdConfigPortsTransportProtocolHostPortRangePut
-     */
-    readonly instanceId: string
-
-    /**
-     * 
-     * @type {TransportProtocol}
-     * @memberof InstancesApiInstancesInstanceIdConfigPortsTransportProtocolHostPortRangePut
-     */
-    readonly transportProtocol: TransportProtocol
-
-    /**
-     * 
-     * @type {string}
-     * @memberof InstancesApiInstancesInstanceIdConfigPortsTransportProtocolHostPortRangePut
-     */
-    readonly hostPortRange: string
-
-    /**
-     * 
-     * @type {InstancesInstanceIdConfigPortsTransportProtocolHostPortRangePutRequest}
-     * @memberof InstancesApiInstancesInstanceIdConfigPortsTransportProtocolHostPortRangePut
-     */
-    readonly instancesInstanceIdConfigPortsTransportProtocolHostPortRangePutRequest: InstancesInstanceIdConfigPortsTransportProtocolHostPortRangePutRequest
-}
-
-/**
- * Request parameters for instancesInstanceIdConfigPortsTransportProtocolPut operation in InstancesApi.
- * @export
- * @interface InstancesApiInstancesInstanceIdConfigPortsTransportProtocolPutRequest
- */
-export interface InstancesApiInstancesInstanceIdConfigPortsTransportProtocolPutRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof InstancesApiInstancesInstanceIdConfigPortsTransportProtocolPut
-     */
-    readonly instanceId: string
-
-    /**
-     * 
-     * @type {TransportProtocol}
-     * @memberof InstancesApiInstancesInstanceIdConfigPortsTransportProtocolPut
-     */
-    readonly transportProtocol: TransportProtocol
-
-    /**
-     * 
-     * @type {Array<InstancePortMapping>}
-     * @memberof InstancesApiInstancesInstanceIdConfigPortsTransportProtocolPut
-     */
-    readonly instancePortMapping: Array<InstancePortMapping>
-}
-
-/**
- * Request parameters for instancesInstanceIdDelete operation in InstancesApi.
- * @export
- * @interface InstancesApiInstancesInstanceIdDeleteRequest
- */
-export interface InstancesApiInstancesInstanceIdDeleteRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof InstancesApiInstancesInstanceIdDelete
-     */
-    readonly instanceId: string
-}
-
-/**
- * Request parameters for instancesInstanceIdEditorPortGet operation in InstancesApi.
- * @export
- * @interface InstancesApiInstancesInstanceIdEditorPortGetRequest
- */
-export interface InstancesApiInstancesInstanceIdEditorPortGetRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof InstancesApiInstancesInstanceIdEditorPortGet
-     */
-    readonly instanceId: string
-
-    /**
-     * 
-     * @type {number}
-     * @memberof InstancesApiInstancesInstanceIdEditorPortGet
-     */
-    readonly port: number
-}
-
-/**
- * Request parameters for instancesInstanceIdGet operation in InstancesApi.
- * @export
- * @interface InstancesApiInstancesInstanceIdGetRequest
- */
-export interface InstancesApiInstancesInstanceIdGetRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof InstancesApiInstancesInstanceIdGet
-     */
-    readonly instanceId: string
-}
-
-/**
- * Request parameters for instancesInstanceIdLogsGet operation in InstancesApi.
- * @export
- * @interface InstancesApiInstancesInstanceIdLogsGetRequest
- */
-export interface InstancesApiInstancesInstanceIdLogsGetRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof InstancesApiInstancesInstanceIdLogsGet
-     */
-    readonly instanceId: string
-}
-
-/**
- * Request parameters for instancesInstanceIdPatch operation in InstancesApi.
- * @export
- * @interface InstancesApiInstancesInstanceIdPatchRequest
- */
-export interface InstancesApiInstancesInstanceIdPatchRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof InstancesApiInstancesInstanceIdPatch
-     */
-    readonly instanceId: string
-
-    /**
-     * 
-     * @type {InstancesInstanceIdPatchRequest}
-     * @memberof InstancesApiInstancesInstanceIdPatch
-     */
-    readonly instancesInstanceIdPatchRequest: InstancesInstanceIdPatchRequest
-}
-
-/**
- * Request parameters for instancesInstanceIdStartPost operation in InstancesApi.
- * @export
- * @interface InstancesApiInstancesInstanceIdStartPostRequest
- */
-export interface InstancesApiInstancesInstanceIdStartPostRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof InstancesApiInstancesInstanceIdStartPost
-     */
-    readonly instanceId: string
-}
-
-/**
- * Request parameters for instancesInstanceIdStopPost operation in InstancesApi.
- * @export
- * @interface InstancesApiInstancesInstanceIdStopPostRequest
- */
-export interface InstancesApiInstancesInstanceIdStopPostRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof InstancesApiInstancesInstanceIdStopPost
-     */
-    readonly instanceId: string
-}
 
 /**
  * InstancesApi - object-oriented interface
@@ -7162,517 +6142,549 @@ export class InstancesApi extends BaseAPI {
     /**
      * 
      * @summary Create new instance of an installed App
-     * @param {InstancesApiInstancesCreatePostRequest} requestParameters Request parameters.
+     * @param {InstancesCreatePostRequest} instancesCreatePostRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof InstancesApi
      */
-    public instancesCreatePost(requestParameters: InstancesApiInstancesCreatePostRequest, options?: RawAxiosRequestConfig) {
-        return InstancesApiFp(this.configuration).instancesCreatePost(requestParameters.instancesCreatePostRequest, options).then((request) => request(this.axios, this.basePath));
+    public instancesCreatePost(instancesCreatePostRequest: InstancesCreatePostRequest, options?: RawAxiosRequestConfig) {
+        return InstancesApiFp(this.configuration).instancesCreatePost(instancesCreatePostRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @summary Query all instances of one or all Apps
-     * @param {InstancesApiInstancesGetRequest} requestParameters Request parameters.
+     * @param {string} [app] 
+     * @param {string} [version] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof InstancesApi
      */
-    public instancesGet(requestParameters: InstancesApiInstancesGetRequest = {}, options?: RawAxiosRequestConfig) {
-        return InstancesApiFp(this.configuration).instancesGet(requestParameters.app, requestParameters.version, options).then((request) => request(this.axios, this.basePath));
+    public instancesGet(app?: string, version?: string, options?: RawAxiosRequestConfig) {
+        return InstancesApiFp(this.configuration).instancesGet(app, version, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @summary Remove all passed through usb devices of an instance
-     * @param {InstancesApiInstancesInstanceIdConfigDevicesUsbDeleteRequest} requestParameters Request parameters.
+     * @param {string} instanceId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof InstancesApi
      */
-    public instancesInstanceIdConfigDevicesUsbDelete(requestParameters: InstancesApiInstancesInstanceIdConfigDevicesUsbDeleteRequest, options?: RawAxiosRequestConfig) {
-        return InstancesApiFp(this.configuration).instancesInstanceIdConfigDevicesUsbDelete(requestParameters.instanceId, options).then((request) => request(this.axios, this.basePath));
+    public instancesInstanceIdConfigDevicesUsbDelete(instanceId: string, options?: RawAxiosRequestConfig) {
+        return InstancesApiFp(this.configuration).instancesInstanceIdConfigDevicesUsbDelete(instanceId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @summary Retrieve passed through usb devices of an instance
-     * @param {InstancesApiInstancesInstanceIdConfigDevicesUsbGetRequest} requestParameters Request parameters.
+     * @param {string} instanceId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof InstancesApi
      */
-    public instancesInstanceIdConfigDevicesUsbGet(requestParameters: InstancesApiInstancesInstanceIdConfigDevicesUsbGetRequest, options?: RawAxiosRequestConfig) {
-        return InstancesApiFp(this.configuration).instancesInstanceIdConfigDevicesUsbGet(requestParameters.instanceId, options).then((request) => request(this.axios, this.basePath));
+    public instancesInstanceIdConfigDevicesUsbGet(instanceId: string, options?: RawAxiosRequestConfig) {
+        return InstancesApiFp(this.configuration).instancesInstanceIdConfigDevicesUsbGet(instanceId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @summary Delete passed through usb device of the instance with the given port
-     * @param {InstancesApiInstancesInstanceIdConfigDevicesUsbPortDeleteRequest} requestParameters Request parameters.
+     * @param {string} instanceId 
+     * @param {string} port 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof InstancesApi
      */
-    public instancesInstanceIdConfigDevicesUsbPortDelete(requestParameters: InstancesApiInstancesInstanceIdConfigDevicesUsbPortDeleteRequest, options?: RawAxiosRequestConfig) {
-        return InstancesApiFp(this.configuration).instancesInstanceIdConfigDevicesUsbPortDelete(requestParameters.instanceId, requestParameters.port, options).then((request) => request(this.axios, this.basePath));
+    public instancesInstanceIdConfigDevicesUsbPortDelete(instanceId: string, port: string, options?: RawAxiosRequestConfig) {
+        return InstancesApiFp(this.configuration).instancesInstanceIdConfigDevicesUsbPortDelete(instanceId, port, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @summary Retrieve passed through usb device of the instance with the given port
-     * @param {InstancesApiInstancesInstanceIdConfigDevicesUsbPortGetRequest} requestParameters Request parameters.
+     * @param {string} instanceId 
+     * @param {string} port 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof InstancesApi
      */
-    public instancesInstanceIdConfigDevicesUsbPortGet(requestParameters: InstancesApiInstancesInstanceIdConfigDevicesUsbPortGetRequest, options?: RawAxiosRequestConfig) {
-        return InstancesApiFp(this.configuration).instancesInstanceIdConfigDevicesUsbPortGet(requestParameters.instanceId, requestParameters.port, options).then((request) => request(this.axios, this.basePath));
+    public instancesInstanceIdConfigDevicesUsbPortGet(instanceId: string, port: string, options?: RawAxiosRequestConfig) {
+        return InstancesApiFp(this.configuration).instancesInstanceIdConfigDevicesUsbPortGet(instanceId, port, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @summary Pass through usb device with the given port to the instance
-     * @param {InstancesApiInstancesInstanceIdConfigDevicesUsbPortPutRequest} requestParameters Request parameters.
+     * @param {string} instanceId 
+     * @param {string} port 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof InstancesApi
      */
-    public instancesInstanceIdConfigDevicesUsbPortPut(requestParameters: InstancesApiInstancesInstanceIdConfigDevicesUsbPortPutRequest, options?: RawAxiosRequestConfig) {
-        return InstancesApiFp(this.configuration).instancesInstanceIdConfigDevicesUsbPortPut(requestParameters.instanceId, requestParameters.port, options).then((request) => request(this.axios, this.basePath));
+    public instancesInstanceIdConfigDevicesUsbPortPut(instanceId: string, port: string, options?: RawAxiosRequestConfig) {
+        return InstancesApiFp(this.configuration).instancesInstanceIdConfigDevicesUsbPortPut(instanceId, port, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @summary Retrieve editors of an instance
-     * @param {InstancesApiInstancesInstanceIdConfigEditorsGetRequest} requestParameters Request parameters.
+     * @param {string} instanceId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof InstancesApi
      */
-    public instancesInstanceIdConfigEditorsGet(requestParameters: InstancesApiInstancesInstanceIdConfigEditorsGetRequest, options?: RawAxiosRequestConfig) {
-        return InstancesApiFp(this.configuration).instancesInstanceIdConfigEditorsGet(requestParameters.instanceId, options).then((request) => request(this.axios, this.basePath));
+    public instancesInstanceIdConfigEditorsGet(instanceId: string, options?: RawAxiosRequestConfig) {
+        return InstancesApiFp(this.configuration).instancesInstanceIdConfigEditorsGet(instanceId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @summary Retrieve an editor of an instance
-     * @param {InstancesApiInstancesInstanceIdConfigEditorsPortGetRequest} requestParameters Request parameters.
+     * @param {string} instanceId 
+     * @param {number} port 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof InstancesApi
      */
-    public instancesInstanceIdConfigEditorsPortGet(requestParameters: InstancesApiInstancesInstanceIdConfigEditorsPortGetRequest, options?: RawAxiosRequestConfig) {
-        return InstancesApiFp(this.configuration).instancesInstanceIdConfigEditorsPortGet(requestParameters.instanceId, requestParameters.port, options).then((request) => request(this.axios, this.basePath));
+    public instancesInstanceIdConfigEditorsPortGet(instanceId: string, port: number, options?: RawAxiosRequestConfig) {
+        return InstancesApiFp(this.configuration).instancesInstanceIdConfigEditorsPortGet(instanceId, port, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @summary Remove the path prefix used in the editor uri of an instance editor, this will revert to the default behaviour (/v2/instances/{instance_id}/editor/{port})
-     * @param {InstancesApiInstancesInstanceIdConfigEditorsPortPathPrefixDeleteRequest} requestParameters Request parameters.
+     * @param {string} instanceId 
+     * @param {number} port 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof InstancesApi
      */
-    public instancesInstanceIdConfigEditorsPortPathPrefixDelete(requestParameters: InstancesApiInstancesInstanceIdConfigEditorsPortPathPrefixDeleteRequest, options?: RawAxiosRequestConfig) {
-        return InstancesApiFp(this.configuration).instancesInstanceIdConfigEditorsPortPathPrefixDelete(requestParameters.instanceId, requestParameters.port, options).then((request) => request(this.axios, this.basePath));
+    public instancesInstanceIdConfigEditorsPortPathPrefixDelete(instanceId: string, port: number, options?: RawAxiosRequestConfig) {
+        return InstancesApiFp(this.configuration).instancesInstanceIdConfigEditorsPortPathPrefixDelete(instanceId, port, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @summary Modify the path prefix used in the editor uri of an instance editor
-     * @param {InstancesApiInstancesInstanceIdConfigEditorsPortPathPrefixPutRequest} requestParameters Request parameters.
+     * @param {string} instanceId 
+     * @param {number} port 
+     * @param {InstancesInstanceIdConfigEditorsPortPathPrefixPutRequest} instancesInstanceIdConfigEditorsPortPathPrefixPutRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof InstancesApi
      */
-    public instancesInstanceIdConfigEditorsPortPathPrefixPut(requestParameters: InstancesApiInstancesInstanceIdConfigEditorsPortPathPrefixPutRequest, options?: RawAxiosRequestConfig) {
-        return InstancesApiFp(this.configuration).instancesInstanceIdConfigEditorsPortPathPrefixPut(requestParameters.instanceId, requestParameters.port, requestParameters.instancesInstanceIdConfigEditorsPortPathPrefixPutRequest, options).then((request) => request(this.axios, this.basePath));
+    public instancesInstanceIdConfigEditorsPortPathPrefixPut(instanceId: string, port: number, instancesInstanceIdConfigEditorsPortPathPrefixPutRequest: InstancesInstanceIdConfigEditorsPortPathPrefixPutRequest, options?: RawAxiosRequestConfig) {
+        return InstancesApiFp(this.configuration).instancesInstanceIdConfigEditorsPortPathPrefixPut(instanceId, port, instancesInstanceIdConfigEditorsPortPathPrefixPutRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @summary Delete environment of an instance
-     * @param {InstancesApiInstancesInstanceIdConfigEnvironmentDeleteRequest} requestParameters Request parameters.
+     * @param {string} instanceId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof InstancesApi
      */
-    public instancesInstanceIdConfigEnvironmentDelete(requestParameters: InstancesApiInstancesInstanceIdConfigEnvironmentDeleteRequest, options?: RawAxiosRequestConfig) {
-        return InstancesApiFp(this.configuration).instancesInstanceIdConfigEnvironmentDelete(requestParameters.instanceId, options).then((request) => request(this.axios, this.basePath));
+    public instancesInstanceIdConfigEnvironmentDelete(instanceId: string, options?: RawAxiosRequestConfig) {
+        return InstancesApiFp(this.configuration).instancesInstanceIdConfigEnvironmentDelete(instanceId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @summary Retrieve environment of an instance
-     * @param {InstancesApiInstancesInstanceIdConfigEnvironmentGetRequest} requestParameters Request parameters.
+     * @param {string} instanceId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof InstancesApi
      */
-    public instancesInstanceIdConfigEnvironmentGet(requestParameters: InstancesApiInstancesInstanceIdConfigEnvironmentGetRequest, options?: RawAxiosRequestConfig) {
-        return InstancesApiFp(this.configuration).instancesInstanceIdConfigEnvironmentGet(requestParameters.instanceId, options).then((request) => request(this.axios, this.basePath));
+    public instancesInstanceIdConfigEnvironmentGet(instanceId: string, options?: RawAxiosRequestConfig) {
+        return InstancesApiFp(this.configuration).instancesInstanceIdConfigEnvironmentGet(instanceId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @summary Modify or create environment of an instance
-     * @param {InstancesApiInstancesInstanceIdConfigEnvironmentPutRequest} requestParameters Request parameters.
+     * @param {string} instanceId 
+     * @param {Array<InstanceEnvironmentVariable>} instanceEnvironmentVariable 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof InstancesApi
      */
-    public instancesInstanceIdConfigEnvironmentPut(requestParameters: InstancesApiInstancesInstanceIdConfigEnvironmentPutRequest, options?: RawAxiosRequestConfig) {
-        return InstancesApiFp(this.configuration).instancesInstanceIdConfigEnvironmentPut(requestParameters.instanceId, requestParameters.instanceEnvironmentVariable, options).then((request) => request(this.axios, this.basePath));
+    public instancesInstanceIdConfigEnvironmentPut(instanceId: string, instanceEnvironmentVariable: Array<InstanceEnvironmentVariable>, options?: RawAxiosRequestConfig) {
+        return InstancesApiFp(this.configuration).instancesInstanceIdConfigEnvironmentPut(instanceId, instanceEnvironmentVariable, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @summary Remove an environment variable of an instance
-     * @param {InstancesApiInstancesInstanceIdConfigEnvironmentVariableNameDeleteRequest} requestParameters Request parameters.
+     * @param {string} instanceId 
+     * @param {string} variableName 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof InstancesApi
      */
-    public instancesInstanceIdConfigEnvironmentVariableNameDelete(requestParameters: InstancesApiInstancesInstanceIdConfigEnvironmentVariableNameDeleteRequest, options?: RawAxiosRequestConfig) {
-        return InstancesApiFp(this.configuration).instancesInstanceIdConfigEnvironmentVariableNameDelete(requestParameters.instanceId, requestParameters.variableName, options).then((request) => request(this.axios, this.basePath));
+    public instancesInstanceIdConfigEnvironmentVariableNameDelete(instanceId: string, variableName: string, options?: RawAxiosRequestConfig) {
+        return InstancesApiFp(this.configuration).instancesInstanceIdConfigEnvironmentVariableNameDelete(instanceId, variableName, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @summary Retrieve the value of an environment variable
-     * @param {InstancesApiInstancesInstanceIdConfigEnvironmentVariableNameGetRequest} requestParameters Request parameters.
+     * @param {string} instanceId 
+     * @param {string} variableName 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof InstancesApi
      */
-    public instancesInstanceIdConfigEnvironmentVariableNameGet(requestParameters: InstancesApiInstancesInstanceIdConfigEnvironmentVariableNameGetRequest, options?: RawAxiosRequestConfig) {
-        return InstancesApiFp(this.configuration).instancesInstanceIdConfigEnvironmentVariableNameGet(requestParameters.instanceId, requestParameters.variableName, options).then((request) => request(this.axios, this.basePath));
+    public instancesInstanceIdConfigEnvironmentVariableNameGet(instanceId: string, variableName: string, options?: RawAxiosRequestConfig) {
+        return InstancesApiFp(this.configuration).instancesInstanceIdConfigEnvironmentVariableNameGet(instanceId, variableName, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @summary Set the value of an environment variable of an instance
-     * @param {InstancesApiInstancesInstanceIdConfigEnvironmentVariableNamePutRequest} requestParameters Request parameters.
+     * @param {string} instanceId 
+     * @param {string} variableName 
+     * @param {InstancesInstanceIdConfigEnvironmentVariableNameGet200Response} instancesInstanceIdConfigEnvironmentVariableNameGet200Response 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof InstancesApi
      */
-    public instancesInstanceIdConfigEnvironmentVariableNamePut(requestParameters: InstancesApiInstancesInstanceIdConfigEnvironmentVariableNamePutRequest, options?: RawAxiosRequestConfig) {
-        return InstancesApiFp(this.configuration).instancesInstanceIdConfigEnvironmentVariableNamePut(requestParameters.instanceId, requestParameters.variableName, requestParameters.instancesInstanceIdConfigEnvironmentVariableNameGet200Response, options).then((request) => request(this.axios, this.basePath));
+    public instancesInstanceIdConfigEnvironmentVariableNamePut(instanceId: string, variableName: string, instancesInstanceIdConfigEnvironmentVariableNameGet200Response: InstancesInstanceIdConfigEnvironmentVariableNameGet200Response, options?: RawAxiosRequestConfig) {
+        return InstancesApiFp(this.configuration).instancesInstanceIdConfigEnvironmentVariableNamePut(instanceId, variableName, instancesInstanceIdConfigEnvironmentVariableNameGet200Response, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @summary Retrieve labels of an instance
-     * @param {InstancesApiInstancesInstanceIdConfigLabelsGetRequest} requestParameters Request parameters.
+     * @param {string} instanceId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof InstancesApi
      */
-    public instancesInstanceIdConfigLabelsGet(requestParameters: InstancesApiInstancesInstanceIdConfigLabelsGetRequest, options?: RawAxiosRequestConfig) {
-        return InstancesApiFp(this.configuration).instancesInstanceIdConfigLabelsGet(requestParameters.instanceId, options).then((request) => request(this.axios, this.basePath));
+    public instancesInstanceIdConfigLabelsGet(instanceId: string, options?: RawAxiosRequestConfig) {
+        return InstancesApiFp(this.configuration).instancesInstanceIdConfigLabelsGet(instanceId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @summary Retrieve value of a specific label of an instance
-     * @param {InstancesApiInstancesInstanceIdConfigLabelsLabelNameGetRequest} requestParameters Request parameters.
+     * @param {string} instanceId 
+     * @param {string} labelName 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof InstancesApi
      */
-    public instancesInstanceIdConfigLabelsLabelNameGet(requestParameters: InstancesApiInstancesInstanceIdConfigLabelsLabelNameGetRequest, options?: RawAxiosRequestConfig) {
-        return InstancesApiFp(this.configuration).instancesInstanceIdConfigLabelsLabelNameGet(requestParameters.instanceId, requestParameters.labelName, options).then((request) => request(this.axios, this.basePath));
+    public instancesInstanceIdConfigLabelsLabelNameGet(instanceId: string, labelName: string, options?: RawAxiosRequestConfig) {
+        return InstancesApiFp(this.configuration).instancesInstanceIdConfigLabelsLabelNameGet(instanceId, labelName, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @summary Retrieve bind mount of an instance
-     * @param {InstancesApiInstancesInstanceIdConfigMountsBindContainerPathGetRequest} requestParameters Request parameters.
+     * @param {string} instanceId 
+     * @param {string} containerPath 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof InstancesApi
      */
-    public instancesInstanceIdConfigMountsBindContainerPathGet(requestParameters: InstancesApiInstancesInstanceIdConfigMountsBindContainerPathGetRequest, options?: RawAxiosRequestConfig) {
-        return InstancesApiFp(this.configuration).instancesInstanceIdConfigMountsBindContainerPathGet(requestParameters.instanceId, requestParameters.containerPath, options).then((request) => request(this.axios, this.basePath));
+    public instancesInstanceIdConfigMountsBindContainerPathGet(instanceId: string, containerPath: string, options?: RawAxiosRequestConfig) {
+        return InstancesApiFp(this.configuration).instancesInstanceIdConfigMountsBindContainerPathGet(instanceId, containerPath, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @summary Retrieve bind mounts of an instance
-     * @param {InstancesApiInstancesInstanceIdConfigMountsBindGetRequest} requestParameters Request parameters.
+     * @param {string} instanceId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof InstancesApi
      */
-    public instancesInstanceIdConfigMountsBindGet(requestParameters: InstancesApiInstancesInstanceIdConfigMountsBindGetRequest, options?: RawAxiosRequestConfig) {
-        return InstancesApiFp(this.configuration).instancesInstanceIdConfigMountsBindGet(requestParameters.instanceId, options).then((request) => request(this.axios, this.basePath));
+    public instancesInstanceIdConfigMountsBindGet(instanceId: string, options?: RawAxiosRequestConfig) {
+        return InstancesApiFp(this.configuration).instancesInstanceIdConfigMountsBindGet(instanceId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @summary Retrieve volumes of an instance
-     * @param {InstancesApiInstancesInstanceIdConfigMountsGetRequest} requestParameters Request parameters.
+     * @param {string} instanceId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof InstancesApi
      */
-    public instancesInstanceIdConfigMountsGet(requestParameters: InstancesApiInstancesInstanceIdConfigMountsGetRequest, options?: RawAxiosRequestConfig) {
-        return InstancesApiFp(this.configuration).instancesInstanceIdConfigMountsGet(requestParameters.instanceId, options).then((request) => request(this.axios, this.basePath));
+    public instancesInstanceIdConfigMountsGet(instanceId: string, options?: RawAxiosRequestConfig) {
+        return InstancesApiFp(this.configuration).instancesInstanceIdConfigMountsGet(instanceId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @summary Retrieve volumes mounts of an instance
-     * @param {InstancesApiInstancesInstanceIdConfigMountsVolumesGetRequest} requestParameters Request parameters.
+     * @param {string} instanceId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof InstancesApi
      */
-    public instancesInstanceIdConfigMountsVolumesGet(requestParameters: InstancesApiInstancesInstanceIdConfigMountsVolumesGetRequest, options?: RawAxiosRequestConfig) {
-        return InstancesApiFp(this.configuration).instancesInstanceIdConfigMountsVolumesGet(requestParameters.instanceId, options).then((request) => request(this.axios, this.basePath));
+    public instancesInstanceIdConfigMountsVolumesGet(instanceId: string, options?: RawAxiosRequestConfig) {
+        return InstancesApiFp(this.configuration).instancesInstanceIdConfigMountsVolumesGet(instanceId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @summary Retrieve volume mount of an instance
-     * @param {InstancesApiInstancesInstanceIdConfigMountsVolumesVolumeNameGetRequest} requestParameters Request parameters.
+     * @param {string} instanceId 
+     * @param {string} volumeName 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof InstancesApi
      */
-    public instancesInstanceIdConfigMountsVolumesVolumeNameGet(requestParameters: InstancesApiInstancesInstanceIdConfigMountsVolumesVolumeNameGetRequest, options?: RawAxiosRequestConfig) {
-        return InstancesApiFp(this.configuration).instancesInstanceIdConfigMountsVolumesVolumeNameGet(requestParameters.instanceId, requestParameters.volumeName, options).then((request) => request(this.axios, this.basePath));
+    public instancesInstanceIdConfigMountsVolumesVolumeNameGet(instanceId: string, volumeName: string, options?: RawAxiosRequestConfig) {
+        return InstancesApiFp(this.configuration).instancesInstanceIdConfigMountsVolumesVolumeNameGet(instanceId, volumeName, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @summary Retrieve connected networks of instance
-     * @param {InstancesApiInstancesInstanceIdConfigNetworksGetRequest} requestParameters Request parameters.
+     * @param {string} instanceId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof InstancesApi
      */
-    public instancesInstanceIdConfigNetworksGet(requestParameters: InstancesApiInstancesInstanceIdConfigNetworksGetRequest, options?: RawAxiosRequestConfig) {
-        return InstancesApiFp(this.configuration).instancesInstanceIdConfigNetworksGet(requestParameters.instanceId, options).then((request) => request(this.axios, this.basePath));
+    public instancesInstanceIdConfigNetworksGet(instanceId: string, options?: RawAxiosRequestConfig) {
+        return InstancesApiFp(this.configuration).instancesInstanceIdConfigNetworksGet(instanceId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @summary Remove connected network of instance
-     * @param {InstancesApiInstancesInstanceIdConfigNetworksNetworkIdDeleteRequest} requestParameters Request parameters.
+     * @param {string} instanceId 
+     * @param {string} networkId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof InstancesApi
      */
-    public instancesInstanceIdConfigNetworksNetworkIdDelete(requestParameters: InstancesApiInstancesInstanceIdConfigNetworksNetworkIdDeleteRequest, options?: RawAxiosRequestConfig) {
-        return InstancesApiFp(this.configuration).instancesInstanceIdConfigNetworksNetworkIdDelete(requestParameters.instanceId, requestParameters.networkId, options).then((request) => request(this.axios, this.basePath));
+    public instancesInstanceIdConfigNetworksNetworkIdDelete(instanceId: string, networkId: string, options?: RawAxiosRequestConfig) {
+        return InstancesApiFp(this.configuration).instancesInstanceIdConfigNetworksNetworkIdDelete(instanceId, networkId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @summary Retrieve connected network of instance
-     * @param {InstancesApiInstancesInstanceIdConfigNetworksNetworkIdGetRequest} requestParameters Request parameters.
+     * @param {string} instanceId 
+     * @param {string} networkId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof InstancesApi
      */
-    public instancesInstanceIdConfigNetworksNetworkIdGet(requestParameters: InstancesApiInstancesInstanceIdConfigNetworksNetworkIdGetRequest, options?: RawAxiosRequestConfig) {
-        return InstancesApiFp(this.configuration).instancesInstanceIdConfigNetworksNetworkIdGet(requestParameters.instanceId, requestParameters.networkId, options).then((request) => request(this.axios, this.basePath));
+    public instancesInstanceIdConfigNetworksNetworkIdGet(instanceId: string, networkId: string, options?: RawAxiosRequestConfig) {
+        return InstancesApiFp(this.configuration).instancesInstanceIdConfigNetworksNetworkIdGet(instanceId, networkId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @summary Connect instance to network
-     * @param {InstancesApiInstancesInstanceIdConfigNetworksPostRequest} requestParameters Request parameters.
+     * @param {string} instanceId 
+     * @param {InstancesInstanceIdConfigNetworksPostRequest} instancesInstanceIdConfigNetworksPostRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof InstancesApi
      */
-    public instancesInstanceIdConfigNetworksPost(requestParameters: InstancesApiInstancesInstanceIdConfigNetworksPostRequest, options?: RawAxiosRequestConfig) {
-        return InstancesApiFp(this.configuration).instancesInstanceIdConfigNetworksPost(requestParameters.instanceId, requestParameters.instancesInstanceIdConfigNetworksPostRequest, options).then((request) => request(this.axios, this.basePath));
+    public instancesInstanceIdConfigNetworksPost(instanceId: string, instancesInstanceIdConfigNetworksPostRequest: InstancesInstanceIdConfigNetworksPostRequest, options?: RawAxiosRequestConfig) {
+        return InstancesApiFp(this.configuration).instancesInstanceIdConfigNetworksPost(instanceId, instancesInstanceIdConfigNetworksPostRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @summary Delete exposed ports of an instance
-     * @param {InstancesApiInstancesInstanceIdConfigPortsDeleteRequest} requestParameters Request parameters.
+     * @param {string} instanceId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof InstancesApi
      */
-    public instancesInstanceIdConfigPortsDelete(requestParameters: InstancesApiInstancesInstanceIdConfigPortsDeleteRequest, options?: RawAxiosRequestConfig) {
-        return InstancesApiFp(this.configuration).instancesInstanceIdConfigPortsDelete(requestParameters.instanceId, options).then((request) => request(this.axios, this.basePath));
+    public instancesInstanceIdConfigPortsDelete(instanceId: string, options?: RawAxiosRequestConfig) {
+        return InstancesApiFp(this.configuration).instancesInstanceIdConfigPortsDelete(instanceId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @summary Retrieve exposed ports of an instance
-     * @param {InstancesApiInstancesInstanceIdConfigPortsGetRequest} requestParameters Request parameters.
+     * @param {string} instanceId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof InstancesApi
      */
-    public instancesInstanceIdConfigPortsGet(requestParameters: InstancesApiInstancesInstanceIdConfigPortsGetRequest, options?: RawAxiosRequestConfig) {
-        return InstancesApiFp(this.configuration).instancesInstanceIdConfigPortsGet(requestParameters.instanceId, options).then((request) => request(this.axios, this.basePath));
+    public instancesInstanceIdConfigPortsGet(instanceId: string, options?: RawAxiosRequestConfig) {
+        return InstancesApiFp(this.configuration).instancesInstanceIdConfigPortsGet(instanceId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @summary Remove all published ports of an instance for the given transport_protocol
-     * @param {InstancesApiInstancesInstanceIdConfigPortsTransportProtocolDeleteRequest} requestParameters Request parameters.
+     * @param {string} instanceId 
+     * @param {TransportProtocol} transportProtocol 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof InstancesApi
      */
-    public instancesInstanceIdConfigPortsTransportProtocolDelete(requestParameters: InstancesApiInstancesInstanceIdConfigPortsTransportProtocolDeleteRequest, options?: RawAxiosRequestConfig) {
-        return InstancesApiFp(this.configuration).instancesInstanceIdConfigPortsTransportProtocolDelete(requestParameters.instanceId, requestParameters.transportProtocol, options).then((request) => request(this.axios, this.basePath));
+    public instancesInstanceIdConfigPortsTransportProtocolDelete(instanceId: string, transportProtocol: TransportProtocol, options?: RawAxiosRequestConfig) {
+        return InstancesApiFp(this.configuration).instancesInstanceIdConfigPortsTransportProtocolDelete(instanceId, transportProtocol, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @summary Get published ports of an instance for the given transport_protocol
-     * @param {InstancesApiInstancesInstanceIdConfigPortsTransportProtocolGetRequest} requestParameters Request parameters.
+     * @param {string} instanceId 
+     * @param {TransportProtocol} transportProtocol 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof InstancesApi
      */
-    public instancesInstanceIdConfigPortsTransportProtocolGet(requestParameters: InstancesApiInstancesInstanceIdConfigPortsTransportProtocolGetRequest, options?: RawAxiosRequestConfig) {
-        return InstancesApiFp(this.configuration).instancesInstanceIdConfigPortsTransportProtocolGet(requestParameters.instanceId, requestParameters.transportProtocol, options).then((request) => request(this.axios, this.basePath));
+    public instancesInstanceIdConfigPortsTransportProtocolGet(instanceId: string, transportProtocol: TransportProtocol, options?: RawAxiosRequestConfig) {
+        return InstancesApiFp(this.configuration).instancesInstanceIdConfigPortsTransportProtocolGet(instanceId, transportProtocol, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @summary Remove instance port range that is mapped to the given host port range
-     * @param {InstancesApiInstancesInstanceIdConfigPortsTransportProtocolHostPortRangeDeleteRequest} requestParameters Request parameters.
+     * @param {string} instanceId 
+     * @param {TransportProtocol} transportProtocol 
+     * @param {string} hostPortRange 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof InstancesApi
      */
-    public instancesInstanceIdConfigPortsTransportProtocolHostPortRangeDelete(requestParameters: InstancesApiInstancesInstanceIdConfigPortsTransportProtocolHostPortRangeDeleteRequest, options?: RawAxiosRequestConfig) {
-        return InstancesApiFp(this.configuration).instancesInstanceIdConfigPortsTransportProtocolHostPortRangeDelete(requestParameters.instanceId, requestParameters.transportProtocol, requestParameters.hostPortRange, options).then((request) => request(this.axios, this.basePath));
+    public instancesInstanceIdConfigPortsTransportProtocolHostPortRangeDelete(instanceId: string, transportProtocol: TransportProtocol, hostPortRange: string, options?: RawAxiosRequestConfig) {
+        return InstancesApiFp(this.configuration).instancesInstanceIdConfigPortsTransportProtocolHostPortRangeDelete(instanceId, transportProtocol, hostPortRange, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @summary Retrieve instance port range that is mapped to the given host port range
-     * @param {InstancesApiInstancesInstanceIdConfigPortsTransportProtocolHostPortRangeGetRequest} requestParameters Request parameters.
+     * @param {string} instanceId 
+     * @param {TransportProtocol} transportProtocol 
+     * @param {string} hostPortRange 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof InstancesApi
      */
-    public instancesInstanceIdConfigPortsTransportProtocolHostPortRangeGet(requestParameters: InstancesApiInstancesInstanceIdConfigPortsTransportProtocolHostPortRangeGetRequest, options?: RawAxiosRequestConfig) {
-        return InstancesApiFp(this.configuration).instancesInstanceIdConfigPortsTransportProtocolHostPortRangeGet(requestParameters.instanceId, requestParameters.transportProtocol, requestParameters.hostPortRange, options).then((request) => request(this.axios, this.basePath));
+    public instancesInstanceIdConfigPortsTransportProtocolHostPortRangeGet(instanceId: string, transportProtocol: TransportProtocol, hostPortRange: string, options?: RawAxiosRequestConfig) {
+        return InstancesApiFp(this.configuration).instancesInstanceIdConfigPortsTransportProtocolHostPortRangeGet(instanceId, transportProtocol, hostPortRange, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @summary Set instance port range that is mapped to the given host port range
-     * @param {InstancesApiInstancesInstanceIdConfigPortsTransportProtocolHostPortRangePutRequest} requestParameters Request parameters.
+     * @param {string} instanceId 
+     * @param {TransportProtocol} transportProtocol 
+     * @param {string} hostPortRange 
+     * @param {InstancesInstanceIdConfigPortsTransportProtocolHostPortRangePutRequest} instancesInstanceIdConfigPortsTransportProtocolHostPortRangePutRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof InstancesApi
      */
-    public instancesInstanceIdConfigPortsTransportProtocolHostPortRangePut(requestParameters: InstancesApiInstancesInstanceIdConfigPortsTransportProtocolHostPortRangePutRequest, options?: RawAxiosRequestConfig) {
-        return InstancesApiFp(this.configuration).instancesInstanceIdConfigPortsTransportProtocolHostPortRangePut(requestParameters.instanceId, requestParameters.transportProtocol, requestParameters.hostPortRange, requestParameters.instancesInstanceIdConfigPortsTransportProtocolHostPortRangePutRequest, options).then((request) => request(this.axios, this.basePath));
+    public instancesInstanceIdConfigPortsTransportProtocolHostPortRangePut(instanceId: string, transportProtocol: TransportProtocol, hostPortRange: string, instancesInstanceIdConfigPortsTransportProtocolHostPortRangePutRequest: InstancesInstanceIdConfigPortsTransportProtocolHostPortRangePutRequest, options?: RawAxiosRequestConfig) {
+        return InstancesApiFp(this.configuration).instancesInstanceIdConfigPortsTransportProtocolHostPortRangePut(instanceId, transportProtocol, hostPortRange, instancesInstanceIdConfigPortsTransportProtocolHostPortRangePutRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @summary Update or create published ports of an instance for the given transport protocol
-     * @param {InstancesApiInstancesInstanceIdConfigPortsTransportProtocolPutRequest} requestParameters Request parameters.
+     * @param {string} instanceId 
+     * @param {TransportProtocol} transportProtocol 
+     * @param {Array<InstancePortMapping>} instancePortMapping 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof InstancesApi
      */
-    public instancesInstanceIdConfigPortsTransportProtocolPut(requestParameters: InstancesApiInstancesInstanceIdConfigPortsTransportProtocolPutRequest, options?: RawAxiosRequestConfig) {
-        return InstancesApiFp(this.configuration).instancesInstanceIdConfigPortsTransportProtocolPut(requestParameters.instanceId, requestParameters.transportProtocol, requestParameters.instancePortMapping, options).then((request) => request(this.axios, this.basePath));
+    public instancesInstanceIdConfigPortsTransportProtocolPut(instanceId: string, transportProtocol: TransportProtocol, instancePortMapping: Array<InstancePortMapping>, options?: RawAxiosRequestConfig) {
+        return InstancesApiFp(this.configuration).instancesInstanceIdConfigPortsTransportProtocolPut(instanceId, transportProtocol, instancePortMapping, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @summary Delete a single instance
-     * @param {InstancesApiInstancesInstanceIdDeleteRequest} requestParameters Request parameters.
+     * @param {string} instanceId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof InstancesApi
      */
-    public instancesInstanceIdDelete(requestParameters: InstancesApiInstancesInstanceIdDeleteRequest, options?: RawAxiosRequestConfig) {
-        return InstancesApiFp(this.configuration).instancesInstanceIdDelete(requestParameters.instanceId, options).then((request) => request(this.axios, this.basePath));
+    public instancesInstanceIdDelete(instanceId: string, options?: RawAxiosRequestConfig) {
+        return InstancesApiFp(this.configuration).instancesInstanceIdDelete(instanceId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @summary Access an editor of an app
-     * @param {InstancesApiInstancesInstanceIdEditorPortGetRequest} requestParameters Request parameters.
+     * @param {string} instanceId 
+     * @param {number} port 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof InstancesApi
      */
-    public instancesInstanceIdEditorPortGet(requestParameters: InstancesApiInstancesInstanceIdEditorPortGetRequest, options?: RawAxiosRequestConfig) {
-        return InstancesApiFp(this.configuration).instancesInstanceIdEditorPortGet(requestParameters.instanceId, requestParameters.port, options).then((request) => request(this.axios, this.basePath));
+    public instancesInstanceIdEditorPortGet(instanceId: string, port: number, options?: RawAxiosRequestConfig) {
+        return InstancesApiFp(this.configuration).instancesInstanceIdEditorPortGet(instanceId, port, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @summary Obtain details of an App instance
-     * @param {InstancesApiInstancesInstanceIdGetRequest} requestParameters Request parameters.
+     * @param {string} instanceId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof InstancesApi
      */
-    public instancesInstanceIdGet(requestParameters: InstancesApiInstancesInstanceIdGetRequest, options?: RawAxiosRequestConfig) {
-        return InstancesApiFp(this.configuration).instancesInstanceIdGet(requestParameters.instanceId, options).then((request) => request(this.axios, this.basePath));
+    public instancesInstanceIdGet(instanceId: string, options?: RawAxiosRequestConfig) {
+        return InstancesApiFp(this.configuration).instancesInstanceIdGet(instanceId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @summary Retrieve logs of an Instance
-     * @param {InstancesApiInstancesInstanceIdLogsGetRequest} requestParameters Request parameters.
+     * @param {string} instanceId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof InstancesApi
      */
-    public instancesInstanceIdLogsGet(requestParameters: InstancesApiInstancesInstanceIdLogsGetRequest, options?: RawAxiosRequestConfig) {
-        return InstancesApiFp(this.configuration).instancesInstanceIdLogsGet(requestParameters.instanceId, options).then((request) => request(this.axios, this.basePath));
+    public instancesInstanceIdLogsGet(instanceId: string, options?: RawAxiosRequestConfig) {
+        return InstancesApiFp(this.configuration).instancesInstanceIdLogsGet(instanceId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @summary Update or downgrade Instance to another App version
-     * @param {InstancesApiInstancesInstanceIdPatchRequest} requestParameters Request parameters.
+     * @param {string} instanceId 
+     * @param {InstancesInstanceIdPatchRequest} instancesInstanceIdPatchRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof InstancesApi
      */
-    public instancesInstanceIdPatch(requestParameters: InstancesApiInstancesInstanceIdPatchRequest, options?: RawAxiosRequestConfig) {
-        return InstancesApiFp(this.configuration).instancesInstanceIdPatch(requestParameters.instanceId, requestParameters.instancesInstanceIdPatchRequest, options).then((request) => request(this.axios, this.basePath));
+    public instancesInstanceIdPatch(instanceId: string, instancesInstanceIdPatchRequest: InstancesInstanceIdPatchRequest, options?: RawAxiosRequestConfig) {
+        return InstancesApiFp(this.configuration).instancesInstanceIdPatch(instanceId, instancesInstanceIdPatchRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @summary Start an App instance
-     * @param {InstancesApiInstancesInstanceIdStartPostRequest} requestParameters Request parameters.
+     * @param {string} instanceId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof InstancesApi
      */
-    public instancesInstanceIdStartPost(requestParameters: InstancesApiInstancesInstanceIdStartPostRequest, options?: RawAxiosRequestConfig) {
-        return InstancesApiFp(this.configuration).instancesInstanceIdStartPost(requestParameters.instanceId, options).then((request) => request(this.axios, this.basePath));
+    public instancesInstanceIdStartPost(instanceId: string, options?: RawAxiosRequestConfig) {
+        return InstancesApiFp(this.configuration).instancesInstanceIdStartPost(instanceId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @summary Stop an App instance
-     * @param {InstancesApiInstancesInstanceIdStopPostRequest} requestParameters Request parameters.
+     * @param {string} instanceId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof InstancesApi
      */
-    public instancesInstanceIdStopPost(requestParameters: InstancesApiInstancesInstanceIdStopPostRequest, options?: RawAxiosRequestConfig) {
-        return InstancesApiFp(this.configuration).instancesInstanceIdStopPost(requestParameters.instanceId, options).then((request) => request(this.axios, this.basePath));
+    public instancesInstanceIdStopPost(instanceId: string, options?: RawAxiosRequestConfig) {
+        return InstancesApiFp(this.configuration).instancesInstanceIdStopPost(instanceId, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -7852,53 +6864,25 @@ export const JobsApiFactory = function (configuration?: Configuration, basePath?
         /**
          * 
          * @summary Cancel job or remove failed/successful/cancelled job from journal
-         * @param {JobsApiJobsJobIdDeleteRequest} requestParameters Request parameters.
+         * @param {number} jobId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        jobsJobIdDelete(requestParameters: JobsApiJobsJobIdDeleteRequest, options?: RawAxiosRequestConfig): AxiosPromise<void> {
-            return localVarFp.jobsJobIdDelete(requestParameters.jobId, options).then((request) => request(axios, basePath));
+        jobsJobIdDelete(jobId: number, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.jobsJobIdDelete(jobId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary Retrieve information for specific job_id
-         * @param {JobsApiJobsJobIdGetRequest} requestParameters Request parameters.
+         * @param {number} jobId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        jobsJobIdGet(requestParameters: JobsApiJobsJobIdGetRequest, options?: RawAxiosRequestConfig): AxiosPromise<Job> {
-            return localVarFp.jobsJobIdGet(requestParameters.jobId, options).then((request) => request(axios, basePath));
+        jobsJobIdGet(jobId: number, options?: RawAxiosRequestConfig): AxiosPromise<Job> {
+            return localVarFp.jobsJobIdGet(jobId, options).then((request) => request(axios, basePath));
         },
     };
 };
-
-/**
- * Request parameters for jobsJobIdDelete operation in JobsApi.
- * @export
- * @interface JobsApiJobsJobIdDeleteRequest
- */
-export interface JobsApiJobsJobIdDeleteRequest {
-    /**
-     * 
-     * @type {number}
-     * @memberof JobsApiJobsJobIdDelete
-     */
-    readonly jobId: number
-}
-
-/**
- * Request parameters for jobsJobIdGet operation in JobsApi.
- * @export
- * @interface JobsApiJobsJobIdGetRequest
- */
-export interface JobsApiJobsJobIdGetRequest {
-    /**
-     * 
-     * @type {number}
-     * @memberof JobsApiJobsJobIdGet
-     */
-    readonly jobId: number
-}
 
 /**
  * JobsApi - object-oriented interface
@@ -7921,25 +6905,25 @@ export class JobsApi extends BaseAPI {
     /**
      * 
      * @summary Cancel job or remove failed/successful/cancelled job from journal
-     * @param {JobsApiJobsJobIdDeleteRequest} requestParameters Request parameters.
+     * @param {number} jobId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof JobsApi
      */
-    public jobsJobIdDelete(requestParameters: JobsApiJobsJobIdDeleteRequest, options?: RawAxiosRequestConfig) {
-        return JobsApiFp(this.configuration).jobsJobIdDelete(requestParameters.jobId, options).then((request) => request(this.axios, this.basePath));
+    public jobsJobIdDelete(jobId: number, options?: RawAxiosRequestConfig) {
+        return JobsApiFp(this.configuration).jobsJobIdDelete(jobId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @summary Retrieve information for specific job_id
-     * @param {JobsApiJobsJobIdGetRequest} requestParameters Request parameters.
+     * @param {number} jobId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof JobsApi
      */
-    public jobsJobIdGet(requestParameters: JobsApiJobsJobIdGetRequest, options?: RawAxiosRequestConfig) {
-        return JobsApiFp(this.configuration).jobsJobIdGet(requestParameters.jobId, options).then((request) => request(this.axios, this.basePath));
+    public jobsJobIdGet(jobId: number, options?: RawAxiosRequestConfig) {
+        return JobsApiFp(this.configuration).jobsJobIdGet(jobId, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -8068,12 +7052,13 @@ export const ManifestsApiFactory = function (configuration?: Configuration, base
         /**
          * 
          * @summary Get a specific manifest
-         * @param {ManifestsApiManifestsAppNameVersionGetRequest} requestParameters Request parameters.
+         * @param {string} appName 
+         * @param {string} version 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        manifestsAppNameVersionGet(requestParameters: ManifestsApiManifestsAppNameVersionGetRequest, options?: RawAxiosRequestConfig): AxiosPromise<AppManifest> {
-            return localVarFp.manifestsAppNameVersionGet(requestParameters.appName, requestParameters.version, options).then((request) => request(axios, basePath));
+        manifestsAppNameVersionGet(appName: string, version: string, options?: RawAxiosRequestConfig): AxiosPromise<AppManifest> {
+            return localVarFp.manifestsAppNameVersionGet(appName, version, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -8088,27 +7073,6 @@ export const ManifestsApiFactory = function (configuration?: Configuration, base
 };
 
 /**
- * Request parameters for manifestsAppNameVersionGet operation in ManifestsApi.
- * @export
- * @interface ManifestsApiManifestsAppNameVersionGetRequest
- */
-export interface ManifestsApiManifestsAppNameVersionGetRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof ManifestsApiManifestsAppNameVersionGet
-     */
-    readonly appName: string
-
-    /**
-     * 
-     * @type {string}
-     * @memberof ManifestsApiManifestsAppNameVersionGet
-     */
-    readonly version: string
-}
-
-/**
  * ManifestsApi - object-oriented interface
  * @export
  * @class ManifestsApi
@@ -8118,13 +7082,14 @@ export class ManifestsApi extends BaseAPI {
     /**
      * 
      * @summary Get a specific manifest
-     * @param {ManifestsApiManifestsAppNameVersionGetRequest} requestParameters Request parameters.
+     * @param {string} appName 
+     * @param {string} version 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ManifestsApi
      */
-    public manifestsAppNameVersionGet(requestParameters: ManifestsApiManifestsAppNameVersionGetRequest, options?: RawAxiosRequestConfig) {
-        return ManifestsApiFp(this.configuration).manifestsAppNameVersionGet(requestParameters.appName, requestParameters.version, options).then((request) => request(this.axios, this.basePath));
+    public manifestsAppNameVersionGet(appName: string, version: string, options?: RawAxiosRequestConfig) {
+        return ManifestsApiFp(this.configuration).manifestsAppNameVersionGet(appName, version, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -8315,53 +7280,25 @@ export const QuestsApiFactory = function (configuration?: Configuration, basePat
         /**
          * 
          * @summary Delete a specific quest by its id
-         * @param {QuestsApiQuestsIdDeleteRequest} requestParameters Request parameters.
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        questsIdDelete(requestParameters: QuestsApiQuestsIdDeleteRequest, options?: RawAxiosRequestConfig): AxiosPromise<void> {
-            return localVarFp.questsIdDelete(requestParameters.id, options).then((request) => request(axios, basePath));
+        questsIdDelete(id: number, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.questsIdDelete(id, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary Get a specific quest by its id
-         * @param {QuestsApiQuestsIdGetRequest} requestParameters Request parameters.
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        questsIdGet(requestParameters: QuestsApiQuestsIdGetRequest, options?: RawAxiosRequestConfig): AxiosPromise<Quest> {
-            return localVarFp.questsIdGet(requestParameters.id, options).then((request) => request(axios, basePath));
+        questsIdGet(id: number, options?: RawAxiosRequestConfig): AxiosPromise<Quest> {
+            return localVarFp.questsIdGet(id, options).then((request) => request(axios, basePath));
         },
     };
 };
-
-/**
- * Request parameters for questsIdDelete operation in QuestsApi.
- * @export
- * @interface QuestsApiQuestsIdDeleteRequest
- */
-export interface QuestsApiQuestsIdDeleteRequest {
-    /**
-     * 
-     * @type {number}
-     * @memberof QuestsApiQuestsIdDelete
-     */
-    readonly id: number
-}
-
-/**
- * Request parameters for questsIdGet operation in QuestsApi.
- * @export
- * @interface QuestsApiQuestsIdGetRequest
- */
-export interface QuestsApiQuestsIdGetRequest {
-    /**
-     * 
-     * @type {number}
-     * @memberof QuestsApiQuestsIdGet
-     */
-    readonly id: number
-}
 
 /**
  * QuestsApi - object-oriented interface
@@ -8384,25 +7321,25 @@ export class QuestsApi extends BaseAPI {
     /**
      * 
      * @summary Delete a specific quest by its id
-     * @param {QuestsApiQuestsIdDeleteRequest} requestParameters Request parameters.
+     * @param {number} id 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof QuestsApi
      */
-    public questsIdDelete(requestParameters: QuestsApiQuestsIdDeleteRequest, options?: RawAxiosRequestConfig) {
-        return QuestsApiFp(this.configuration).questsIdDelete(requestParameters.id, options).then((request) => request(this.axios, this.basePath));
+    public questsIdDelete(id: number, options?: RawAxiosRequestConfig) {
+        return QuestsApiFp(this.configuration).questsIdDelete(id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @summary Get a specific quest by its id
-     * @param {QuestsApiQuestsIdGetRequest} requestParameters Request parameters.
+     * @param {number} id 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof QuestsApi
      */
-    public questsIdGet(requestParameters: QuestsApiQuestsIdGetRequest, options?: RawAxiosRequestConfig) {
-        return QuestsApiFp(this.configuration).questsIdGet(requestParameters.id, options).then((request) => request(this.axios, this.basePath));
+    public questsIdGet(id: number, options?: RawAxiosRequestConfig) {
+        return QuestsApiFp(this.configuration).questsIdGet(id, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -8801,12 +7738,12 @@ export const SystemApiFactory = function (configuration?: Configuration, basePat
         /**
          * 
          * @summary Get usb device of system
-         * @param {SystemApiSystemDevicesUsbPortGetRequest} requestParameters Request parameters.
+         * @param {string} port 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        systemDevicesUsbPortGet(requestParameters: SystemApiSystemDevicesUsbPortGetRequest, options?: RawAxiosRequestConfig): AxiosPromise<UsbDevice> {
-            return localVarFp.systemDevicesUsbPortGet(requestParameters.port, options).then((request) => request(axios, basePath));
+        systemDevicesUsbPortGet(port: string, options?: RawAxiosRequestConfig): AxiosPromise<UsbDevice> {
+            return localVarFp.systemDevicesUsbPortGet(port, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -8829,12 +7766,12 @@ export const SystemApiFactory = function (configuration?: Configuration, basePat
         /**
          * 
          * @summary Get network adapter of system
-         * @param {SystemApiSystemNetworkAdaptersNetworkAdapterIdGetRequest} requestParameters Request parameters.
+         * @param {string} networkAdapterId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        systemNetworkAdaptersNetworkAdapterIdGet(requestParameters: SystemApiSystemNetworkAdaptersNetworkAdapterIdGetRequest, options?: RawAxiosRequestConfig): AxiosPromise<NetworkAdapter> {
-            return localVarFp.systemNetworkAdaptersNetworkAdapterIdGet(requestParameters.networkAdapterId, options).then((request) => request(axios, basePath));
+        systemNetworkAdaptersNetworkAdapterIdGet(networkAdapterId: string, options?: RawAxiosRequestConfig): AxiosPromise<NetworkAdapter> {
+            return localVarFp.systemNetworkAdaptersNetworkAdapterIdGet(networkAdapterId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -8856,34 +7793,6 @@ export const SystemApiFactory = function (configuration?: Configuration, basePat
         },
     };
 };
-
-/**
- * Request parameters for systemDevicesUsbPortGet operation in SystemApi.
- * @export
- * @interface SystemApiSystemDevicesUsbPortGetRequest
- */
-export interface SystemApiSystemDevicesUsbPortGetRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof SystemApiSystemDevicesUsbPortGet
-     */
-    readonly port: string
-}
-
-/**
- * Request parameters for systemNetworkAdaptersNetworkAdapterIdGet operation in SystemApi.
- * @export
- * @interface SystemApiSystemNetworkAdaptersNetworkAdapterIdGetRequest
- */
-export interface SystemApiSystemNetworkAdaptersNetworkAdapterIdGetRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof SystemApiSystemNetworkAdaptersNetworkAdapterIdGet
-     */
-    readonly networkAdapterId: string
-}
 
 /**
  * SystemApi - object-oriented interface
@@ -8917,13 +7826,13 @@ export class SystemApi extends BaseAPI {
     /**
      * 
      * @summary Get usb device of system
-     * @param {SystemApiSystemDevicesUsbPortGetRequest} requestParameters Request parameters.
+     * @param {string} port 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SystemApi
      */
-    public systemDevicesUsbPortGet(requestParameters: SystemApiSystemDevicesUsbPortGetRequest, options?: RawAxiosRequestConfig) {
-        return SystemApiFp(this.configuration).systemDevicesUsbPortGet(requestParameters.port, options).then((request) => request(this.axios, this.basePath));
+    public systemDevicesUsbPortGet(port: string, options?: RawAxiosRequestConfig) {
+        return SystemApiFp(this.configuration).systemDevicesUsbPortGet(port, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -8951,13 +7860,13 @@ export class SystemApi extends BaseAPI {
     /**
      * 
      * @summary Get network adapter of system
-     * @param {SystemApiSystemNetworkAdaptersNetworkAdapterIdGetRequest} requestParameters Request parameters.
+     * @param {string} networkAdapterId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SystemApi
      */
-    public systemNetworkAdaptersNetworkAdapterIdGet(requestParameters: SystemApiSystemNetworkAdaptersNetworkAdapterIdGetRequest, options?: RawAxiosRequestConfig) {
-        return SystemApiFp(this.configuration).systemNetworkAdaptersNetworkAdapterIdGet(requestParameters.networkAdapterId, options).then((request) => request(this.axios, this.basePath));
+    public systemNetworkAdaptersNetworkAdapterIdGet(networkAdapterId: string, options?: RawAxiosRequestConfig) {
+        return SystemApiFp(this.configuration).systemNetworkAdaptersNetworkAdapterIdGet(networkAdapterId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
