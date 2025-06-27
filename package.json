@@ -2,9 +2,9 @@
     "name": "@flecs/core-client-ts",
     "version": "1.0.0",
     "description": "Core client for TypeScript project",
-    "main": "dist/index.js",
-    "types": "dist/index.d.ts",
-    "files": ["dist"],
+    "main": "src/index.js",
+    "types": "src/index.d.ts",
+    "files": ["src"],
     "scripts": {
       "generate:client": "openapi-generator-cli generate -i https://raw.githubusercontent.com/FLECS-Technologies/flecs-public/refs/heads/main/api/openapi.yaml -g typescript-axios -o ./src",
       "build": "tsc"
