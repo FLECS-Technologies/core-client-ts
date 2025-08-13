@@ -6,7 +6,7 @@
     "types": "src/index.d.ts",
     "files": ["src"],
     "scripts": {
-      "generate:client": "openapi-generator-cli generate -i https://raw.githubusercontent.com/FLECS-Technologies/flecs-public/refs/heads/main/api/openapi.yaml -g typescript-axios -o ./src",
+      "generate:client": "openapi-generator-cli generate -i https://raw.githubusercontent.com/FLECS-Technologies/flecs-public/refs/heads/FLX-1085-rbac/api/openapi.yaml -g typescript-axios -o ./src",
       "build": "tsc"
     },
     "keywords": [],
