@@ -24,6 +24,19 @@ import type { RequestArgs } from './base';
 import { BASE_PATH, COLLECTION_FORMATS, BaseAPI, RequiredError, operationServerMap } from './base';
 
 /**
+ * 
+ * @export
+ * @interface Accepted
+ */
+export interface Accepted {
+    /**
+     * 
+     * @type {number}
+     * @memberof Accepted
+     */
+    'jobId': number;
+}
+/**
  * Additional info
  * @export
  * @interface AdditionalInfo
@@ -113,6 +126,8 @@ export type AppManifest = AppManifestOneOf | AppManifestOneOf1;
  * @interface AppManifestOneOf
  */
 export interface AppManifestOneOf {
+    [key: string]: any;
+
     /**
      * Location of the JSON schema to validate against
      * @type {string}
@@ -247,6 +262,8 @@ export type AppManifestOneOfCapabilitiesEnum = typeof AppManifestOneOfCapabiliti
  * @interface AppManifestOneOf1
  */
 export interface AppManifestOneOf1 {
+    [key: string]: any;
+
     /**
      * Location of the JSON schema to validate against
      * @type {string}
@@ -404,6 +421,157 @@ export type AuthProtocol = typeof AuthProtocol[keyof typeof AuthProtocol];
 /**
  * 
  * @export
+ * @interface AuthProvider
+ */
+export interface AuthProvider {
+    /**
+     * 
+     * @type {string}
+     * @memberof AuthProvider
+     */
+    'kind': AuthProviderKindEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof AuthProvider
+     */
+    'authorize_url': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AuthProvider
+     */
+    'jwk_url': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AuthProvider
+     */
+    'token_url': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AuthProvider
+     */
+    'issuer_url': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AuthProvider
+     */
+    'name': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof AuthProvider
+     */
+    'port': number;
+    /**
+     * 
+     * @type {any}
+     * @memberof AuthProvider
+     */
+    'properties': any;
+}
+
+export const AuthProviderKindEnum = {
+    Oauth: 'oauth'
+} as const;
+
+export type AuthProviderKindEnum = typeof AuthProviderKindEnum[keyof typeof AuthProviderKindEnum];
+
+/**
+ * @type AuthProviderConfig
+ * @export
+ */
+export type AuthProviderConfig = AuthProviderConfigOneOf | AuthProviderConfigOneOf1;
+
+/**
+ * 
+ * @export
+ * @interface AuthProviderConfigOneOf
+ */
+export interface AuthProviderConfigOneOf {
+    /**
+     * 
+     * @type {string}
+     * @memberof AuthProviderConfigOneOf
+     */
+    'kind': AuthProviderConfigOneOfKindEnum;
+}
+
+export const AuthProviderConfigOneOfKindEnum = {
+    Oidc: 'oidc'
+} as const;
+
+export type AuthProviderConfigOneOfKindEnum = typeof AuthProviderConfigOneOfKindEnum[keyof typeof AuthProviderConfigOneOfKindEnum];
+
+/**
+ * 
+ * @export
+ * @interface AuthProviderConfigOneOf1
+ */
+export interface AuthProviderConfigOneOf1 {
+    /**
+     * 
+     * @type {string}
+     * @memberof AuthProviderConfigOneOf1
+     */
+    'authorize_url': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AuthProviderConfigOneOf1
+     */
+    'jwk_url': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AuthProviderConfigOneOf1
+     */
+    'kind': AuthProviderConfigOneOf1KindEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof AuthProviderConfigOneOf1
+     */
+    'token_url': string;
+}
+
+export const AuthProviderConfigOneOf1KindEnum = {
+    Oauth: 'oauth'
+} as const;
+
+export type AuthProviderConfigOneOf1KindEnum = typeof AuthProviderConfigOneOf1KindEnum[keyof typeof AuthProviderConfigOneOf1KindEnum];
+
+/**
+ * 
+ * @export
+ * @interface AuthProvidersAndDefaults
+ */
+export interface AuthProvidersAndDefaults {
+    /**
+     * 
+     * @type {ProviderReference}
+     * @memberof AuthProvidersAndDefaults
+     */
+    'core'?: ProviderReference | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof AuthProvidersAndDefaults
+     */
+    'default'?: string;
+    /**
+     * 
+     * @type {{ [key: string]: AuthProvider; }}
+     * @memberof AuthProvidersAndDefaults
+     */
+    'providers': { [key: string]: AuthProvider; };
+}
+/**
+ * 
+ * @export
  * @interface AuthResponseData
  */
 export interface AuthResponseData {
@@ -488,6 +656,25 @@ export interface DOSManifestAppsInner {
      * @memberof DOSManifestAppsInner
      */
     'version'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface Dependency
+ */
+export interface Dependency {
+    /**
+     * 
+     * @type {any}
+     * @memberof Dependency
+     */
+    'config': any;
+    /**
+     * 
+     * @type {StoredProviderReference}
+     * @memberof Dependency
+     */
+    'provider'?: StoredProviderReference | null;
 }
 /**
  * 
@@ -621,6 +808,70 @@ export interface FeatureFlags {
      * @memberof FeatureFlags
      */
     'isWhitelabeled': boolean;
+}
+/**
+ * 
+ * @export
+ * @interface FeatureInfo
+ */
+export interface FeatureInfo {
+    /**
+     * 
+     * @type {any}
+     * @memberof FeatureInfo
+     */
+    'config': any;
+}
+/**
+ * 
+ * @export
+ * @interface FeatureProviders
+ */
+export interface FeatureProviders {
+    /**
+     * 
+     * @type {string}
+     * @memberof FeatureProviders
+     */
+    'default'?: string;
+    /**
+     * 
+     * @type {{ [key: string]: Provider; }}
+     * @memberof FeatureProviders
+     */
+    'providers': { [key: string]: Provider; };
+}
+/**
+ * 
+ * @export
+ * @interface GenericProvider
+ */
+export interface GenericProvider {
+    /**
+     * 
+     * @type {AppKey}
+     * @memberof GenericProvider
+     */
+    'app_key': AppKey;
+}
+/**
+ * 
+ * @export
+ * @interface GenericProviders
+ */
+export interface GenericProviders {
+    /**
+     * 
+     * @type {string}
+     * @memberof GenericProviders
+     */
+    'default'?: string;
+    /**
+     * 
+     * @type {{ [key: string]: GenericProvider; }}
+     * @memberof GenericProviders
+     */
+    'providers': { [key: string]: GenericProvider; };
 }
 /**
  * 
@@ -881,6 +1132,34 @@ export interface InstanceLabel {
      */
     'value'?: string;
 }
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const InstanceNotFoundOrFeatureNotProvided = {
+    FeatureNotProvided: 'FeatureNotProvided',
+    InstanceNotFound: 'InstanceNotFound'
+} as const;
+
+export type InstanceNotFoundOrFeatureNotProvided = typeof InstanceNotFoundOrFeatureNotProvided[keyof typeof InstanceNotFoundOrFeatureNotProvided];
+
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const InstanceNotFoundOrNotDependent = {
+    InstanceNotFound: 'InstanceNotFound',
+    NotDependent: 'NotDependent'
+} as const;
+
+export type InstanceNotFoundOrNotDependent = typeof InstanceNotFoundOrNotDependent[keyof typeof InstanceNotFoundOrNotDependent];
+
+
 /**
  * @type InstancePortMapping
  * @export
@@ -1585,6 +1864,44 @@ export interface PostDeploymentNetwork {
 /**
  * 
  * @export
+ * @interface Provider
+ */
+export interface Provider {
+    /**
+     * 
+     * @type {AppKey}
+     * @memberof Provider
+     */
+    'app_key': AppKey;
+    /**
+     * 
+     * @type {any}
+     * @memberof Provider
+     */
+    'config': any;
+}
+/**
+ * @type ProviderReference
+ * @export
+ */
+export type ProviderReference = string;
+
+/**
+ * 
+ * @export
+ * @interface PutDefaultProviderRequest
+ */
+export interface PutDefaultProviderRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof PutDefaultProviderRequest
+     */
+    'provider_id': string;
+}
+/**
+ * 
+ * @export
  * @interface Quest
  */
 export interface Quest {
@@ -1688,6 +2005,25 @@ export interface SessionId {
      * @memberof SessionId
      */
     'timestamp'?: number;
+}
+/**
+ * 
+ * @export
+ * @interface StoredProviderReference
+ */
+export interface StoredProviderReference {
+    /**
+     * 
+     * @type {string}
+     * @memberof StoredProviderReference
+     */
+    'provided_feature': string;
+    /**
+     * 
+     * @type {ProviderReference}
+     * @memberof StoredProviderReference
+     */
+    'provider_reference': ProviderReference;
 }
 /**
  * 
@@ -2291,169 +2627,6 @@ export class AppsApi extends BaseAPI {
      */
     public appsSideloadPost(appsSideloadPostRequest: AppsSideloadPostRequest, options?: RawAxiosRequestConfig) {
         return AppsApiFp(this.configuration).appsSideloadPost(appsSideloadPostRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-}
-
-
-
-/**
- * AuthenticationApi - axios parameter creator
- * @export
- */
-export const AuthenticationApiAxiosParamCreator = function (configuration?: Configuration) {
-    return {
-        /**
-         * 
-         * @summary Get the location of the default authentication provider
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        authProvidersDefaultLocationGet: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/auth/providers/default/location`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary Get the protocol of the default authentication provider
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        authProvidersDefaultProtocolGet: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/auth/providers/default/protocol`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-    }
-};
-
-/**
- * AuthenticationApi - functional programming interface
- * @export
- */
-export const AuthenticationApiFp = function(configuration?: Configuration) {
-    const localVarAxiosParamCreator = AuthenticationApiAxiosParamCreator(configuration)
-    return {
-        /**
-         * 
-         * @summary Get the location of the default authentication provider
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async authProvidersDefaultLocationGet(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.authProvidersDefaultLocationGet(options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['AuthenticationApi.authProvidersDefaultLocationGet']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @summary Get the protocol of the default authentication provider
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async authProvidersDefaultProtocolGet(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AuthProtocol>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.authProvidersDefaultProtocolGet(options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['AuthenticationApi.authProvidersDefaultProtocolGet']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-    }
-};
-
-/**
- * AuthenticationApi - factory interface
- * @export
- */
-export const AuthenticationApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
-    const localVarFp = AuthenticationApiFp(configuration)
-    return {
-        /**
-         * 
-         * @summary Get the location of the default authentication provider
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        authProvidersDefaultLocationGet(options?: RawAxiosRequestConfig): AxiosPromise<string> {
-            return localVarFp.authProvidersDefaultLocationGet(options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Get the protocol of the default authentication provider
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        authProvidersDefaultProtocolGet(options?: RawAxiosRequestConfig): AxiosPromise<AuthProtocol> {
-            return localVarFp.authProvidersDefaultProtocolGet(options).then((request) => request(axios, basePath));
-        },
-    };
-};
-
-/**
- * AuthenticationApi - object-oriented interface
- * @export
- * @class AuthenticationApi
- * @extends {BaseAPI}
- */
-export class AuthenticationApi extends BaseAPI {
-    /**
-     * 
-     * @summary Get the location of the default authentication provider
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AuthenticationApi
-     */
-    public authProvidersDefaultLocationGet(options?: RawAxiosRequestConfig) {
-        return AuthenticationApiFp(this.configuration).authProvidersDefaultLocationGet(options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Get the protocol of the default authentication provider
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AuthenticationApi
-     */
-    public authProvidersDefaultProtocolGet(options?: RawAxiosRequestConfig) {
-        return AuthenticationApiFp(this.configuration).authProvidersDefaultProtocolGet(options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -3280,6 +3453,1686 @@ export class DeviceApi extends BaseAPI {
      */
     public deviceOnboardingPost(dOSManifest: DOSManifest, options?: RawAxiosRequestConfig) {
         return DeviceApiFp(this.configuration).deviceOnboardingPost(dOSManifest, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+
+/**
+ * ExperimentalApi - axios parameter creator
+ * @export
+ */
+export const ExperimentalApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @summary Remove the provider for the specified dependency of the specified instance
+         * @param {string} instanceId 
+         * @param {string} dependencyKey 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteInstancesinstanceIdDependsdependencyKey: async (instanceId: string, dependencyKey: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'instanceId' is not null or undefined
+            assertParamExists('deleteInstancesinstanceIdDependsdependencyKey', 'instanceId', instanceId)
+            // verify required parameter 'dependencyKey' is not null or undefined
+            assertParamExists('deleteInstancesinstanceIdDependsdependencyKey', 'dependencyKey', dependencyKey)
+            const localVarPath = `/instances/{instance_id}/depends/{dependency_key}`
+                .replace(`{${"instance_id"}}`, encodeURIComponent(String(instanceId)))
+                .replace(`{${"dependency_key"}}`, encodeURIComponent(String(dependencyKey)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Remove the default auth provider
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteProvidersAuthDefault: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/providers/auth/default`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Remove the default provider for the specified feature
+         * @param {string} feature 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteProvidersfeatureDefault: async (feature: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'feature' is not null or undefined
+            assertParamExists('deleteProvidersfeatureDefault', 'feature', feature)
+            const localVarPath = `/providers/{feature}/default`
+                .replace(`{${"feature"}}`, encodeURIComponent(String(feature)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Get information on all dependencies of the specified instance
+         * @param {string} instanceId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getInstancesinstanceIdDepends: async (instanceId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'instanceId' is not null or undefined
+            assertParamExists('getInstancesinstanceIdDepends', 'instanceId', instanceId)
+            const localVarPath = `/instances/{instance_id}/depends`
+                .replace(`{${"instance_id"}}`, encodeURIComponent(String(instanceId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Get information on the dependency for the specified dependency key of the specified instance
+         * @param {string} instanceId 
+         * @param {string} dependencyKey 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getInstancesinstanceIdDependsdependencyKey: async (instanceId: string, dependencyKey: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'instanceId' is not null or undefined
+            assertParamExists('getInstancesinstanceIdDependsdependencyKey', 'instanceId', instanceId)
+            // verify required parameter 'dependencyKey' is not null or undefined
+            assertParamExists('getInstancesinstanceIdDependsdependencyKey', 'dependencyKey', dependencyKey)
+            const localVarPath = `/instances/{instance_id}/depends/{dependency_key}`
+                .replace(`{${"instance_id"}}`, encodeURIComponent(String(instanceId)))
+                .replace(`{${"dependency_key"}}`, encodeURIComponent(String(dependencyKey)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Get all provided features of the specified instance
+         * @param {string} instanceId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getInstancesinstanceIdProvides: async (instanceId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'instanceId' is not null or undefined
+            assertParamExists('getInstancesinstanceIdProvides', 'instanceId', instanceId)
+            const localVarPath = `/instances/{instance_id}/provides`
+                .replace(`{${"instance_id"}}`, encodeURIComponent(String(instanceId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Check if the specified instance provides the specified feature
+         * @param {string} instanceId 
+         * @param {string} feature 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getInstancesinstanceIdProvidesfeature: async (instanceId: string, feature: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'instanceId' is not null or undefined
+            assertParamExists('getInstancesinstanceIdProvidesfeature', 'instanceId', instanceId)
+            // verify required parameter 'feature' is not null or undefined
+            assertParamExists('getInstancesinstanceIdProvidesfeature', 'feature', feature)
+            const localVarPath = `/instances/{instance_id}/provides/{feature}`
+                .replace(`{${"instance_id"}}`, encodeURIComponent(String(instanceId)))
+                .replace(`{${"feature"}}`, encodeURIComponent(String(feature)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Get information for all providers
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getProviders: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/providers`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Get information for all auth providers
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getProvidersAuth: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/providers/auth`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Get information on the core auth provider
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getProvidersAuthCore: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/providers/auth/core`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Get the default auth provider
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getProvidersAuthDefault: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/providers/auth/default`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Get the auth provider with the specified id
+         * @param {string} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getProvidersAuthid: async (id: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('getProvidersAuthid', 'id', id)
+            const localVarPath = `/providers/auth/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Get providers for the specified feature
+         * @param {string} feature 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getProvidersfeature: async (feature: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'feature' is not null or undefined
+            assertParamExists('getProvidersfeature', 'feature', feature)
+            const localVarPath = `/providers/{feature}`
+                .replace(`{${"feature"}}`, encodeURIComponent(String(feature)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Get the default provider for the specified feature
+         * @param {string} feature 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getProvidersfeatureDefault: async (feature: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'feature' is not null or undefined
+            assertParamExists('getProvidersfeatureDefault', 'feature', feature)
+            const localVarPath = `/providers/{feature}/default`
+                .replace(`{${"feature"}}`, encodeURIComponent(String(feature)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Access the core auth provider, on success the response will redirect
+         * @param {string} path The path to forward to the default auth provider
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        headProvidersAuthCorepath: async (path: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'path' is not null or undefined
+            assertParamExists('headProvidersAuthCorepath', 'path', path)
+            const localVarPath = `/providers/auth/core/{path}`
+                .replace(`{${"path"}}`, encodeURIComponent(String(path)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'HEAD', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Access the default auth provider, on success the response will redirect
+         * @param {string} path The path to forward to the default auth provider
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        headProvidersAuthDefaultpath: async (path: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'path' is not null or undefined
+            assertParamExists('headProvidersAuthDefaultpath', 'path', path)
+            const localVarPath = `/providers/auth/default/{path}`
+                .replace(`{${"path"}}`, encodeURIComponent(String(path)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'HEAD', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Access the auth provider with the specified id, on success the response will redirect
+         * @param {string} providerId The id of the auth provider
+         * @param {string} path The path to forward to the specified auth provider
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        headProvidersAuthproviderIdpath: async (providerId: string, path: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'providerId' is not null or undefined
+            assertParamExists('headProvidersAuthproviderIdpath', 'providerId', providerId)
+            // verify required parameter 'path' is not null or undefined
+            assertParamExists('headProvidersAuthproviderIdpath', 'path', path)
+            const localVarPath = `/providers/auth/{provider_id}/{path}`
+                .replace(`{${"provider_id"}}`, encodeURIComponent(String(providerId)))
+                .replace(`{${"path"}}`, encodeURIComponent(String(path)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'HEAD', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Trigger the first time setup of auth providers via flecsport
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        postProvidersAuthCoreFirstTimeSetupFlecsport: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/providers/auth/core/first-time-setup/flecsport`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Set a provider for the specified feature of the specified instance
+         * @param {string} instanceId 
+         * @param {string} dependencyKey 
+         * @param {ProviderReference} providerReference The provider that should be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        putInstancesinstanceIdDependsdependencyKey: async (instanceId: string, dependencyKey: string, providerReference: ProviderReference, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'instanceId' is not null or undefined
+            assertParamExists('putInstancesinstanceIdDependsdependencyKey', 'instanceId', instanceId)
+            // verify required parameter 'dependencyKey' is not null or undefined
+            assertParamExists('putInstancesinstanceIdDependsdependencyKey', 'dependencyKey', dependencyKey)
+            // verify required parameter 'providerReference' is not null or undefined
+            assertParamExists('putInstancesinstanceIdDependsdependencyKey', 'providerReference', providerReference)
+            const localVarPath = `/instances/{instance_id}/depends/{dependency_key}`
+                .replace(`{${"instance_id"}}`, encodeURIComponent(String(instanceId)))
+                .replace(`{${"dependency_key"}}`, encodeURIComponent(String(dependencyKey)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(providerReference, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Set a provider for the specified feature of the specified instance
+         * @param {string} instanceId 
+         * @param {string} dependencyKey 
+         * @param {string} feature 
+         * @param {ProviderReference} providerReference The provider that should be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        putInstancesinstanceIdDependsdependencyKeyfeature: async (instanceId: string, dependencyKey: string, feature: string, providerReference: ProviderReference, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'instanceId' is not null or undefined
+            assertParamExists('putInstancesinstanceIdDependsdependencyKeyfeature', 'instanceId', instanceId)
+            // verify required parameter 'dependencyKey' is not null or undefined
+            assertParamExists('putInstancesinstanceIdDependsdependencyKeyfeature', 'dependencyKey', dependencyKey)
+            // verify required parameter 'feature' is not null or undefined
+            assertParamExists('putInstancesinstanceIdDependsdependencyKeyfeature', 'feature', feature)
+            // verify required parameter 'providerReference' is not null or undefined
+            assertParamExists('putInstancesinstanceIdDependsdependencyKeyfeature', 'providerReference', providerReference)
+            const localVarPath = `/instances/{instance_id}/depends/{dependency_key}/{feature}`
+                .replace(`{${"instance_id"}}`, encodeURIComponent(String(instanceId)))
+                .replace(`{${"dependency_key"}}`, encodeURIComponent(String(dependencyKey)))
+                .replace(`{${"feature"}}`, encodeURIComponent(String(feature)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(providerReference, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Set a core auth provider
+         * @param {ProviderReference} providerReference The provider that should be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        putProvidersAuthCore: async (providerReference: ProviderReference, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'providerReference' is not null or undefined
+            assertParamExists('putProvidersAuthCore', 'providerReference', providerReference)
+            const localVarPath = `/providers/auth/core`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(providerReference, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Set the default auth provider
+         * @param {PutDefaultProviderRequest} putDefaultProviderRequest Id of the provider that should be used as the default auth provider
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        putProvidersAuthDefault: async (putDefaultProviderRequest: PutDefaultProviderRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'putDefaultProviderRequest' is not null or undefined
+            assertParamExists('putProvidersAuthDefault', 'putDefaultProviderRequest', putDefaultProviderRequest)
+            const localVarPath = `/providers/auth/default`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(putDefaultProviderRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Set the default provider for the specified feature
+         * @param {string} feature 
+         * @param {PutDefaultProviderRequest} putDefaultProviderRequest Id of the provider that should be used as the default provider
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        putProvidersfeatureDefault: async (feature: string, putDefaultProviderRequest: PutDefaultProviderRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'feature' is not null or undefined
+            assertParamExists('putProvidersfeatureDefault', 'feature', feature)
+            // verify required parameter 'putDefaultProviderRequest' is not null or undefined
+            assertParamExists('putProvidersfeatureDefault', 'putDefaultProviderRequest', putDefaultProviderRequest)
+            const localVarPath = `/providers/{feature}/default`
+                .replace(`{${"feature"}}`, encodeURIComponent(String(feature)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(putDefaultProviderRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * ExperimentalApi - functional programming interface
+ * @export
+ */
+export const ExperimentalApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = ExperimentalApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * 
+         * @summary Remove the provider for the specified dependency of the specified instance
+         * @param {string} instanceId 
+         * @param {string} dependencyKey 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async deleteInstancesinstanceIdDependsdependencyKey(instanceId: string, dependencyKey: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteInstancesinstanceIdDependsdependencyKey(instanceId, dependencyKey, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ExperimentalApi.deleteInstancesinstanceIdDependsdependencyKey']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Remove the default auth provider
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async deleteProvidersAuthDefault(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteProvidersAuthDefault(options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ExperimentalApi.deleteProvidersAuthDefault']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Remove the default provider for the specified feature
+         * @param {string} feature 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async deleteProvidersfeatureDefault(feature: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteProvidersfeatureDefault(feature, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ExperimentalApi.deleteProvidersfeatureDefault']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Get information on all dependencies of the specified instance
+         * @param {string} instanceId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getInstancesinstanceIdDepends(instanceId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<{ [key: string]: Dependency; }>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getInstancesinstanceIdDepends(instanceId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ExperimentalApi.getInstancesinstanceIdDepends']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Get information on the dependency for the specified dependency key of the specified instance
+         * @param {string} instanceId 
+         * @param {string} dependencyKey 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getInstancesinstanceIdDependsdependencyKey(instanceId: string, dependencyKey: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Dependency>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getInstancesinstanceIdDependsdependencyKey(instanceId, dependencyKey, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ExperimentalApi.getInstancesinstanceIdDependsdependencyKey']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Get all provided features of the specified instance
+         * @param {string} instanceId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getInstancesinstanceIdProvides(instanceId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<{ [key: string]: FeatureInfo; }>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getInstancesinstanceIdProvides(instanceId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ExperimentalApi.getInstancesinstanceIdProvides']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Check if the specified instance provides the specified feature
+         * @param {string} instanceId 
+         * @param {string} feature 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getInstancesinstanceIdProvidesfeature(instanceId: string, feature: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeatureInfo>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getInstancesinstanceIdProvidesfeature(instanceId, feature, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ExperimentalApi.getInstancesinstanceIdProvidesfeature']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Get information for all providers
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getProviders(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<{ [key: string]: GenericProviders; }>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getProviders(options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ExperimentalApi.getProviders']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Get information for all auth providers
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getProvidersAuth(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AuthProvidersAndDefaults>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getProvidersAuth(options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ExperimentalApi.getProvidersAuth']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Get information on the core auth provider
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getProvidersAuthCore(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ProviderReference>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getProvidersAuthCore(options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ExperimentalApi.getProvidersAuthCore']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Get the default auth provider
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getProvidersAuthDefault(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AuthProvider>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getProvidersAuthDefault(options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ExperimentalApi.getProvidersAuthDefault']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Get the auth provider with the specified id
+         * @param {string} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getProvidersAuthid(id: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AuthProvider>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getProvidersAuthid(id, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ExperimentalApi.getProvidersAuthid']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Get providers for the specified feature
+         * @param {string} feature 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getProvidersfeature(feature: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeatureProviders>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getProvidersfeature(feature, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ExperimentalApi.getProvidersfeature']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Get the default provider for the specified feature
+         * @param {string} feature 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getProvidersfeatureDefault(feature: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Provider>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getProvidersfeatureDefault(feature, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ExperimentalApi.getProvidersfeatureDefault']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Access the core auth provider, on success the response will redirect
+         * @param {string} path The path to forward to the default auth provider
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async headProvidersAuthCorepath(path: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.headProvidersAuthCorepath(path, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ExperimentalApi.headProvidersAuthCorepath']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Access the default auth provider, on success the response will redirect
+         * @param {string} path The path to forward to the default auth provider
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async headProvidersAuthDefaultpath(path: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.headProvidersAuthDefaultpath(path, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ExperimentalApi.headProvidersAuthDefaultpath']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Access the auth provider with the specified id, on success the response will redirect
+         * @param {string} providerId The id of the auth provider
+         * @param {string} path The path to forward to the specified auth provider
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async headProvidersAuthproviderIdpath(providerId: string, path: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.headProvidersAuthproviderIdpath(providerId, path, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ExperimentalApi.headProvidersAuthproviderIdpath']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Trigger the first time setup of auth providers via flecsport
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async postProvidersAuthCoreFirstTimeSetupFlecsport(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Accepted>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.postProvidersAuthCoreFirstTimeSetupFlecsport(options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ExperimentalApi.postProvidersAuthCoreFirstTimeSetupFlecsport']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Set a provider for the specified feature of the specified instance
+         * @param {string} instanceId 
+         * @param {string} dependencyKey 
+         * @param {ProviderReference} providerReference The provider that should be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async putInstancesinstanceIdDependsdependencyKey(instanceId: string, dependencyKey: string, providerReference: ProviderReference, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.putInstancesinstanceIdDependsdependencyKey(instanceId, dependencyKey, providerReference, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ExperimentalApi.putInstancesinstanceIdDependsdependencyKey']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Set a provider for the specified feature of the specified instance
+         * @param {string} instanceId 
+         * @param {string} dependencyKey 
+         * @param {string} feature 
+         * @param {ProviderReference} providerReference The provider that should be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async putInstancesinstanceIdDependsdependencyKeyfeature(instanceId: string, dependencyKey: string, feature: string, providerReference: ProviderReference, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.putInstancesinstanceIdDependsdependencyKeyfeature(instanceId, dependencyKey, feature, providerReference, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ExperimentalApi.putInstancesinstanceIdDependsdependencyKeyfeature']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Set a core auth provider
+         * @param {ProviderReference} providerReference The provider that should be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async putProvidersAuthCore(providerReference: ProviderReference, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.putProvidersAuthCore(providerReference, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ExperimentalApi.putProvidersAuthCore']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Set the default auth provider
+         * @param {PutDefaultProviderRequest} putDefaultProviderRequest Id of the provider that should be used as the default auth provider
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async putProvidersAuthDefault(putDefaultProviderRequest: PutDefaultProviderRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.putProvidersAuthDefault(putDefaultProviderRequest, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ExperimentalApi.putProvidersAuthDefault']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Set the default provider for the specified feature
+         * @param {string} feature 
+         * @param {PutDefaultProviderRequest} putDefaultProviderRequest Id of the provider that should be used as the default provider
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async putProvidersfeatureDefault(feature: string, putDefaultProviderRequest: PutDefaultProviderRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.putProvidersfeatureDefault(feature, putDefaultProviderRequest, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ExperimentalApi.putProvidersfeatureDefault']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+    }
+};
+
+/**
+ * ExperimentalApi - factory interface
+ * @export
+ */
+export const ExperimentalApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = ExperimentalApiFp(configuration)
+    return {
+        /**
+         * 
+         * @summary Remove the provider for the specified dependency of the specified instance
+         * @param {string} instanceId 
+         * @param {string} dependencyKey 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteInstancesinstanceIdDependsdependencyKey(instanceId: string, dependencyKey: string, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.deleteInstancesinstanceIdDependsdependencyKey(instanceId, dependencyKey, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Remove the default auth provider
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteProvidersAuthDefault(options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.deleteProvidersAuthDefault(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Remove the default provider for the specified feature
+         * @param {string} feature 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteProvidersfeatureDefault(feature: string, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.deleteProvidersfeatureDefault(feature, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Get information on all dependencies of the specified instance
+         * @param {string} instanceId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getInstancesinstanceIdDepends(instanceId: string, options?: RawAxiosRequestConfig): AxiosPromise<{ [key: string]: Dependency; }> {
+            return localVarFp.getInstancesinstanceIdDepends(instanceId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Get information on the dependency for the specified dependency key of the specified instance
+         * @param {string} instanceId 
+         * @param {string} dependencyKey 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getInstancesinstanceIdDependsdependencyKey(instanceId: string, dependencyKey: string, options?: RawAxiosRequestConfig): AxiosPromise<Dependency> {
+            return localVarFp.getInstancesinstanceIdDependsdependencyKey(instanceId, dependencyKey, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Get all provided features of the specified instance
+         * @param {string} instanceId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getInstancesinstanceIdProvides(instanceId: string, options?: RawAxiosRequestConfig): AxiosPromise<{ [key: string]: FeatureInfo; }> {
+            return localVarFp.getInstancesinstanceIdProvides(instanceId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Check if the specified instance provides the specified feature
+         * @param {string} instanceId 
+         * @param {string} feature 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getInstancesinstanceIdProvidesfeature(instanceId: string, feature: string, options?: RawAxiosRequestConfig): AxiosPromise<FeatureInfo> {
+            return localVarFp.getInstancesinstanceIdProvidesfeature(instanceId, feature, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Get information for all providers
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getProviders(options?: RawAxiosRequestConfig): AxiosPromise<{ [key: string]: GenericProviders; }> {
+            return localVarFp.getProviders(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Get information for all auth providers
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getProvidersAuth(options?: RawAxiosRequestConfig): AxiosPromise<AuthProvidersAndDefaults> {
+            return localVarFp.getProvidersAuth(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Get information on the core auth provider
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getProvidersAuthCore(options?: RawAxiosRequestConfig): AxiosPromise<ProviderReference> {
+            return localVarFp.getProvidersAuthCore(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Get the default auth provider
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getProvidersAuthDefault(options?: RawAxiosRequestConfig): AxiosPromise<AuthProvider> {
+            return localVarFp.getProvidersAuthDefault(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Get the auth provider with the specified id
+         * @param {string} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getProvidersAuthid(id: string, options?: RawAxiosRequestConfig): AxiosPromise<AuthProvider> {
+            return localVarFp.getProvidersAuthid(id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Get providers for the specified feature
+         * @param {string} feature 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getProvidersfeature(feature: string, options?: RawAxiosRequestConfig): AxiosPromise<FeatureProviders> {
+            return localVarFp.getProvidersfeature(feature, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Get the default provider for the specified feature
+         * @param {string} feature 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getProvidersfeatureDefault(feature: string, options?: RawAxiosRequestConfig): AxiosPromise<Provider> {
+            return localVarFp.getProvidersfeatureDefault(feature, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Access the core auth provider, on success the response will redirect
+         * @param {string} path The path to forward to the default auth provider
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        headProvidersAuthCorepath(path: string, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.headProvidersAuthCorepath(path, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Access the default auth provider, on success the response will redirect
+         * @param {string} path The path to forward to the default auth provider
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        headProvidersAuthDefaultpath(path: string, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.headProvidersAuthDefaultpath(path, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Access the auth provider with the specified id, on success the response will redirect
+         * @param {string} providerId The id of the auth provider
+         * @param {string} path The path to forward to the specified auth provider
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        headProvidersAuthproviderIdpath(providerId: string, path: string, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.headProvidersAuthproviderIdpath(providerId, path, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Trigger the first time setup of auth providers via flecsport
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        postProvidersAuthCoreFirstTimeSetupFlecsport(options?: RawAxiosRequestConfig): AxiosPromise<Accepted> {
+            return localVarFp.postProvidersAuthCoreFirstTimeSetupFlecsport(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Set a provider for the specified feature of the specified instance
+         * @param {string} instanceId 
+         * @param {string} dependencyKey 
+         * @param {ProviderReference} providerReference The provider that should be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        putInstancesinstanceIdDependsdependencyKey(instanceId: string, dependencyKey: string, providerReference: ProviderReference, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.putInstancesinstanceIdDependsdependencyKey(instanceId, dependencyKey, providerReference, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Set a provider for the specified feature of the specified instance
+         * @param {string} instanceId 
+         * @param {string} dependencyKey 
+         * @param {string} feature 
+         * @param {ProviderReference} providerReference The provider that should be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        putInstancesinstanceIdDependsdependencyKeyfeature(instanceId: string, dependencyKey: string, feature: string, providerReference: ProviderReference, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.putInstancesinstanceIdDependsdependencyKeyfeature(instanceId, dependencyKey, feature, providerReference, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Set a core auth provider
+         * @param {ProviderReference} providerReference The provider that should be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        putProvidersAuthCore(providerReference: ProviderReference, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.putProvidersAuthCore(providerReference, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Set the default auth provider
+         * @param {PutDefaultProviderRequest} putDefaultProviderRequest Id of the provider that should be used as the default auth provider
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        putProvidersAuthDefault(putDefaultProviderRequest: PutDefaultProviderRequest, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.putProvidersAuthDefault(putDefaultProviderRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Set the default provider for the specified feature
+         * @param {string} feature 
+         * @param {PutDefaultProviderRequest} putDefaultProviderRequest Id of the provider that should be used as the default provider
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        putProvidersfeatureDefault(feature: string, putDefaultProviderRequest: PutDefaultProviderRequest, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.putProvidersfeatureDefault(feature, putDefaultProviderRequest, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * ExperimentalApi - object-oriented interface
+ * @export
+ * @class ExperimentalApi
+ * @extends {BaseAPI}
+ */
+export class ExperimentalApi extends BaseAPI {
+    /**
+     * 
+     * @summary Remove the provider for the specified dependency of the specified instance
+     * @param {string} instanceId 
+     * @param {string} dependencyKey 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ExperimentalApi
+     */
+    public deleteInstancesinstanceIdDependsdependencyKey(instanceId: string, dependencyKey: string, options?: RawAxiosRequestConfig) {
+        return ExperimentalApiFp(this.configuration).deleteInstancesinstanceIdDependsdependencyKey(instanceId, dependencyKey, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Remove the default auth provider
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ExperimentalApi
+     */
+    public deleteProvidersAuthDefault(options?: RawAxiosRequestConfig) {
+        return ExperimentalApiFp(this.configuration).deleteProvidersAuthDefault(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Remove the default provider for the specified feature
+     * @param {string} feature 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ExperimentalApi
+     */
+    public deleteProvidersfeatureDefault(feature: string, options?: RawAxiosRequestConfig) {
+        return ExperimentalApiFp(this.configuration).deleteProvidersfeatureDefault(feature, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Get information on all dependencies of the specified instance
+     * @param {string} instanceId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ExperimentalApi
+     */
+    public getInstancesinstanceIdDepends(instanceId: string, options?: RawAxiosRequestConfig) {
+        return ExperimentalApiFp(this.configuration).getInstancesinstanceIdDepends(instanceId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Get information on the dependency for the specified dependency key of the specified instance
+     * @param {string} instanceId 
+     * @param {string} dependencyKey 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ExperimentalApi
+     */
+    public getInstancesinstanceIdDependsdependencyKey(instanceId: string, dependencyKey: string, options?: RawAxiosRequestConfig) {
+        return ExperimentalApiFp(this.configuration).getInstancesinstanceIdDependsdependencyKey(instanceId, dependencyKey, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Get all provided features of the specified instance
+     * @param {string} instanceId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ExperimentalApi
+     */
+    public getInstancesinstanceIdProvides(instanceId: string, options?: RawAxiosRequestConfig) {
+        return ExperimentalApiFp(this.configuration).getInstancesinstanceIdProvides(instanceId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Check if the specified instance provides the specified feature
+     * @param {string} instanceId 
+     * @param {string} feature 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ExperimentalApi
+     */
+    public getInstancesinstanceIdProvidesfeature(instanceId: string, feature: string, options?: RawAxiosRequestConfig) {
+        return ExperimentalApiFp(this.configuration).getInstancesinstanceIdProvidesfeature(instanceId, feature, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Get information for all providers
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ExperimentalApi
+     */
+    public getProviders(options?: RawAxiosRequestConfig) {
+        return ExperimentalApiFp(this.configuration).getProviders(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Get information for all auth providers
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ExperimentalApi
+     */
+    public getProvidersAuth(options?: RawAxiosRequestConfig) {
+        return ExperimentalApiFp(this.configuration).getProvidersAuth(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Get information on the core auth provider
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ExperimentalApi
+     */
+    public getProvidersAuthCore(options?: RawAxiosRequestConfig) {
+        return ExperimentalApiFp(this.configuration).getProvidersAuthCore(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Get the default auth provider
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ExperimentalApi
+     */
+    public getProvidersAuthDefault(options?: RawAxiosRequestConfig) {
+        return ExperimentalApiFp(this.configuration).getProvidersAuthDefault(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Get the auth provider with the specified id
+     * @param {string} id 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ExperimentalApi
+     */
+    public getProvidersAuthid(id: string, options?: RawAxiosRequestConfig) {
+        return ExperimentalApiFp(this.configuration).getProvidersAuthid(id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Get providers for the specified feature
+     * @param {string} feature 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ExperimentalApi
+     */
+    public getProvidersfeature(feature: string, options?: RawAxiosRequestConfig) {
+        return ExperimentalApiFp(this.configuration).getProvidersfeature(feature, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Get the default provider for the specified feature
+     * @param {string} feature 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ExperimentalApi
+     */
+    public getProvidersfeatureDefault(feature: string, options?: RawAxiosRequestConfig) {
+        return ExperimentalApiFp(this.configuration).getProvidersfeatureDefault(feature, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Access the core auth provider, on success the response will redirect
+     * @param {string} path The path to forward to the default auth provider
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ExperimentalApi
+     */
+    public headProvidersAuthCorepath(path: string, options?: RawAxiosRequestConfig) {
+        return ExperimentalApiFp(this.configuration).headProvidersAuthCorepath(path, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Access the default auth provider, on success the response will redirect
+     * @param {string} path The path to forward to the default auth provider
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ExperimentalApi
+     */
+    public headProvidersAuthDefaultpath(path: string, options?: RawAxiosRequestConfig) {
+        return ExperimentalApiFp(this.configuration).headProvidersAuthDefaultpath(path, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Access the auth provider with the specified id, on success the response will redirect
+     * @param {string} providerId The id of the auth provider
+     * @param {string} path The path to forward to the specified auth provider
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ExperimentalApi
+     */
+    public headProvidersAuthproviderIdpath(providerId: string, path: string, options?: RawAxiosRequestConfig) {
+        return ExperimentalApiFp(this.configuration).headProvidersAuthproviderIdpath(providerId, path, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Trigger the first time setup of auth providers via flecsport
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ExperimentalApi
+     */
+    public postProvidersAuthCoreFirstTimeSetupFlecsport(options?: RawAxiosRequestConfig) {
+        return ExperimentalApiFp(this.configuration).postProvidersAuthCoreFirstTimeSetupFlecsport(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Set a provider for the specified feature of the specified instance
+     * @param {string} instanceId 
+     * @param {string} dependencyKey 
+     * @param {ProviderReference} providerReference The provider that should be used
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ExperimentalApi
+     */
+    public putInstancesinstanceIdDependsdependencyKey(instanceId: string, dependencyKey: string, providerReference: ProviderReference, options?: RawAxiosRequestConfig) {
+        return ExperimentalApiFp(this.configuration).putInstancesinstanceIdDependsdependencyKey(instanceId, dependencyKey, providerReference, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Set a provider for the specified feature of the specified instance
+     * @param {string} instanceId 
+     * @param {string} dependencyKey 
+     * @param {string} feature 
+     * @param {ProviderReference} providerReference The provider that should be used
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ExperimentalApi
+     */
+    public putInstancesinstanceIdDependsdependencyKeyfeature(instanceId: string, dependencyKey: string, feature: string, providerReference: ProviderReference, options?: RawAxiosRequestConfig) {
+        return ExperimentalApiFp(this.configuration).putInstancesinstanceIdDependsdependencyKeyfeature(instanceId, dependencyKey, feature, providerReference, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Set a core auth provider
+     * @param {ProviderReference} providerReference The provider that should be used
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ExperimentalApi
+     */
+    public putProvidersAuthCore(providerReference: ProviderReference, options?: RawAxiosRequestConfig) {
+        return ExperimentalApiFp(this.configuration).putProvidersAuthCore(providerReference, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Set the default auth provider
+     * @param {PutDefaultProviderRequest} putDefaultProviderRequest Id of the provider that should be used as the default auth provider
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ExperimentalApi
+     */
+    public putProvidersAuthDefault(putDefaultProviderRequest: PutDefaultProviderRequest, options?: RawAxiosRequestConfig) {
+        return ExperimentalApiFp(this.configuration).putProvidersAuthDefault(putDefaultProviderRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Set the default provider for the specified feature
+     * @param {string} feature 
+     * @param {PutDefaultProviderRequest} putDefaultProviderRequest Id of the provider that should be used as the default provider
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ExperimentalApi
+     */
+    public putProvidersfeatureDefault(feature: string, putDefaultProviderRequest: PutDefaultProviderRequest, options?: RawAxiosRequestConfig) {
+        return ExperimentalApiFp(this.configuration).putProvidersfeatureDefault(feature, putDefaultProviderRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
