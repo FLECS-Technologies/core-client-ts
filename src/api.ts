@@ -4096,8 +4096,8 @@ export const ExperimentalApiAxiosParamCreator = function (configuration?: Config
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        postProvidersAuthCoreFirstTimeSetupFlecsport: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/providers/auth/core/first-time-setup/flecsport`;
+        postProvidersAuthFirstTimeSetupFlecsport: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/providers/auth/first-time-setup/flecsport`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -4565,10 +4565,10 @@ export const ExperimentalApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async postProvidersAuthCoreFirstTimeSetupFlecsport(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Accepted>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.postProvidersAuthCoreFirstTimeSetupFlecsport(options);
+        async postProvidersAuthFirstTimeSetupFlecsport(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Accepted>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.postProvidersAuthFirstTimeSetupFlecsport(options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ExperimentalApi.postProvidersAuthCoreFirstTimeSetupFlecsport']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['ExperimentalApi.postProvidersAuthFirstTimeSetupFlecsport']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -4808,8 +4808,8 @@ export const ExperimentalApiFactory = function (configuration?: Configuration, b
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        postProvidersAuthCoreFirstTimeSetupFlecsport(options?: RawAxiosRequestConfig): AxiosPromise<Accepted> {
-            return localVarFp.postProvidersAuthCoreFirstTimeSetupFlecsport(options).then((request) => request(axios, basePath));
+        postProvidersAuthFirstTimeSetupFlecsport(options?: RawAxiosRequestConfig): AxiosPromise<Accepted> {
+            return localVarFp.postProvidersAuthFirstTimeSetupFlecsport(options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -5068,8 +5068,8 @@ export class ExperimentalApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ExperimentalApi
      */
-    public postProvidersAuthCoreFirstTimeSetupFlecsport(options?: RawAxiosRequestConfig) {
-        return ExperimentalApiFp(this.configuration).postProvidersAuthCoreFirstTimeSetupFlecsport(options).then((request) => request(this.axios, this.basePath));
+    public postProvidersAuthFirstTimeSetupFlecsport(options?: RawAxiosRequestConfig) {
+        return ExperimentalApiFp(this.configuration).postProvidersAuthFirstTimeSetupFlecsport(options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
