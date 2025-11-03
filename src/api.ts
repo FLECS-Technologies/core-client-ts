@@ -1884,8 +1884,21 @@ export interface Provider {
  * @type ProviderReference
  * @export
  */
-export type ProviderReference = string;
+export type ProviderReference = ProviderReferenceOneOf | string;
 
+/**
+ * 
+ * @export
+ * @interface ProviderReferenceOneOf
+ */
+export interface ProviderReferenceOneOf {
+    /**
+     * 
+     * @type {string}
+     * @memberof ProviderReferenceOneOf
+     */
+    'Provider': string;
+}
 /**
  * 
  * @export
@@ -1899,6 +1912,25 @@ export interface PutDefaultProviderRequest {
      */
     'provider_id': string;
 }
+/**
+ * 
+ * @export
+ * @interface PutProviderReferenceRequest
+ */
+export interface PutProviderReferenceRequest {
+    /**
+     * 
+     * @type {PutProviderReferenceRequestProvider}
+     * @memberof PutProviderReferenceRequest
+     */
+    'provider': PutProviderReferenceRequestProvider;
+}
+/**
+ * @type PutProviderReferenceRequestProvider
+ * @export
+ */
+export type PutProviderReferenceRequestProvider = string;
+
 /**
  * 
  * @export
@@ -4226,13 +4258,13 @@ export const ExperimentalApiAxiosParamCreator = function (configuration?: Config
         },
         /**
          * Set a core auth provider
-         * @param {ProviderReference} providerReference The provider that should be used
+         * @param {PutProviderReferenceRequest} putProviderReferenceRequest The provider that should be used
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        putProvidersAuthCore: async (providerReference: ProviderReference, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'providerReference' is not null or undefined
-            assertParamExists('putProvidersAuthCore', 'providerReference', providerReference)
+        putProvidersAuthCore: async (putProviderReferenceRequest: PutProviderReferenceRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'putProviderReferenceRequest' is not null or undefined
+            assertParamExists('putProvidersAuthCore', 'putProviderReferenceRequest', putProviderReferenceRequest)
             const localVarPath = `/providers/auth/core`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -4256,7 +4288,7 @@ export const ExperimentalApiAxiosParamCreator = function (configuration?: Config
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(providerReference, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(putProviderReferenceRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -4604,12 +4636,12 @@ export const ExperimentalApiFp = function(configuration?: Configuration) {
         },
         /**
          * Set a core auth provider
-         * @param {ProviderReference} providerReference The provider that should be used
+         * @param {PutProviderReferenceRequest} putProviderReferenceRequest The provider that should be used
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async putProvidersAuthCore(providerReference: ProviderReference, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.putProvidersAuthCore(providerReference, options);
+        async putProvidersAuthCore(putProviderReferenceRequest: PutProviderReferenceRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.putProvidersAuthCore(putProviderReferenceRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ExperimentalApi.putProvidersAuthCore']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -4838,12 +4870,12 @@ export const ExperimentalApiFactory = function (configuration?: Configuration, b
         },
         /**
          * Set a core auth provider
-         * @param {ProviderReference} providerReference The provider that should be used
+         * @param {PutProviderReferenceRequest} putProviderReferenceRequest The provider that should be used
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        putProvidersAuthCore(providerReference: ProviderReference, options?: RawAxiosRequestConfig): AxiosPromise<void> {
-            return localVarFp.putProvidersAuthCore(providerReference, options).then((request) => request(axios, basePath));
+        putProvidersAuthCore(putProviderReferenceRequest: PutProviderReferenceRequest, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.putProvidersAuthCore(putProviderReferenceRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * Set the default auth provider
@@ -5103,13 +5135,13 @@ export class ExperimentalApi extends BaseAPI {
 
     /**
      * Set a core auth provider
-     * @param {ProviderReference} providerReference The provider that should be used
+     * @param {PutProviderReferenceRequest} putProviderReferenceRequest The provider that should be used
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ExperimentalApi
      */
-    public putProvidersAuthCore(providerReference: ProviderReference, options?: RawAxiosRequestConfig) {
-        return ExperimentalApiFp(this.configuration).putProvidersAuthCore(providerReference, options).then((request) => request(this.axios, this.basePath));
+    public putProvidersAuthCore(putProviderReferenceRequest: PutProviderReferenceRequest, options?: RawAxiosRequestConfig) {
+        return ExperimentalApiFp(this.configuration).putProvidersAuthCore(putProviderReferenceRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
